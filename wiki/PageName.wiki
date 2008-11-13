@@ -7,6 +7,7 @@ Qsalat to list.
 
 = Details =
 
+  * *bold* Add comments to the code source
   * Xml config file
   * Add audio page
   * Add hijri conversion page
