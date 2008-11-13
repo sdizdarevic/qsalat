@@ -1,0 +1,14 @@
+#Todo.
+
+= Todo =
+
+Qsalat to list.
+
+
+= Details =
+
+  * Detect the date changes
+  * Detect the current location 
+  * First time run : how to handle that ?
+  * Should we change the passed prayers to tomorrow's ones or we added as an option ?
+  
