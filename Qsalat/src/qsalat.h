@@ -11,6 +11,7 @@
 #include "qpray.h"
 #include "qhijri.h"
 #include "qlocation.h"
+#include "qqibla.h"
 //
 class Qsalat : public QMainWindow, public Ui::Salat
 {
@@ -22,6 +23,7 @@ public:
 	Qpray *prayers;
 	Qhijri *hijri;
 	Qlocation location;
+	Qqibla qibla;
 	QDate date;
 protected:
 	int year;
@@ -50,6 +52,7 @@ private:
 private slots:
 	void iconActivated(QSystemTrayIcon::ActivationReason);
 	void editLocation();
+	void showQibla();
 };
 #endif
 

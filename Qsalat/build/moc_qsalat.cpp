@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'qsalat.h'
 **
-** Created: Thu Nov 13 11:10:37 2008
+** Created: Thu Nov 13 16:29:18 2008
 **      by: The Qt Meta Object Compiler version 59 (Qt 4.4.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,20 +23,21 @@ static const uint qt_meta_data_Qsalat[] = {
        1,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   10, // methods
+       3,   10, // methods
        0,    0, // properties
        0,    0, // enums/sets
 
  // slots: signature, parameters, type, tag, flags
        8,    7,    7,    7, 0x08,
       57,    7,    7,    7, 0x08,
+      72,    7,    7,    7, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_Qsalat[] = {
     "Qsalat\0\0iconActivated(QSystemTrayIcon::ActivationReason)\0"
-    "editLocation()\0"
+    "editLocation()\0showQibla()\0"
 };
 
 const QMetaObject Qsalat::staticMetaObject = {
@@ -68,8 +69,9 @@ int Qsalat::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         switch (_id) {
         case 0: iconActivated((*reinterpret_cast< QSystemTrayIcon::ActivationReason(*)>(_a[1]))); break;
         case 1: editLocation(); break;
+        case 2: showQibla(); break;
         }
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }

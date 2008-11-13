@@ -130,7 +130,9 @@ void Qsalat::createActions()
     quitAction = new QAction(tr("&Quit"), this);
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));     
     
-    connect(actionLocation, SIGNAL(triggered()), this, SLOT(editLocation()));     
+    connect(actionLocation, SIGNAL(triggered()), this, SLOT(editLocation()));  
+    
+    connect(actionQibla_direction, SIGNAL(triggered()), this, SLOT(showQibla()));     
     
     connect(actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));  
     
@@ -148,6 +150,10 @@ void Qsalat::createActions()
 void Qsalat::editLocation(){
 	//Qlocation::Qlocation();
 	location.show();	
+}
+
+void Qsalat::showQibla(){	
+	qibla.show();
 }
 
 //
