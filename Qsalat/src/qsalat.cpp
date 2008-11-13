@@ -3,8 +3,30 @@
 Qsalat::Qsalat( QWidget * parent, Qt::WFlags f) 
 	: QMainWindow(parent, f)
 {
-	setupUi(this);
-	
+	setupUi(this);	
+	adjustWindow();	
+	p= new Qpray();
+	h= new Qhijri();
+	trayIcon = new QSystemTrayIcon(this);
+	trayIconMenu = new QMenu(this);
+	date = QDate::currentDate();	
+	year = date.year();;
+	month = date.month();
+	day = date.day();
+	latitude = 45.5454;
+	longitude = -73.6391;
+	timezone = -5.0;
+	getSalats();
+	getHijri();
+	createActions();
+	createTrayIcon();	
+	setVisible(true);
+	Gfirst = true;
+	connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+            this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
+}
+
+void Qsalat::adjustWindow(){
 	QDesktopWidget *desktop = QApplication::desktop();
 	int screenWidth, width; 
 	int screenHeight, height;
@@ -20,29 +42,7 @@ Qsalat::Qsalat( QWidget * parent, Qt::WFlags f)
 	y = (screenHeight - height) / 2;
 	y -= 50;	 
 	// move window to desired coordinates
-	move ( x, y );		
-	
-	p= new Qpray();
-	h= new Qhijri();
-	trayIcon = new QSystemTrayIcon(this);
-	trayIconMenu = new QMenu(this);
-	date = QDate::currentDate();	
-	year = date.year();;
-	month = date.month();
-	day = date.day();
-	latitude = 45.5454;
-	longitude = -73.6391;
-	timezone = -5.0;
-	getSalats();
-	getHijri();
-	createActions();
-	createTrayIcon();
-	
-	setVisible(true);
-	Gfirst = true; 
-	
-	connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-            this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
+	move ( x, y );	
 }
 
 void Qsalat::getSalats(){	
@@ -54,7 +54,7 @@ void Qsalat::getSalats(){
 	label_asr->setText(times[3]);
 	label_maghreb->setText(times[5]);
 	label_isha->setText(times[6]);
-	QNetworkAddressEntry *host =  new QNetworkAddressEntry();//host->ip().toString()
+	//QNetworkAddressEntry *host =  new QNetworkAddressEntry();//host->ip().toString()
 	label_location->setText("Montreal, Canada");
 }
 
@@ -67,7 +67,6 @@ void Qsalat::getHijri(){
 
 void Qsalat::createTrayIcon()
 {
-	
 	setWindowIcon(QIcon("images/mecque.png"));
 	QColor *c = new QColor ( 238, 238, 157, 255 );	
 	QPalette * p = new QPalette();
@@ -114,8 +113,7 @@ void Qsalat::closeEvent(QCloseEvent *event)
 	if (Gfirst == true){
 		trayIcon->showMessage("Information about this application", "Qsalat application is still runing", icon,10000);
 		Gfirst = false;
-	}
-		
+	}		
 	hide();
 	event->ignore();
 }

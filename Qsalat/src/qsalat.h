@@ -29,6 +29,7 @@ protected:
 	double longitude;
 	double timezone;
 	void closeEvent(QCloseEvent *);
+	void adjustWindow();
 	
 private:    
     QAction *minimizeAction;

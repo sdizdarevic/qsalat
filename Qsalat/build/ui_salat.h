@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'salat.ui'
 **
-** Created: Wed Nov 12 15:19:30 2008
+** Created: Wed Nov 12 16:35:55 2008
 **      by: Qt User Interface Compiler version 4.4.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!

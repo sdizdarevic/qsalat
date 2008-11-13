@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'qsalat.h'
 **
-** Created: Wed Nov 12 15:52:11 2008
+** Created: Thu Nov 13 09:59:55 2008
 **      by: The Qt Meta Object Compiler version 59 (Qt 4.4.1)
 **
 ** WARNING! All changes made in this file will be lost!
