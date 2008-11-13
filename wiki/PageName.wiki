@@ -7,6 +7,7 @@ Qsalat to list.
 
 = Details =
 
+  * Xml config file
   * Add audio page
   * Add hijri conversion page
   * Yearly and monthly prayer time generator
