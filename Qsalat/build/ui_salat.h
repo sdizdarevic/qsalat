@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'salat.ui'
 **
-** Created: Wed Nov 12 16:35:55 2008
+** Created: Thu Nov 13 11:10:30 2008
 **      by: Qt User Interface Compiler version 4.4.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -27,8 +27,8 @@ QT_BEGIN_NAMESPACE
 class Ui_Salat
 {
 public:
-    QAction *actionQuit;
     QAction *actionHide;
+    QAction *actionQuit;
     QAction *actionHijri_date;
     QAction *actionQibla_direction;
     QAction *actionLocation;
@@ -64,10 +64,10 @@ public:
     Salat->setMinimumSize(QSize(300, 461));
     Salat->setMaximumSize(QSize(300, 461));
     Salat->setStyleSheet(QString::fromUtf8(""));
-    actionQuit = new QAction(Salat);
-    actionQuit->setObjectName(QString::fromUtf8("actionQuit"));
     actionHide = new QAction(Salat);
     actionHide->setObjectName(QString::fromUtf8("actionHide"));
+    actionQuit = new QAction(Salat);
+    actionQuit->setObjectName(QString::fromUtf8("actionQuit"));
     actionHijri_date = new QAction(Salat);
     actionHijri_date->setObjectName(QString::fromUtf8("actionHijri_date"));
     actionQibla_direction = new QAction(Salat);
@@ -183,8 +183,8 @@ public:
     menubar->addAction(menuTools->menuAction());
     menubar->addAction(menuExtra->menuAction());
     menubar->addAction(menuAbout->menuAction());
-    menuFile->addAction(actionQuit);
     menuFile->addAction(actionHide);
+    menuFile->addAction(actionQuit);
     menuTools->addSeparator();
     menuTools->addAction(actionHijri_date);
     menuTools->addAction(actionQibla_direction);
@@ -204,8 +204,8 @@ public:
     void retranslateUi(QMainWindow *Salat)
     {
     Salat->setWindowTitle(QApplication::translate("Salat", "MainWindow", 0, QApplication::UnicodeUTF8));
-    actionQuit->setText(QApplication::translate("Salat", "Hide", 0, QApplication::UnicodeUTF8));
-    actionHide->setText(QApplication::translate("Salat", "Quit", 0, QApplication::UnicodeUTF8));
+    actionHide->setText(QApplication::translate("Salat", "Hide", 0, QApplication::UnicodeUTF8));
+    actionQuit->setText(QApplication::translate("Salat", "Quit", 0, QApplication::UnicodeUTF8));
     actionHijri_date->setText(QApplication::translate("Salat", "Hijri date", 0, QApplication::UnicodeUTF8));
     actionQibla_direction->setText(QApplication::translate("Salat", "Qibla direction", 0, QApplication::UnicodeUTF8));
     actionLocation->setText(QApplication::translate("Salat", "Location", 0, QApplication::UnicodeUTF8));

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'hijri.ui'
 **
-** Created: Wed Nov 12 16:35:55 2008
+** Created: Thu Nov 13 11:00:10 2008
 **      by: Qt User Interface Compiler version 4.4.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!

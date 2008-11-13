@@ -10,6 +10,7 @@
 #include "ui_salat.h"
 #include "qpray.h"
 #include "qhijri.h"
+#include "qlocation.h"
 //
 class Qsalat : public QMainWindow, public Ui::Salat
 {
@@ -18,8 +19,9 @@ public:
 	Qsalat( QWidget * parent = 0, Qt::WFlags f = 0 );
 	void getSalats();
 	void getHijri();		
-	Qpray *p;
-	Qhijri *h;
+	Qpray *prayers;
+	Qhijri *hijri;
+	Qlocation location;
 	QDate date;
 protected:
 	int year;
@@ -43,9 +45,11 @@ private:
 	void createTrayIcon();
 	void setVisible(bool);		
 	bool Gfirst; 
+	bool locationFirst;
 	
 private slots:
 	void iconActivated(QSystemTrayIcon::ActivationReason);
+	void editLocation();
 };
 #endif
 

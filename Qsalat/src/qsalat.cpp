@@ -5,8 +5,8 @@ Qsalat::Qsalat( QWidget * parent, Qt::WFlags f)
 {
 	setupUi(this);	
 	adjustWindow();	
-	p= new Qpray();
-	h= new Qhijri();
+	prayers = new Qpray();
+	hijri = new Qhijri();
 	trayIcon = new QSystemTrayIcon(this);
 	trayIconMenu = new QMenu(this);
 	date = QDate::currentDate();	
@@ -22,6 +22,7 @@ Qsalat::Qsalat( QWidget * parent, Qt::WFlags f)
 	createTrayIcon();	
 	setVisible(true);
 	Gfirst = true;
+	locationFirst = true;
 	connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
 }
@@ -47,8 +48,8 @@ void Qsalat::adjustWindow(){
 
 void Qsalat::getSalats(){	
 	QString *times = new QString[7];
-	p->setCalcMethod(3);
-	times = p->getDatePrayerTimes(year,month,day,latitude,longitude,timezone);
+	prayers->setCalcMethod(3);
+	times = prayers->getDatePrayerTimes(year,month,day,latitude,longitude,timezone);
 	label_fajr->setText(times[0]);
 	label_duhr->setText(times[2]);
 	label_asr->setText(times[3]);
@@ -60,7 +61,7 @@ void Qsalat::getSalats(){
 
 void Qsalat::getHijri(){
 	QString *dates = new QString[3];
-	dates = h->isToString(year, month, day);
+	dates = hijri->isToString(year, month, day);
 	QString text = dates[0]+" "+dates[1]+" "+dates[2];
 	label_hijri->setText(text);
 }
@@ -127,7 +128,11 @@ void Qsalat::createActions()
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(showNormal()));
 
     quitAction = new QAction(tr("&Quit"), this);
-    connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit())); 
+    connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));     
+    
+    connect(actionLocation, SIGNAL(triggered()), this, SLOT(editLocation()));     
+    
+    connect(actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));  
     
     //action_Close->setShortcut(tr("Ctrl+Q"));
     //connect(action_Close, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -136,6 +141,13 @@ void Qsalat::createActions()
    // connect(action_Hide, SIGNAL(triggered()), this, SLOT(hide()));    
     
     //connect(action_About, SIGNAL(triggered()), this, SLOT(_about()));    
+}
+
+// Private Slots
+
+void Qsalat::editLocation(){
+	//Qlocation::Qlocation();
+	location.show();	
 }
 
 //

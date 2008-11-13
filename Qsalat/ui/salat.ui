@@ -250,8 +250,8 @@ color:white;
     <property name="title" >
      <string>File</string>
     </property>
-    <addaction name="actionQuit" />
     <addaction name="actionHide" />
+    <addaction name="actionQuit" />
    </widget>
    <widget class="QMenu" name="menuTools" >
     <property name="title" >
@@ -295,12 +295,12 @@ color:white;
     <bool>false</bool>
    </attribute>
   </widget>
-  <action name="actionQuit" >
+  <action name="actionHide" >
    <property name="text" >
     <string>Hide</string>
    </property>
   </action>
-  <action name="actionHide" >
+  <action name="actionQuit" >
    <property name="text" >
     <string>Quit</string>
    </property>
