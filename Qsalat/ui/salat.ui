@@ -263,6 +263,7 @@ color:white;
     <addaction name="actionLocation" />
     <addaction name="actionAudio" />
     <addaction name="actionCalculation_methods" />
+    <addaction name="actionPrayers_time_option" />
    </widget>
    <widget class="QMenu" name="menuExtra" >
     <property name="title" >
@@ -296,6 +297,10 @@ color:white;
    </attribute>
   </widget>
   <action name="actionHide" >
+   <property name="icon" >
+    <iconset resource="../salat.qrc" >
+     <normaloff>:/images/mecque.png</normaloff>:/images/mecque.png</iconset>
+   </property>
    <property name="text" >
     <string>Hide</string>
    </property>
@@ -353,6 +358,11 @@ color:white;
   <action name="actionWorld_time_2" >
    <property name="text" >
     <string>World time</string>
+   </property>
+  </action>
+  <action name="actionPrayers_time_option" >
+   <property name="text" >
+    <string>Prayers time option</string>
    </property>
   </action>
  </widget>
