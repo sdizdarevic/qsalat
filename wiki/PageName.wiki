@@ -7,6 +7,10 @@ Qsalat to list.
 
 = Details =
 
+  * Add audio page
+  * Add hijri conversion page
+  * Yearly and monthly prayer time generator
+  * Calculation methods option
   * Detect the date changes
   * Detect the current location 
   * First time run : how to handle that ?
