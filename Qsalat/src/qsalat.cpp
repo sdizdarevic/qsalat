@@ -149,6 +149,7 @@ void Qsalat::createActions()
 
 void Qsalat::editLocation(){
 	//Qlocation::Qlocation();
+	location.setWindowOpacity(0.0);
 	location.show();	
 }
 

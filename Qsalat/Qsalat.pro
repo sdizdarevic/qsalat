@@ -10,17 +10,16 @@ FORMS = ui/salat.ui \
  ui/hijri.ui \
  ui/athan.ui \
  ui/worldtime.ui \
- ui/message.ui \
  ui/location.ui
 HEADERS = src/qsalat.h \
  src/qpray.h \
  src/qhijri.h \
- src/qlocation.h \
- src/qqibla.h
+ src/qqibla.h \
+ src/qlocation.h
 SOURCES = src/qsalat.cpp \
  src/main.cpp \
  src/qpray.cpp \
  src/qhijri.cpp \
- src/qlocation.cpp \
- src/qqibla.cpp
+ src/qqibla.cpp \
+ src/qlocation.cpp
 RESOURCES += salat.qrc qibla.qrc
