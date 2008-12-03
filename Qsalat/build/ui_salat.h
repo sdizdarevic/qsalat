@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading ui file 'salat.ui'
 **
-** Created: Thu Nov 13 16:56:23 2008
-**      by: Qt User Interface Compiler version 4.4.1
+** Created: Tue Dec 2 22:57:09 2008
+**      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
 ********************************************************************************/
@@ -37,9 +37,10 @@ public:
     QAction *actionWorld_time;
     QAction *actionAbout_Qsalat;
     QAction *actionAbout_QT;
-    QAction *actionCalculation_methods;
-    QAction *actionWorld_time_2;
-    QAction *actionPrayers_time_option;
+    QAction *actionCalculation_options;
+    QAction *actionWorldtime;
+    QAction *actionGenerate_monthly_prayer_times;
+    QAction *actionGenerate_yearly_prayer_times;
     QWidget *centralwidget;
     QWidget *widget;
     QLabel *label_fajr;
@@ -52,6 +53,7 @@ public:
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuTools;
+    QMenu *menuPrayer_times_options;
     QMenu *menuExtra;
     QMenu *menuAbout;
     QStatusBar *statusbar;
@@ -88,12 +90,14 @@ public:
     actionAbout_Qsalat->setObjectName(QString::fromUtf8("actionAbout_Qsalat"));
     actionAbout_QT = new QAction(Salat);
     actionAbout_QT->setObjectName(QString::fromUtf8("actionAbout_QT"));
-    actionCalculation_methods = new QAction(Salat);
-    actionCalculation_methods->setObjectName(QString::fromUtf8("actionCalculation_methods"));
-    actionWorld_time_2 = new QAction(Salat);
-    actionWorld_time_2->setObjectName(QString::fromUtf8("actionWorld_time_2"));
-    actionPrayers_time_option = new QAction(Salat);
-    actionPrayers_time_option->setObjectName(QString::fromUtf8("actionPrayers_time_option"));
+    actionCalculation_options = new QAction(Salat);
+    actionCalculation_options->setObjectName(QString::fromUtf8("actionCalculation_options"));
+    actionWorldtime = new QAction(Salat);
+    actionWorldtime->setObjectName(QString::fromUtf8("actionWorldtime"));
+    actionGenerate_monthly_prayer_times = new QAction(Salat);
+    actionGenerate_monthly_prayer_times->setObjectName(QString::fromUtf8("actionGenerate_monthly_prayer_times"));
+    actionGenerate_yearly_prayer_times = new QAction(Salat);
+    actionGenerate_yearly_prayer_times->setObjectName(QString::fromUtf8("actionGenerate_yearly_prayer_times"));
     centralwidget = new QWidget(Salat);
     centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
     widget = new QWidget(centralwidget);
@@ -168,11 +172,13 @@ public:
     Salat->setCentralWidget(centralwidget);
     menubar = new QMenuBar(Salat);
     menubar->setObjectName(QString::fromUtf8("menubar"));
-    menubar->setGeometry(QRect(0, 0, 300, 25));
+    menubar->setGeometry(QRect(0, 0, 300, 26));
     menuFile = new QMenu(menubar);
     menuFile->setObjectName(QString::fromUtf8("menuFile"));
     menuTools = new QMenu(menubar);
     menuTools->setObjectName(QString::fromUtf8("menuTools"));
+    menuPrayer_times_options = new QMenu(menuTools);
+    menuPrayer_times_options->setObjectName(QString::fromUtf8("menuPrayer_times_options"));
     menuExtra = new QMenu(menubar);
     menuExtra->setObjectName(QString::fromUtf8("menuExtra"));
     menuAbout = new QMenu(menubar);
@@ -196,9 +202,11 @@ public:
     menuTools->addAction(actionQibla_direction);
     menuTools->addAction(actionLocation);
     menuTools->addAction(actionAudio);
-    menuTools->addAction(actionCalculation_methods);
-    menuTools->addAction(actionPrayers_time_option);
-    menuExtra->addAction(actionWorld_time_2);
+    menuTools->addAction(actionCalculation_options);
+    menuTools->addAction(menuPrayer_times_options->menuAction());
+    menuPrayer_times_options->addAction(actionGenerate_monthly_prayer_times);
+    menuPrayer_times_options->addAction(actionGenerate_yearly_prayer_times);
+    menuExtra->addAction(actionWorldtime);
     menuAbout->addSeparator();
     menuAbout->addAction(actionAbout_Qsalat);
     menuAbout->addAction(actionAbout_QT);
@@ -210,10 +218,10 @@ public:
 
     void retranslateUi(QMainWindow *Salat)
     {
-    Salat->setWindowTitle(QApplication::translate("Salat", "MainWindow", 0, QApplication::UnicodeUTF8));
+    Salat->setWindowTitle(QApplication::translate("Salat", "Qsalat - salat times", 0, QApplication::UnicodeUTF8));
     actionHide->setText(QApplication::translate("Salat", "Hide", 0, QApplication::UnicodeUTF8));
     actionQuit->setText(QApplication::translate("Salat", "Quit", 0, QApplication::UnicodeUTF8));
-    actionHijri_date->setText(QApplication::translate("Salat", "Hijri date", 0, QApplication::UnicodeUTF8));
+    actionHijri_date->setText(QApplication::translate("Salat", "Hijri date conversion", 0, QApplication::UnicodeUTF8));
     actionQibla_direction->setText(QApplication::translate("Salat", "Qibla direction", 0, QApplication::UnicodeUTF8));
     actionLocation->setText(QApplication::translate("Salat", "Location", 0, QApplication::UnicodeUTF8));
     actionAudio->setText(QApplication::translate("Salat", "Audio", 0, QApplication::UnicodeUTF8));
@@ -221,9 +229,10 @@ public:
     actionWorld_time->setText(QApplication::translate("Salat", "World time", 0, QApplication::UnicodeUTF8));
     actionAbout_Qsalat->setText(QApplication::translate("Salat", "About Qsalat", 0, QApplication::UnicodeUTF8));
     actionAbout_QT->setText(QApplication::translate("Salat", "About QT", 0, QApplication::UnicodeUTF8));
-    actionCalculation_methods->setText(QApplication::translate("Salat", "Calculation methods", 0, QApplication::UnicodeUTF8));
-    actionWorld_time_2->setText(QApplication::translate("Salat", "World time", 0, QApplication::UnicodeUTF8));
-    actionPrayers_time_option->setText(QApplication::translate("Salat", "Prayers time option", 0, QApplication::UnicodeUTF8));
+    actionCalculation_options->setText(QApplication::translate("Salat", "Calculation options", 0, QApplication::UnicodeUTF8));
+    actionWorldtime->setText(QApplication::translate("Salat", "World time", 0, QApplication::UnicodeUTF8));
+    actionGenerate_monthly_prayer_times->setText(QApplication::translate("Salat", "Generate monthly prayer times", 0, QApplication::UnicodeUTF8));
+    actionGenerate_yearly_prayer_times->setText(QApplication::translate("Salat", "Generate yearly prayer times", 0, QApplication::UnicodeUTF8));
     label_fajr->setText(QApplication::translate("Salat", "06:00", 0, QApplication::UnicodeUTF8));
     label_asr->setText(QApplication::translate("Salat", "00:00", 0, QApplication::UnicodeUTF8));
     label_isha->setText(QApplication::translate("Salat", "00:00", 0, QApplication::UnicodeUTF8));
@@ -233,6 +242,7 @@ public:
     label_hijri->setText(QApplication::translate("Salat", "00 Jumada al-Thani 0000", 0, QApplication::UnicodeUTF8));
     menuFile->setTitle(QApplication::translate("Salat", "File", 0, QApplication::UnicodeUTF8));
     menuTools->setTitle(QApplication::translate("Salat", "Tools", 0, QApplication::UnicodeUTF8));
+    menuPrayer_times_options->setTitle(QApplication::translate("Salat", "Prayer times options", 0, QApplication::UnicodeUTF8));
     menuExtra->setTitle(QApplication::translate("Salat", "Extra", 0, QApplication::UnicodeUTF8));
     menuAbout->setTitle(QApplication::translate("Salat", "About", 0, QApplication::UnicodeUTF8));
     toolBar->setWindowTitle(QApplication::translate("Salat", "toolBar", 0, QApplication::UnicodeUTF8));

@@ -5,7 +5,6 @@
    <file>images/mecque.png</file> 
    <file>images/slider.png</file> 
    <file>images/slider2.png</file>
-   <file>images/slider3.png</file>
-  
+   <file>images/slider3.png</file>  
 </qresource>
 </RCC>

@@ -12,6 +12,9 @@
 #include "qhijri.h"
 #include "qlocation.h"
 #include "qqibla.h"
+#include "qaudio.h"
+#include "calculation.h"
+#include "worldTime.h"
 //
 class Qsalat : public QMainWindow, public Ui::Salat
 {
@@ -25,6 +28,9 @@ public:
 	Qlocation location;
 	Qqibla qibla;
 	QDate date;
+	Qaudio audio;
+	Qcalculation calculation;
+	Qworldtime worldtime;
 protected:
 	int year;
 	int month;
@@ -53,6 +59,9 @@ private slots:
 	void iconActivated(QSystemTrayIcon::ActivationReason);
 	void editLocation();
 	void showQibla();
+	void showAudio();
+	void showCalculation();
+	void showWorldtime();
 };
 #endif
 

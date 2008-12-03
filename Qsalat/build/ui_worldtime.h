@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading ui file 'worldtime.ui'
 **
-** Created: Thu Nov 13 11:00:10 2008
-**      by: Qt User Interface Compiler version 4.4.1
+** Created: Tue Dec 2 22:21:37 2008
+**      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
 ********************************************************************************/
@@ -15,46 +15,37 @@
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QDialog>
-#include <QtGui/QDialogButtonBox>
-#include <QtGui/QLabel>
 
 QT_BEGIN_NAMESPACE
 
-class Ui_Dialog
+class Ui_WorldTime
 {
 public:
-    QLabel *label;
-    QDialogButtonBox *buttonBox;
 
-    void setupUi(QDialog *Dialog)
+    void setupUi(QDialog *WorldTime)
     {
-    if (Dialog->objectName().isEmpty())
-        Dialog->setObjectName(QString::fromUtf8("Dialog"));
-    Dialog->resize(400, 300);
-    label = new QLabel(Dialog);
-    label->setObjectName(QString::fromUtf8("label"));
-    label->setGeometry(QRect(9, 9, 382, 244));
-    buttonBox = new QDialogButtonBox(Dialog);
-    buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
-    buttonBox->setGeometry(QRect(9, 259, 382, 32));
-    buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok);
+    if (WorldTime->objectName().isEmpty())
+        WorldTime->setObjectName(QString::fromUtf8("WorldTime"));
+    WorldTime->resize(640, 320);
+    WorldTime->setMinimumSize(QSize(640, 320));
+    WorldTime->setMaximumSize(QSize(640, 320));
+    WorldTime->setStyleSheet(QString::fromUtf8("background-image: url(:/images/worldtime/img0.jpg);"));
 
-    retranslateUi(Dialog);
+    retranslateUi(WorldTime);
 
-    QMetaObject::connectSlotsByName(Dialog);
+    QMetaObject::connectSlotsByName(WorldTime);
     } // setupUi
 
-    void retranslateUi(QDialog *Dialog)
+    void retranslateUi(QDialog *WorldTime)
     {
-    Dialog->setWindowTitle(QApplication::translate("Dialog", "Dialog", 0, QApplication::UnicodeUTF8));
-    label->setText(QApplication::translate("Dialog", "Remove this widget and insert your own widgets", 0, QApplication::UnicodeUTF8));
-    Q_UNUSED(Dialog);
+    WorldTime->setWindowTitle(QApplication::translate("WorldTime", "Qsalat - world time", 0, QApplication::UnicodeUTF8));
+    Q_UNUSED(WorldTime);
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class Dialog: public Ui_Dialog {};
+    class WorldTime: public Ui_WorldTime {};
 } // namespace Ui
 
 QT_END_NAMESPACE

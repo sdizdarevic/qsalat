@@ -33,6 +33,7 @@ protected:
 	
 signals:
 	void reloadMap();
+	void updateMap();
 	
 private:
 	QNetworkAccessManager *manager;

@@ -1,3 +1,24 @@
+/****************************************************************************
+**
+** Copyright (C) 2008 Skander Jabouzi (Skander Software Solutions).
+** Contact: skander@skanderjabouzi.com or jabouzi@gmail.com
+**
+** This file is part of the Qsalat open source software.
+**
+** GNU General Public License Usage
+** This file may be used under the terms of the GNU
+** General Public License versions 2.0 or 3.0 as published by the Free
+** Software Foundation and appearing in the file LICENSE.GPL included in
+** the packaging of this file.  Please review the following information
+** to ensure GNU General Public Licensing requirements will be met:
+** http://www.fsf.org/licensing/licenses/info/GPLv2.html and
+** http://www.gnu.org/copyleft/gpl.html.  In addition, as a special
+** exception, Nokia gives you certain additional rights. These rights
+** are described in the Nokia Qt GPL Exception version 1.3, included in
+** the file GPL_EXCEPTION.txt in this package.
+**
+***************************************************************************/
+
 #include "qsalat.h"
 //
 Qsalat::Qsalat( QWidget * parent, Qt::WFlags f) 
@@ -7,6 +28,7 @@ Qsalat::Qsalat( QWidget * parent, Qt::WFlags f)
 	adjustWindow();	
 	prayers = new Qpray();
 	hijri = new Qhijri();
+	//audio = new Qaudio();
 	trayIcon = new QSystemTrayIcon(this);
 	trayIconMenu = new QMenu(this);
 	date = QDate::currentDate();	
@@ -117,6 +139,11 @@ void Qsalat::closeEvent(QCloseEvent *event)
 	}		
 	hide();
 	event->ignore();
+	qibla.hide();
+	location.hide();
+	audio.hide();
+	calculation.hide();
+	worldtime.hide();
 }
 
 void Qsalat::createActions()
@@ -128,20 +155,18 @@ void Qsalat::createActions()
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(showNormal()));
 
     quitAction = new QAction(tr("&Quit"), this);
-    connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));     
-    
-    connect(actionLocation, SIGNAL(triggered()), this, SLOT(editLocation()));  
-    
+    connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));    
+    connect(actionLocation, SIGNAL(triggered()), this, SLOT(editLocation()));    
     connect(actionQibla_direction, SIGNAL(triggered()), this, SLOT(showQibla()));     
-    
-    connect(actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));  
-    
+    connect(actionAudio, SIGNAL(triggered()), this, SLOT(showAudio()));     
+    connect(actionCalculation_options, SIGNAL(triggered()), this, SLOT(showCalculation()));    
+	connect(actionWorldtime, SIGNAL(triggered()), this, SLOT(showWorldtime()));     
+    connect(actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));    
+    connect(actionAbout_QT, SIGNAL(triggered()), qApp, SLOT(aboutQt()));     
     //action_Close->setShortcut(tr("Ctrl+Q"));
-    //connect(action_Close, SIGNAL(triggered()), qApp, SLOT(quit()));
-    
-    //action_Hide->setShortcut(tr("Ctrl+H"));
-   // connect(action_Hide, SIGNAL(triggered()), this, SLOT(hide()));    
-    
+    //connect(action_Close, SIGNAL(triggered()), qApp, SLOT(quit()));   
+    actionHide->setShortcut(tr("Ctrl+H"));
+    connect(actionHide, SIGNAL(triggered()), this, SLOT(hide()));    
     //connect(action_About, SIGNAL(triggered()), this, SLOT(_about()));    
 }
 
@@ -155,6 +180,18 @@ void Qsalat::editLocation(){
 
 void Qsalat::showQibla(){	
 	qibla.show();
+}
+
+void Qsalat::showAudio(){	
+	audio.show();
+}
+
+void Qsalat::showCalculation(){	
+	calculation.show();
+}
+
+void Qsalat::showWorldtime(){
+	worldtime.show();
 }
 
 //

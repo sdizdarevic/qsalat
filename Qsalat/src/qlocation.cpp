@@ -10,7 +10,9 @@ Qlocation::Qlocation( QWidget * parent, Qt::WFlags f)
     //connect(this,SIGNAL(loadFinished(ok)),this,SLOT(updateLatLng()));
     connect(this,SIGNAL(reloadMap()),this,SLOT(loadCoordinates()));
     connect(pushButton,SIGNAL(clicked()),this,SLOT(showItem()));  
-    connect(pushButton_2,SIGNAL(clicked()),this,SLOT(updateLatLng()));    
+    connect(pushButton_2,SIGNAL(clicked()),this,SLOT(updateLatLng()));
+    connect(this,SIGNAL(updateMap()),this,SLOT(updateLatLng()));
+    emit( updateMap() );    
 }
 
 void Qlocation::geoCode(const QString& address)
@@ -23,7 +25,7 @@ void Qlocation::geoCode(const QString& address)
             .arg("ABQIAAAADK2Z-2Uhvnv0BtjasvfxpBQ9r-JX5Ew3YiWGH5u4o4FZAQdnQRRB9I6-zAG7Un8nsXxMTDtquMbY2A") );
 	//QMessageBox::warning(this, tr("My Application"),requestStr,QMessageBox::Ok);
     manager->get( QNetworkRequest(requestStr) );
-    ++pendingRequests;
+    ++pendingRequests;    
 }
 
 void Qlocation::replyFinished(QNetworkReply *reply)
@@ -38,7 +40,7 @@ void Qlocation::replyFinished(QNetworkReply *reply)
 
     --pendingRequests;
     if( pendingRequests<1 )
-        emit( reloadMap() );
+        emit( reloadMap() );        
 }
 
 void Qlocation::loadCoordinates()

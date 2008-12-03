@@ -22,7 +22,7 @@
    </size>
   </property>
   <property name="windowTitle" >
-   <string>MainWindow</string>
+   <string>Qsalat - salat times</string>
   </property>
   <property name="styleSheet" >
    <string notr="true" />
@@ -243,7 +243,7 @@ color:white;
      <x>0</x>
      <y>0</y>
      <width>300</width>
-     <height>25</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile" >
@@ -257,19 +257,26 @@ color:white;
     <property name="title" >
      <string>Tools</string>
     </property>
+    <widget class="QMenu" name="menuPrayer_times_options" >
+     <property name="title" >
+      <string>Prayer times options</string>
+     </property>
+     <addaction name="actionGenerate_monthly_prayer_times" />
+     <addaction name="actionGenerate_yearly_prayer_times" />
+    </widget>
     <addaction name="separator" />
     <addaction name="actionHijri_date" />
     <addaction name="actionQibla_direction" />
     <addaction name="actionLocation" />
     <addaction name="actionAudio" />
-    <addaction name="actionCalculation_methods" />
-    <addaction name="actionPrayers_time_option" />
+    <addaction name="actionCalculation_options" />
+    <addaction name="menuPrayer_times_options" />
    </widget>
    <widget class="QMenu" name="menuExtra" >
     <property name="title" >
      <string>Extra</string>
     </property>
-    <addaction name="actionWorld_time_2" />
+    <addaction name="actionWorldtime" />
    </widget>
    <widget class="QMenu" name="menuAbout" >
     <property name="title" >
@@ -312,7 +319,7 @@ color:white;
   </action>
   <action name="actionHijri_date" >
    <property name="text" >
-    <string>Hijri date</string>
+    <string>Hijri date conversion</string>
    </property>
   </action>
   <action name="actionQibla_direction" >
@@ -350,19 +357,24 @@ color:white;
     <string>About QT</string>
    </property>
   </action>
-  <action name="actionCalculation_methods" >
+  <action name="actionCalculation_options" >
    <property name="text" >
-    <string>Calculation methods</string>
+    <string>Calculation options</string>
    </property>
   </action>
-  <action name="actionWorld_time_2" >
+  <action name="actionWorldtime" >
    <property name="text" >
     <string>World time</string>
    </property>
   </action>
-  <action name="actionPrayers_time_option" >
+  <action name="actionGenerate_monthly_prayer_times" >
    <property name="text" >
-    <string>Prayers time option</string>
+    <string>Generate monthly prayer times</string>
+   </property>
+  </action>
+  <action name="actionGenerate_yearly_prayer_times" >
+   <property name="text" >
+    <string>Generate yearly prayer times</string>
    </property>
   </action>
  </widget>

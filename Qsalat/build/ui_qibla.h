@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading ui file 'qibla.ui'
 **
-** Created: Thu Nov 13 16:24:17 2008
-**      by: Qt User Interface Compiler version 4.4.1
+** Created: Tue Dec 2 22:21:37 2008
+**      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
 ********************************************************************************/
@@ -27,6 +27,8 @@ public:
     if (Qibla->objectName().isEmpty())
         Qibla->setObjectName(QString::fromUtf8("Qibla"));
     Qibla->resize(300, 400);
+    Qibla->setMinimumSize(QSize(300, 400));
+    Qibla->setMaximumSize(QSize(300, 400));
     Qibla->setStyleSheet(QString::fromUtf8("background-image: url(:/images/boussole.png);\n"
 ""));
 
@@ -37,7 +39,7 @@ public:
 
     void retranslateUi(QDialog *Qibla)
     {
-    Qibla->setWindowTitle(QApplication::translate("Qibla", "Qibla", 0, QApplication::UnicodeUTF8));
+    Qibla->setWindowTitle(QApplication::translate("Qibla", "Qsalat - qibla direction", 0, QApplication::UnicodeUTF8));
     Q_UNUSED(Qibla);
     } // retranslateUi
 
