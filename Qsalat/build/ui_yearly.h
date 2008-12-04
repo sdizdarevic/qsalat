@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'yearly.ui'
 **
-** Created: Tue Dec 2 22:32:14 2008
+** Created: Tue Dec 2 23:58:31 2008
 **      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -14,12 +14,12 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
-#include <QtGui/QComboBox>
 #include <QtGui/QDialog>
 #include <QtGui/QGroupBox>
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
 #include <QtGui/QPushButton>
+#include <QtGui/QSpinBox>
 
 QT_BEGIN_NAMESPACE
 
@@ -28,7 +28,7 @@ class Ui_Yearly
 public:
     QGroupBox *groupBox;
     QLabel *label_3;
-    QComboBox *yearBox;
+    QSpinBox *yearBox;
     QPushButton *generateButton;
     QGroupBox *groupBox_2;
     QPushButton *selectButton;
@@ -48,9 +48,12 @@ public:
     label_3 = new QLabel(groupBox);
     label_3->setObjectName(QString::fromUtf8("label_3"));
     label_3->setGeometry(QRect(10, 30, 91, 31));
-    yearBox = new QComboBox(groupBox);
+    yearBox = new QSpinBox(groupBox);
     yearBox->setObjectName(QString::fromUtf8("yearBox"));
-    yearBox->setGeometry(QRect(190, 30, 131, 27));
+    yearBox->setGeometry(QRect(190, 30, 131, 28));
+    yearBox->setMinimum(1900);
+    yearBox->setMaximum(2100);
+    yearBox->setValue(2008);
     generateButton = new QPushButton(Yearly);
     generateButton->setObjectName(QString::fromUtf8("generateButton"));
     generateButton->setGeometry(QRect(260, 220, 80, 28));

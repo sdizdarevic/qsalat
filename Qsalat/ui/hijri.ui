@@ -254,21 +254,13 @@
      </rect>
     </property>
     <property name="text" >
-     <string>Julina to hijri</string>
+     <string>Julian to hijri</string>
     </property>
     <property name="checked" >
      <bool>false</bool>
     </property>
    </widget>
   </widget>
-  <zorder>label</zorder>
-  <zorder>buttonBox</zorder>
-  <zorder>groupBox</zorder>
-  <zorder>scrollArea</zorder>
-  <zorder>groupBox_2</zorder>
-  <zorder>convertButton</zorder>
-  <zorder>groupBox_3</zorder>
-  <zorder>spinBox_6</zorder>
  </widget>
  <resources/>
  <connections/>

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'qsalat.h'
 **
-** Created: Tue Dec 2 22:57:39 2008
+** Created: Wed Dec 3 23:20:23 2008
 **      by: The Qt Meta Object Compiler version 59 (Qt 4.4.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Qsalat[] = {
        1,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   10, // methods
+      10,   10, // methods
        0,    0, // properties
        0,    0, // enums/sets
 
@@ -34,6 +34,10 @@ static const uint qt_meta_data_Qsalat[] = {
       84,    7,    7,    7, 0x08,
       96,    7,    7,    7, 0x08,
      114,    7,    7,    7, 0x08,
+     130,    7,    7,    7, 0x08,
+     144,    7,    7,    7, 0x08,
+     157,    7,    7,    7, 0x08,
+     173,    7,    7,    7, 0x08,
 
        0        // eod
 };
@@ -42,6 +46,8 @@ static const char qt_meta_stringdata_Qsalat[] = {
     "Qsalat\0\0iconActivated(QSystemTrayIcon::ActivationReason)\0"
     "editLocation()\0showQibla()\0showAudio()\0"
     "showCalculation()\0showWorldtime()\0"
+    "showMonthly()\0showYearly()\0showHijridate()\0"
+    "_about()\0"
 };
 
 const QMetaObject Qsalat::staticMetaObject = {
@@ -77,8 +83,12 @@ int Qsalat::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 3: showAudio(); break;
         case 4: showCalculation(); break;
         case 5: showWorldtime(); break;
+        case 6: showMonthly(); break;
+        case 7: showYearly(); break;
+        case 8: showHijridate(); break;
+        case 9: _about(); break;
         }
-        _id -= 6;
+        _id -= 10;
     }
     return _id;
 }

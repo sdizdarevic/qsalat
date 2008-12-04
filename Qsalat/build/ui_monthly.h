@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'monthly.ui'
 **
-** Created: Tue Dec 2 22:32:14 2008
+** Created: Tue Dec 2 23:51:15 2008
 **      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -20,6 +20,7 @@
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
 #include <QtGui/QPushButton>
+#include <QtGui/QSpinBox>
 
 QT_BEGIN_NAMESPACE
 
@@ -32,9 +33,9 @@ public:
     QLabel *label_4;
     QGroupBox *groupBox;
     QLabel *label_5;
-    QComboBox *yearBox;
     QLabel *label_2;
     QComboBox *monthBox;
+    QSpinBox *yearBox;
     QPushButton *generateButton;
 
     void setupUi(QDialog *Monthly)
@@ -62,15 +63,18 @@ public:
     label_5 = new QLabel(groupBox);
     label_5->setObjectName(QString::fromUtf8("label_5"));
     label_5->setGeometry(QRect(10, 70, 91, 31));
-    yearBox = new QComboBox(groupBox);
-    yearBox->setObjectName(QString::fromUtf8("yearBox"));
-    yearBox->setGeometry(QRect(190, 70, 131, 27));
     label_2 = new QLabel(groupBox);
     label_2->setObjectName(QString::fromUtf8("label_2"));
     label_2->setGeometry(QRect(10, 30, 91, 31));
     monthBox = new QComboBox(groupBox);
     monthBox->setObjectName(QString::fromUtf8("monthBox"));
     monthBox->setGeometry(QRect(190, 30, 131, 27));
+    yearBox = new QSpinBox(groupBox);
+    yearBox->setObjectName(QString::fromUtf8("yearBox"));
+    yearBox->setGeometry(QRect(190, 70, 131, 28));
+    yearBox->setMinimum(1900);
+    yearBox->setMaximum(2100);
+    yearBox->setValue(2008);
     generateButton = new QPushButton(Monthly);
     generateButton->setObjectName(QString::fromUtf8("generateButton"));
     generateButton->setGeometry(QRect(260, 260, 80, 28));

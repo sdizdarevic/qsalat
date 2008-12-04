@@ -21,8 +21,12 @@ HEADERS = src/qsalat.h \
  src/qqibla.h \
  src/qlocation.h \
  src/qaudio.h \
- src/calculation.h \
- src/worldTime.h
+ src/qmonthly.h \
+ src/qyearly.h \
+ src/qabout.h \
+ src/qworldTime.h \
+ src/qcalculation.h \
+ src/qhijridate.h
 SOURCES = src/qsalat.cpp \
  src/main.cpp \
  src/qpray.cpp \
@@ -30,6 +34,10 @@ SOURCES = src/qsalat.cpp \
  src/qqibla.cpp \
  src/qlocation.cpp \
  src/qaudio.cpp \
- src/calculation.cpp \
- src/worldTime.cpp
+ src/qmonthly.cpp \
+ src/qyearly.cpp \
+ src/qabout.cpp \
+ src/qcalculation.cpp \
+ src/qworldTime.cpp \
+ src/qhijridate.cpp
 RESOURCES += salat.qrc qibla.qrc worldtime.qrc

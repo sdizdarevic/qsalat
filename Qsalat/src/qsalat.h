@@ -13,8 +13,11 @@
 #include "qlocation.h"
 #include "qqibla.h"
 #include "qaudio.h"
-#include "calculation.h"
-#include "worldTime.h"
+#include "qcalculation.h"
+#include "qworldTime.h"
+#include "qmonthly.h"
+#include "qyearly.h"
+#include "qhijridate.h"
 //
 class Qsalat : public QMainWindow, public Ui::Salat
 {
@@ -31,6 +34,9 @@ public:
 	Qaudio audio;
 	Qcalculation calculation;
 	Qworldtime worldtime;
+	Qmonthly monthly;
+	Qyearly yearly;
+	Qhijridate hijridate;
 protected:
 	int year;
 	int month;
@@ -62,6 +68,10 @@ private slots:
 	void showAudio();
 	void showCalculation();
 	void showWorldtime();
+	void showMonthly();
+	void showYearly();
+	void showHijridate();
+	void _about();
 };
 #endif
 

@@ -144,6 +144,9 @@ void Qsalat::closeEvent(QCloseEvent *event)
 	audio.hide();
 	calculation.hide();
 	worldtime.hide();
+	monthly.hide();
+	yearly.hide();
+	hijridate.hide();
 }
 
 void Qsalat::createActions()
@@ -160,14 +163,16 @@ void Qsalat::createActions()
     connect(actionQibla_direction, SIGNAL(triggered()), this, SLOT(showQibla()));     
     connect(actionAudio, SIGNAL(triggered()), this, SLOT(showAudio()));     
     connect(actionCalculation_options, SIGNAL(triggered()), this, SLOT(showCalculation()));    
-	connect(actionWorldtime, SIGNAL(triggered()), this, SLOT(showWorldtime()));     
+	connect(actionWorldtime, SIGNAL(triggered()), this, SLOT(showWorldtime()));
+	connect(actionGenerate_monthly_prayer_times, SIGNAL(triggered()), this, SLOT(showMonthly()));
+	connect(actionGenerate_yearly_prayer_times, SIGNAL(triggered()), this, SLOT(showYearly())); 
+	connect(actionHijri_date, SIGNAL(triggered()), this, SLOT(showHijridate())); 
+	actionQuit->setShortcut(tr("Ctrl+Q"));    
     connect(actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));    
     connect(actionAbout_QT, SIGNAL(triggered()), qApp, SLOT(aboutQt()));     
-    //action_Close->setShortcut(tr("Ctrl+Q"));
-    //connect(action_Close, SIGNAL(triggered()), qApp, SLOT(quit()));   
     actionHide->setShortcut(tr("Ctrl+H"));
     connect(actionHide, SIGNAL(triggered()), this, SLOT(hide()));    
-    //connect(action_About, SIGNAL(triggered()), this, SLOT(_about()));    
+    connect(actionAbout_Qsalat, SIGNAL(triggered()), this, SLOT(_about()));    
 }
 
 // Private Slots
@@ -194,4 +199,23 @@ void Qsalat::showWorldtime(){
 	worldtime.show();
 }
 
+void Qsalat::showMonthly(){
+	monthly.show();
+}
+
+void Qsalat::showYearly(){
+	yearly.show();
+}
+
+void Qsalat::showHijridate(){
+	hijridate.show();
+}
+
+void Qsalat::_about()
+{
+    QMessageBox::about(this, tr("About Alarm"),
+             tr("<b> Alarm application V1.0</b> Copyright © 2008 Skander Jabouzi skander@skanderjabouzi.com<br>"             
+             	" This is a free software distributed under the terms of the GNU General Public License version 3\n(http://www.gnu.org/licenses/gpl-3.0.html)"));     
+}
+ //to do : hijri conversion class and action for hijri conv, yealy, monthly and about
 //
