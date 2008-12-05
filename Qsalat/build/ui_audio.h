@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'audio.ui'
 **
-** Created: Tue Dec 2 23:58:31 2008
+** Created: Fri Dec 5 11:19:22 2008
 **      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -35,7 +35,7 @@ public:
     QLabel *prayerLabel;
     QLabel *fajrLabel;
     QPushButton *duaButton;
-    QLineEdit *duaLlineEdit;
+    QLineEdit *duaLineEdit;
     QLabel *duaLabel;
     QGroupBox *groupBox_2;
     QCheckBox *salatCheckBox;
@@ -80,9 +80,9 @@ public:
     duaButton = new QPushButton(groupBox);
     duaButton->setObjectName(QString::fromUtf8("duaButton"));
     duaButton->setGeometry(QRect(360, 100, 91, 28));
-    duaLlineEdit = new QLineEdit(groupBox);
-    duaLlineEdit->setObjectName(QString::fromUtf8("duaLlineEdit"));
-    duaLlineEdit->setGeometry(QRect(120, 100, 231, 28));
+    duaLineEdit = new QLineEdit(groupBox);
+    duaLineEdit->setObjectName(QString::fromUtf8("duaLineEdit"));
+    duaLineEdit->setGeometry(QRect(120, 100, 231, 28));
     duaLabel = new QLabel(groupBox);
     duaLabel->setObjectName(QString::fromUtf8("duaLabel"));
     duaLabel->setGeometry(QRect(10, 97, 101, 31));
@@ -138,7 +138,7 @@ public:
     prayerLabel->setText(QApplication::translate("Audio", "Regular prayer", 0, QApplication::UnicodeUTF8));
     fajrLabel->setText(QApplication::translate("Audio", "Fajr prayer", 0, QApplication::UnicodeUTF8));
     duaButton->setText(QString());
-    duaLlineEdit->setText(QString());
+    duaLineEdit->setText(QString());
     duaLabel->setText(QApplication::translate("Audio", "Dua", 0, QApplication::UnicodeUTF8));
     groupBox_2->setTitle(QApplication::translate("Audio", "Play options", 0, QApplication::UnicodeUTF8));
     salatCheckBox->setText(QApplication::translate("Audio", "Play athan audio", 0, QApplication::UnicodeUTF8));

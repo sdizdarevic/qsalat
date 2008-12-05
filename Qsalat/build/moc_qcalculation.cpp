@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'qcalculation.h'
 **
-** Created: Tue Dec 2 23:59:04 2008
+** Created: Fri Dec 5 11:16:16 2008
 **      by: The Qt Meta Object Compiler version 59 (Qt 4.4.3)
 **
 ** WARNING! All changes made in this file will be lost!

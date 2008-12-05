@@ -121,7 +121,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="duaLlineEdit" >
+   <widget class="QLineEdit" name="duaLineEdit" >
     <property name="geometry" >
      <rect>
       <x>120</x>

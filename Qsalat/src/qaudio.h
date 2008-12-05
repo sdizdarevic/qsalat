@@ -7,22 +7,32 @@ class Qaudio : public QDialog, public Ui::Audio
 {
 Q_OBJECT
 public:
-	Qaudio( QWidget * parent = 0, Qt::WFlags f = 0 );	
-	
-public slots:	
+	Qaudio( QWidget * parent = 0, Qt::WFlags f = 0 );
+
+public slots:
 
 protected:
 	void closeEvent(QCloseEvent *);
-	
-signals:	
-	
+
+signals:
+
 private:
 	QIcon playIcon;
     QIcon pauseIcon;
     QIcon stopIcon;
-    void setUI();
     QPixmap volumeIcon;
-    QPixmap mutedIcon;	
+    QPixmap mutedIcon;
+    void setActions();
+    void setUI();    
+
+private slots:
+	void load1(QLineEdit *);
+	void load2();
+	void load3();
+	//void play();
+	//void stop();
+	//void save();
+	//void cancel();
 };
 
 #endif // __QAUDIO_H__

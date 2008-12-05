@@ -27,8 +27,7 @@ Qsalat::Qsalat( QWidget * parent, Qt::WFlags f)
 	setupUi(this);	
 	adjustWindow();	
 	prayers = new Qpray();
-	hijri = new Qhijri();
-	//audio = new Qaudio();
+	hijri = new Qhijri();	
 	trayIcon = new QSystemTrayIcon(this);
 	trayIconMenu = new QMenu(this);
 	date = QDate::currentDate();	
@@ -66,6 +65,8 @@ void Qsalat::adjustWindow(){
 	y -= 50;	 
 	// move window to desired coordinates
 	move ( x, y );	
+	screenx = x;
+	screeny = y;
 }
 
 void Qsalat::getSalats(){	
@@ -159,7 +160,7 @@ void Qsalat::createActions()
 
     quitAction = new QAction(tr("&Quit"), this);
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));    
-    connect(actionLocation, SIGNAL(triggered()), this, SLOT(editLocation()));    
+    connect(actionLocation, SIGNAL(triggered()), this, SLOT(showLocation()));    
     connect(actionQibla_direction, SIGNAL(triggered()), this, SLOT(showQibla()));     
     connect(actionAudio, SIGNAL(triggered()), this, SLOT(showAudio()));     
     connect(actionCalculation_options, SIGNAL(triggered()), this, SLOT(showCalculation()));    
@@ -177,45 +178,94 @@ void Qsalat::createActions()
 
 // Private Slots
 
-void Qsalat::editLocation(){
-	//Qlocation::Qlocation();
-	location.setWindowOpacity(0.0);
-	location.show();	
+void Qsalat::showLocation(){
+	if (location.isHidden()){
+		location.show();	
+	}
+	else{		
+		location.activateWindow();
+		location.raise();		
+	}
+	
 }
 
 void Qsalat::showQibla(){	
-	qibla.show();
+	if (qibla.isHidden()){		
+		qibla.show();		
+	}	
+	else{
+		//QMessageBox msgBox;
+ 		//msgBox.setText("YES");
+ 		//msgBox.exec();
+ 		qibla.activateWindow();
+ 		qibla.raise();	
+	}	
 }
 
 void Qsalat::showAudio(){	
-	audio.show();
+	if (audio.isHidden()){		
+		audio.show();	
+	}	
+	else{		
+		audio.activateWindow();
+		audio.raise();		
+	}	
 }
 
-void Qsalat::showCalculation(){	
-	calculation.show();
+void Qsalat::showCalculation(){		
+	if (calculation.isHidden()){		
+		calculation.show();
+	}	
+	else{		
+		calculation.activateWindow();
+		calculation.raise();		
+	}	
 }
 
-void Qsalat::showWorldtime(){
-	worldtime.show();
+void Qsalat::showWorldtime(){	
+	if (worldtime.isHidden()){		
+		worldtime.show();
+	}	
+	else{		
+		worldtime.activateWindow();
+		worldtime.raise();		
+	}	
 }
 
-void Qsalat::showMonthly(){
-	monthly.show();
+void Qsalat::showMonthly(){	
+	if (monthly.isHidden()){		
+		monthly.show();
+	}	
+	else{		
+		monthly.activateWindow();
+		monthly.raise();		
+	}	
 }
 
-void Qsalat::showYearly(){
-	yearly.show();
+void Qsalat::showYearly(){	
+	if (yearly.isHidden()){		
+		yearly.show();
+	}	
+	else{		
+		yearly.activateWindow();
+		yearly.raise();		
+	}	
 }
 
-void Qsalat::showHijridate(){
-	hijridate.show();
+void Qsalat::showHijridate(){	
+	if (hijridate.isHidden()){		
+		hijridate.show();
+	}	
+	else{		
+		hijridate.activateWindow();
+		hijridate.raise();		
+	}	
 }
 
 void Qsalat::_about()
 {
-    QMessageBox::about(this, tr("About Alarm"),
-             tr("<b> Alarm application V1.0</b> Copyright © 2008 Skander Jabouzi skander@skanderjabouzi.com<br>"             
+    QMessageBox::about(this, tr("About Qsalat"),
+             tr("<b> Qsalat V0.1</b> Copyright (c) 2008 Skander Jabouzi skander@skanderjabouzi.com<br>"             
              	" This is a free software distributed under the terms of the GNU General Public License version 3\n(http://www.gnu.org/licenses/gpl-3.0.html)"));     
-}
- //to do : hijri conversion class and action for hijri conv, yealy, monthly and about
+} 
 //

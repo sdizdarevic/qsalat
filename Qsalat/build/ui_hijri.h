@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'hijri.ui'
 **
-** Created: Tue Dec 2 23:58:31 2008
+** Created: Fri Dec 5 11:15:41 2008
 **      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -113,11 +113,6 @@ public:
     radioButton_2->setObjectName(QString::fromUtf8("radioButton_2"));
     radioButton_2->setGeometry(QRect(150, 30, 91, 24));
     radioButton_2->setChecked(false);
-    label->raise();
-    groupBox->raise();
-    groupBox_2->raise();
-    convertButton->raise();
-    groupBox_3->raise();
 
     retranslateUi(Hijri);
 
@@ -138,7 +133,7 @@ public:
     convertButton->setText(QApplication::translate("Hijri", "Convert", 0, QApplication::UnicodeUTF8));
     groupBox_3->setTitle(QApplication::translate("Hijri", "Convertion", 0, QApplication::UnicodeUTF8));
     radioButton->setText(QApplication::translate("Hijri", "Hijri to julian", 0, QApplication::UnicodeUTF8));
-    radioButton_2->setText(QApplication::translate("Hijri", "Julina to hijri", 0, QApplication::UnicodeUTF8));
+    radioButton_2->setText(QApplication::translate("Hijri", "Julian to hijri", 0, QApplication::UnicodeUTF8));
     Q_UNUSED(Hijri);
     } // retranslateUi
 

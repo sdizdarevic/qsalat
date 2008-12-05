@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'worldtime.ui'
 **
-** Created: Tue Dec 2 23:58:31 2008
+** Created: Fri Dec 5 11:15:41 2008
 **      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!

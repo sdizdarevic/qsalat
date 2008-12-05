@@ -19,6 +19,7 @@ public:
 	Qlocation( QWidget * parent = 0, Qt::WFlags f = 0 );
 	//double x, y;
 	QString adress;
+	void adjustWindow();
 	
 public slots:
 	void replyFinished(QNetworkReply*);
@@ -38,7 +39,7 @@ signals:
 private:
 	QNetworkAccessManager *manager;
 	QList<QPointF> coordinates;
-	int pendingRequests;
+	int pendingRequests;	
 };
 #endif
 

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'qsalat.h'
 **
-** Created: Wed Dec 3 23:20:23 2008
+** Created: Fri Dec 5 11:21:59 2008
 **      by: The Qt Meta Object Compiler version 59 (Qt 4.4.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -44,7 +44,7 @@ static const uint qt_meta_data_Qsalat[] = {
 
 static const char qt_meta_stringdata_Qsalat[] = {
     "Qsalat\0\0iconActivated(QSystemTrayIcon::ActivationReason)\0"
-    "editLocation()\0showQibla()\0showAudio()\0"
+    "showLocation()\0showQibla()\0showAudio()\0"
     "showCalculation()\0showWorldtime()\0"
     "showMonthly()\0showYearly()\0showHijridate()\0"
     "_about()\0"
@@ -78,7 +78,7 @@ int Qsalat::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: iconActivated((*reinterpret_cast< QSystemTrayIcon::ActivationReason(*)>(_a[1]))); break;
-        case 1: editLocation(); break;
+        case 1: showLocation(); break;
         case 2: showQibla(); break;
         case 3: showAudio(); break;
         case 4: showCalculation(); break;

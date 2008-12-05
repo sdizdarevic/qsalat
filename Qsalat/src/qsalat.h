@@ -60,10 +60,12 @@ private:
 	void setVisible(bool);		
 	bool Gfirst; 
 	bool locationFirst;
+	int screenx;
+	int screeny;
 	
 private slots:
 	void iconActivated(QSystemTrayIcon::ActivationReason);
-	void editLocation();
+	void showLocation();
 	void showQibla();
 	void showAudio();
 	void showCalculation();
