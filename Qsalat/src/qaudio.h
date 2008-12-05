@@ -26,9 +26,9 @@ private:
     void setUI();    
 
 private slots:
-	void load1(QLineEdit *);
-	void load2();
-	void load3();
+	void loadPrayer();
+	void loadFajr();
+	void loadDua();
 	//void play();
 	//void stop();
 	//void save();

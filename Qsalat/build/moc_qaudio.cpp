@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'qaudio.h'
 **
-** Created: Fri Dec 5 11:22:02 2008
+** Created: Fri Dec 5 11:29:28 2008
 **      by: The Qt Meta Object Compiler version 59 (Qt 4.4.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -29,15 +29,15 @@ static const uint qt_meta_data_Qaudio[] = {
 
  // slots: signature, parameters, type, tag, flags
        8,    7,    7,    7, 0x08,
-      26,    7,    7,    7, 0x08,
-      34,    7,    7,    7, 0x08,
+      21,    7,    7,    7, 0x08,
+      32,    7,    7,    7, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_Qaudio[] = {
-    "Qaudio\0\0load1(QLineEdit*)\0load2()\0"
-    "load3()\0"
+    "Qaudio\0\0loadPrayer()\0loadFajr()\0"
+    "loadDua()\0"
 };
 
 const QMetaObject Qaudio::staticMetaObject = {
@@ -67,9 +67,9 @@ int Qaudio::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: load1((*reinterpret_cast< QLineEdit*(*)>(_a[1]))); break;
-        case 1: load2(); break;
-        case 2: load3(); break;
+        case 0: loadPrayer(); break;
+        case 1: loadFajr(); break;
+        case 2: loadDua(); break;
         }
         _id -= 3;
     }

@@ -5,13 +5,8 @@ Qlocation::Qlocation( QWidget * parent, Qt::WFlags f)
 {
 	setupUi(this);
 	setWindowIcon(QIcon("images/mecque.png"));		
-	manager = new QNetworkAccessManager(this);	
-    connect(manager, SIGNAL(finished(QNetworkReply*)),this, SLOT(replyFinished(QNetworkReply*)));
-    //connect(this,SIGNAL(loadFinished(ok)),this,SLOT(updateLatLng()));
-    connect(this,SIGNAL(reloadMap()),this,SLOT(loadCoordinates()));
-    connect(pushButton,SIGNAL(clicked()),this,SLOT(showItem()));  
-    connect(pushButton_2,SIGNAL(clicked()),this,SLOT(updateLatLng()));
-    connect(this,SIGNAL(updateMap()),this,SLOT(updateLatLng()));
+	manager = new QNetworkAccessManager(this);	   
+	setActions();
     //emit( updateMap() );  
     //adjustWindow();  
 }
@@ -67,8 +62,8 @@ void Qlocation::loadCoordinates()
 {
     QStringList scriptStr;    
     foreach( QPointF point, coordinates ) {
-        label_2->setText(QString::number(point.x()));
-        label_3->setText(QString::number(point.y()));
+        latLabel->setText(QString::number(point.x()));
+        lngLabel->setText(QString::number(point.y()));
     }   
    scriptStr << QString("http://www.skanderjabouzi.com/qpray/?adr=%1")                        
                              .arg(adress);
@@ -89,7 +84,7 @@ void Qlocation::clearCoordinates()
 
 void Qlocation::showItem()
 {
-    geoCode( lineEdit->text() );    
+    geoCode( locationLineEdit->text() );    
 }
 
 void Qlocation::updateLatLng(){
@@ -100,8 +95,8 @@ void Qlocation::updateLatLng(){
     scriptStr2 << "document.getElementById(\"lng\").value;";
 	QVariant vres2 = webView->page()->mainFrame()->evaluateJavaScript( scriptStr2.join("\n") );
     QString sres2 = vres2.toString();
-    label_2->setText(sres1);
-    label_3->setText(sres2);
+    latLabel->setText(sres1);
+    lngLabel->setText(sres2);
     //QMessageBox::warning(this, tr("My Application"),sres1,QMessageBox::Ok);
 }
 
@@ -110,4 +105,14 @@ void Qlocation::closeEvent(QCloseEvent *event)
 	hide();
 	event->ignore();
 }
+
+void Qlocation::setActions(){
+	connect(manager, SIGNAL(finished(QNetworkReply*)),this, SLOT(replyFinished(QNetworkReply*)));
+    //connect(this,SIGNAL(loadFinished(ok)),this,SLOT(updateLatLng()));
+    connect(this,SIGNAL(reloadMap()),this,SLOT(loadCoordinates()));
+    connect(searchButton,SIGNAL(clicked()),this,SLOT(showItem()));  
+    connect(applyButton,SIGNAL(clicked()),this,SLOT(updateLatLng()));
+    connect(this,SIGNAL(updateMap()),this,SLOT(updateLatLng()));
+}
+
 //

@@ -40,6 +40,7 @@ private:
 	QNetworkAccessManager *manager;
 	QList<QPointF> coordinates;
 	int pendingRequests;	
+	void setActions();
 };
 #endif
 

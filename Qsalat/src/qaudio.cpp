@@ -15,9 +15,9 @@ void Qaudio::closeEvent(QCloseEvent *event)
 }
 
 void Qaudio::setActions(){
-	connect(prayerButton, SIGNAL(clicked()), this, SLOT(load1(prayerLineEdit)));
-	connect(fajrButton, SIGNAL(clicked()), this, SLOT(load2()));
-	connect(duaButton, SIGNAL(clicked()), this, SLOT(load3()));
+	connect(prayerButton, SIGNAL(clicked()), this, SLOT(loadPrayer()));
+	connect(fajrButton, SIGNAL(clicked()), this, SLOT(loadFajr()));
+	connect(duaButton, SIGNAL(clicked()), this, SLOT(loadDua()));
 	//connect(playButton, SIGNAL(clicked()), this, SLOT(play()));
 	//connect(stopButton, SIGNAL(clicked()), this, SLOT(stop()));
 	//connect(saveButton, SIGNAL(clicked()), this, SLOT(save()));
@@ -41,17 +41,17 @@ void Qaudio::setUI(){
     cancelButton->setIcon(style()->standardIcon(QStyle::SP_DialogCancelButton));
 }
 
-void Qaudio::load1(QLineEdit* lineEdit)
+void Qaudio::loadPrayer()
 {
-	lineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi)")));
+	prayerLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi *.rm *.ram)")));
 }
 
-void Qaudio::load2()
+void Qaudio::loadFajr()
 {
-	fajrLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi)")));
+	fajrLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi *.rm *.ram)")));
 }
 
-void Qaudio::load3()
+void Qaudio::loadDua()
 {
-	duaLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi)")));
+	duaLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi *.rm *.ram)")));
 }
