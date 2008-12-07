@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'audio.ui'
 **
-** Created: Fri Dec 5 11:19:22 2008
+** Created: Fri Dec 5 16:24:46 2008
 **      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -113,6 +113,7 @@ public:
     volumeSlider = new QSlider(groupBox_3);
     volumeSlider->setObjectName(QString::fromUtf8("volumeSlider"));
     volumeSlider->setGeometry(QRect(320, 70, 121, 16));
+    volumeSlider->setValue(99);
     volumeSlider->setOrientation(Qt::Horizontal);
     volumeLabel = new QLabel(groupBox_3);
     volumeLabel->setObjectName(QString::fromUtf8("volumeLabel"));
