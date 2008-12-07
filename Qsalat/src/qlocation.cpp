@@ -54,8 +54,8 @@ void Qlocation::replyFinished(QNetworkReply *reply)
     }
 
     --pendingRequests;
-    if( pendingRequests<1 )
-        emit( reloadMap() );        
+    //if( pendingRequests<1 )
+        reloadMap();        
 }
 
 void Qlocation::loadCoordinates()

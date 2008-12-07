@@ -222,8 +222,8 @@ QString Qpray::floatToTime12(double time)
 	if (isNaN(time))
 		return InvalidTime;
 	time = fixhour(time+ 0.5/ 60);  // add 0.5 minutes to round
-	int hours = floor((int)time);
-	int minutes = floor(((int)time- hours)* 60);
+	int hours = ((int)time);
+	int minutes = (((int)time- hours)* 60);
 	QString suffix = hours >= 12.0 ? " pm" : " am";
 	hours = (hours + 12 - 1) % 12 + 1;
 	return QString::number(hours)+':'+ twoDigitsFormat(minutes)+ suffix;
@@ -464,8 +464,8 @@ double Qpray::julianDate(int year, int month, int day)
 		year -= 1;
 		month += 12;
 	}
-	double A = floor(year/ 100);
-	double B = 2- A+ floor(A/ 4);
+	double A = floor(year/ 100.0);
+	double B = 2.0 - A+ floor(A/ 4.0);
 
 	double JD = floor(365.25* (year+ 4716))+ floor(30.6001* (month+ 1))+ day+ B- 1524.5;
 	return JD;
