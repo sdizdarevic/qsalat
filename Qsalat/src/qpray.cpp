@@ -405,12 +405,14 @@ double* Qpray::adjustHighLatTimes(double* times)
 // the night portion used for adjusting times in higher latitudes
 double Qpray::nightPortion(double angle)
 {
+	double result = 0.0;
 	if (adjustHighLats == AngleBased)
-		return 1.0/60.0* angle;
+		result = 1.0/60.0* angle;
 	if (adjustHighLats == MidNight)
-		return 1.0/2.0;
+		result = 1.0/2.0;
 	if (adjustHighLats == OneSeventh)
-		return 1.0/7.0;
+		result = 1.0/7.0;
+	return result;
 }
 
 

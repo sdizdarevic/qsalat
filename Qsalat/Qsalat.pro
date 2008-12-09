@@ -1,5 +1,9 @@
 TEMPLATE = app
-QT = gui core network webkit
+QT = gui \
+ core \
+ network \
+ webkit \
+ phonon
 CONFIG += qt warn_on console release
 DESTDIR = bin
 OBJECTS_DIR = build

@@ -2,6 +2,7 @@
 #define __QAUDIO_H__
 
 #include <QtGui>
+#include <phonon>
 #include "ui_audio.h"
 class Qaudio : public QDialog, public Ui::Audio
 {
@@ -22,6 +23,11 @@ private:
     QIcon stopIcon;
     QPixmap volumeIcon;
     QPixmap mutedIcon;
+    Phonon::SeekSlider *seekSlider;
+    Phonon::MediaObject *mediaObject;
+    Phonon::MediaObject *metaInformationResolver;
+    Phonon::VolumeSlider *volumeSlider;
+    Phonon::AudioOutput *audioOutput;
     void setActions();
     void setUI();    
 
@@ -29,8 +35,8 @@ private slots:
 	void loadPrayer();
 	void loadFajr();
 	void loadDua();
-	//void play();
-	//void stop();
+	void play();
+	void stop();
 	//void save();
 	//void cancel();
 };

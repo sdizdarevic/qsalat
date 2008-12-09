@@ -6,6 +6,11 @@ Qaudio::Qaudio( QWidget * parent, Qt::WFlags f)
 	setupUi(this);
 	setUI();
 	setActions();
+	audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
+    mediaObject = new Phonon::MediaObject(this);
+    metaInformationResolver = new Phonon::MediaObject(this);
+    //mediaObject->setTickInterval(1000);
+    Phonon::createPath(mediaObject, audioOutput);
 }
 
 void Qaudio::closeEvent(QCloseEvent *event)
@@ -18,8 +23,8 @@ void Qaudio::setActions(){
 	connect(prayerButton, SIGNAL(clicked()), this, SLOT(loadPrayer()));
 	connect(fajrButton, SIGNAL(clicked()), this, SLOT(loadFajr()));
 	connect(duaButton, SIGNAL(clicked()), this, SLOT(loadDua()));
-	//connect(playButton, SIGNAL(clicked()), this, SLOT(play()));
-	//connect(stopButton, SIGNAL(clicked()), this, SLOT(stop()));
+	connect(playButton, SIGNAL(clicked()), this, SLOT(play()));
+	connect(stopButton, SIGNAL(clicked()), this, SLOT(stop()));
 	//connect(saveButton, SIGNAL(clicked()), this, SLOT(save()));
 	//connect(cancelButton, SIGNAL(clicked()), this, SLOT(cancel()));
 }
@@ -39,6 +44,20 @@ void Qaudio::setUI(){
     duaButton->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
     saveButton->setIcon(style()->standardIcon(QStyle::SP_DialogSaveButton));
     cancelButton->setIcon(style()->standardIcon(QStyle::SP_DialogCancelButton));
+    
+    seekSlider = new Phonon::SeekSlider(this);   
+    seekSlider->setMediaObject(mediaObject);    
+    QHBoxLayout *seekerLayout = new QHBoxLayout;
+    seekerLayout->addWidget(seekSlider);  
+    playerFrame->setLayout(seekerLayout);
+     
+    
+    //volumeSlider = new Phonon::VolumeSlider(this);
+    //volumeSlider->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    //QHBoxLayout *volumeLayout = new QHBoxLayout;
+    //volumeLayout->addWidget(volumeSlider);  
+    //volumeFrame->setLayout(volumeLayout);
+    //volumeSlider->setAudioOutput(audioOutput);
 }
 
 void Qaudio::loadPrayer()
@@ -54,4 +73,19 @@ void Qaudio::loadFajr()
 void Qaudio::loadDua()
 {
 	duaLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi *.rm *.ram)")));
+}
+
+void Qaudio::play()
+{
+	Phonon::MediaSource source(prayerLineEdit->text());
+	mediaObject->setCurrentSource(source);
+	metaInformationResolver->setCurrentSource(source);
+	mediaObject->play();
+}
+
+void Qaudio::stop()
+{
+	//Phonon::MediaSource source(prayerLineEdit->text());
+	//mediaObject->setCurrentSource(source);
+	mediaObject->stop();
 }

@@ -133,11 +133,11 @@ void Qsalat::setVisible(bool visible)
 
 void Qsalat::closeEvent(QCloseEvent *event)
 {
-	QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(1);
-	if (Gfirst == true){
-		trayIcon->showMessage("Information about this application", "Qsalat application is still runing", icon,10000);
-		Gfirst = false;
-	}		
+	//QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(1);
+	//if (Gfirst == true){
+		//trayIcon->showMessage("Information about this application", "Qsalat application is still runing", icon,10000);
+		//Gfirst = false;
+	//}		
 	hide();
 	event->ignore();
 	qibla.hide();
