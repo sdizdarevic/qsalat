@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'qibla.ui'
 **
-** Created: Tue Dec 9 11:36:45 2008
+** Created: Tue Dec 9 13:20:08 2008
 **      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!

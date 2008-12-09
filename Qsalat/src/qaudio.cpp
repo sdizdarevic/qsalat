@@ -58,6 +58,7 @@ void Qaudio::setUI(){
     //volumeLayout->addWidget(volumeSlider);  
     //volumeFrame->setLayout(volumeLayout);
     //volumeSlider->setAudioOutput(audioOutput);
+
 }
 
 void Qaudio::loadPrayer()

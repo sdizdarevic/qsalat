@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'qqibla.h'
 **
-** Created: Tue Dec 9 11:37:13 2008
+** Created: Tue Dec 9 13:20:33 2008
 **      by: The Qt Meta Object Compiler version 59 (Qt 4.4.3)
 **
 ** WARNING! All changes made in this file will be lost!

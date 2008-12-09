@@ -23,11 +23,13 @@ private:
     QIcon stopIcon;
     QPixmap volumeIcon;
     QPixmap mutedIcon;
+
     Phonon::SeekSlider *seekSlider;
     Phonon::MediaObject *mediaObject;
     Phonon::MediaObject *metaInformationResolver;
     Phonon::VolumeSlider *volumeSlider;
     Phonon::AudioOutput *audioOutput;
+
     void setActions();
     void setUI();    
 
