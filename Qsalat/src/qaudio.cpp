@@ -1,44 +1,44 @@
 #include "qaudio.h"
 
 Qaudio::Qaudio( QWidget * parent, Qt::WFlags f)
-	: QDialog(parent, f)
+        : QDialog(parent, f)
 {
-	setupUi(this);		
-	audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
+        setupUi(this);          
+        audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
     mediaObject = new Phonon::MediaObject(this);
     metaInformationResolver = new Phonon::MediaObject(this);
     mediaObject->setTickInterval(1000);   
     setUI();
-	setActions();
-	Phonon::createPath(mediaObject, audioOutput);
-	isplay = true;
+        setActions();
+        Phonon::createPath(mediaObject, audioOutput);
+        isplay = true;
 }
 
 void Qaudio::closeEvent(QCloseEvent *event)
 {
-	hide();
-	event->ignore();
+        hide();
+        event->ignore();
 }
 
 void Qaudio::setActions(){
-	connect(prayerButton, SIGNAL(clicked()), this, SLOT(loadPrayer()));
-	connect(fajrButton, SIGNAL(clicked()), this, SLOT(loadFajr()));
-	connect(duaButton, SIGNAL(clicked()), this, SLOT(loadDua()));
-	connect(playButton, SIGNAL(clicked()), this, SLOT(play()));
-	connect(stopButton, SIGNAL(clicked()), this, SLOT(stop()));
-	connect(saveButton, SIGNAL(clicked()), this, SLOT(save()));
-	connect(cancelButton, SIGNAL(clicked()), this, SLOT(cancel()));
-	//connect(volumeSlider, SIGNAL(AudioOutput::volumeChanged ( qreal )), this, SLOT(setVolume(int)));
+        connect(prayerButton, SIGNAL(clicked()), this, SLOT(loadPrayer()));
+        connect(fajrButton, SIGNAL(clicked()), this, SLOT(loadFajr()));
+        connect(duaButton, SIGNAL(clicked()), this, SLOT(loadDua()));
+        connect(playButton, SIGNAL(clicked()), this, SLOT(play()));
+        connect(stopButton, SIGNAL(clicked()), this, SLOT(stop()));
+        connect(saveButton, SIGNAL(clicked()), this, SLOT(save()));
+        connect(cancelButton, SIGNAL(clicked()), this, SLOT(cancel()));
+        //connect(volumeSlider, SIGNAL(AudioOutput::volumeChanged ( qreal )), this, SLOT(setVolume(int)));
 }
 
 
 void Qaudio::setUI(){
-	setWindowIcon(QIcon("images/mecque.png"));
-	playIcon = style()->standardIcon(QStyle::SP_MediaPlay);
-	playButton->setIcon(playIcon);
-	stopIcon = style()->standardIcon(QStyle::SP_MediaStop);
-	stopButton->setIcon(stopIcon);
-	volumeIcon = style()->standardPixmap(QStyle::SP_MediaVolume);
+        setWindowIcon(QIcon("images/mecque.png"));
+        playIcon = style()->standardIcon(QStyle::SP_MediaPlay);
+        playButton->setIcon(playIcon);
+        stopIcon = style()->standardIcon(QStyle::SP_MediaStop);
+        stopButton->setIcon(stopIcon);
+        volumeIcon = style()->standardPixmap(QStyle::SP_MediaVolume);
     mutedIcon = style()->standardPixmap(QStyle::SP_MediaVolumeMuted);
     volumeLabel->setPixmap(volumeIcon);
     prayerButton->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
@@ -65,52 +65,52 @@ void Qaudio::setUI(){
 
 void Qaudio::loadPrayer()
 {
-	prayerLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi *.rm *.ram)")));
+        prayerLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi *.rm *.ram)")));
 }
 
 void Qaudio::loadFajr()
 {
-	fajrLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi *.rm *.ram)")));
+        fajrLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi *.rm *.ram)")));
 }
 
 void Qaudio::loadDua()
 {
-	duaLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi *.rm *.ram)")));
+        duaLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi *.rm *.ram)")));
 }
 
 void Qaudio::play()
-{	
-	//if (isplay){	
-	//QMessageBox::warning(this, tr("My Application"),QString::number(mediaObject->state()),QMessageBox::Ok);	
-	if (mediaObject->state() == Phonon::LoadingState || mediaObject->state() == Phonon::StoppedState){	
-		Phonon::MediaSource source(prayerLineEdit->text());
-		mediaObject->setCurrentSource(source);
-		metaInformationResolver->setCurrentSource(source);
-		mediaObject->play();
-		//isplay = false;
-		playIcon = style()->standardIcon(QStyle::SP_MediaPause);
-		playButton->setIcon(playIcon);
-	}
-	else if (mediaObject->state() == Phonon::PlayingState) {
-		mediaObject->pause();		
-		playIcon = style()->standardIcon(QStyle::SP_MediaPlay);
-		playButton->setIcon(playIcon);	
-		//isplay = false;	
-	}
-	else if (mediaObject->state() == Phonon::PausedState) {
-		mediaObject->play();
-		playIcon = style()->standardIcon(QStyle::SP_MediaPause);
-		playButton->setIcon(playIcon);
-	}
+{       
+        //if (isplay){  
+        //QMessageBox::warning(this, tr("My Application"),QString::number(mediaObject->state()),QMessageBox::Ok);       
+        if (mediaObject->state() == Phonon::LoadingState || mediaObject->state() == Phonon::StoppedState){      
+                Phonon::MediaSource source(prayerLineEdit->text());
+                mediaObject->setCurrentSource(source);
+                metaInformationResolver->setCurrentSource(source);
+                mediaObject->play();
+                //isplay = false;
+                playIcon = style()->standardIcon(QStyle::SP_MediaPause);
+                playButton->setIcon(playIcon);
+        }
+        else if (mediaObject->state() == Phonon::PlayingState) {
+                mediaObject->pause();           
+                playIcon = style()->standardIcon(QStyle::SP_MediaPlay);
+                playButton->setIcon(playIcon);  
+                //isplay = false;       
+        }
+        else if (mediaObject->state() == Phonon::PausedState) {
+                mediaObject->play();
+                playIcon = style()->standardIcon(QStyle::SP_MediaPause);
+                playButton->setIcon(playIcon);
+        }
 }
 
 void Qaudio::stop()
 {
-	//Phonon::MediaSource source(prayerLineEdit->text());
-	//mediaObject->setCurrentSource(source);
-	mediaObject->stop();
-	playIcon = style()->standardIcon(QStyle::SP_MediaPlay);
-	playButton->setIcon(playIcon);
+        //Phonon::MediaSource source(prayerLineEdit->text());
+        //mediaObject->setCurrentSource(source);
+        mediaObject->stop();
+        playIcon = style()->standardIcon(QStyle::SP_MediaPlay);
+        playButton->setIcon(playIcon);
 }
 
 void Qaudio::setVolume(int volume)
@@ -130,14 +130,14 @@ void Qaudio::setVolume(int volume)
 
 void Qaudio::save()
 {
-	//Phonon::MediaSource source(prayerLineEdit->text());
-	//mediaObject->setCurrentSource(source);
-	mediaObject->stop();
+        //Phonon::MediaSource source(prayerLineEdit->text());
+        //mediaObject->setCurrentSource(source);
+        mediaObject->stop();
 }
 
 void Qaudio::cancel()
 {
-	//Phonon::MediaSource source(prayerLineEdit->text());
-	//mediaObject->setCurrentSource(source);
-	close();
+        //Phonon::MediaSource source(prayerLineEdit->text());
+        //mediaObject->setCurrentSource(source);
+        close();
 }
