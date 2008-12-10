@@ -3,14 +3,15 @@
 Qaudio::Qaudio( QWidget * parent, Qt::WFlags f)
 	: QDialog(parent, f)
 {
-	setupUi(this);
-	setUI();
-	setActions();
+	setupUi(this);		
 	audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
     mediaObject = new Phonon::MediaObject(this);
     metaInformationResolver = new Phonon::MediaObject(this);
-    //mediaObject->setTickInterval(1000);
-    Phonon::createPath(mediaObject, audioOutput);
+    mediaObject->setTickInterval(1000);   
+    setUI();
+	setActions();
+	Phonon::createPath(mediaObject, audioOutput);
+	isplay = true;
 }
 
 void Qaudio::closeEvent(QCloseEvent *event)
@@ -25,8 +26,9 @@ void Qaudio::setActions(){
 	connect(duaButton, SIGNAL(clicked()), this, SLOT(loadDua()));
 	connect(playButton, SIGNAL(clicked()), this, SLOT(play()));
 	connect(stopButton, SIGNAL(clicked()), this, SLOT(stop()));
-	//connect(saveButton, SIGNAL(clicked()), this, SLOT(save()));
-	//connect(cancelButton, SIGNAL(clicked()), this, SLOT(cancel()));
+	connect(saveButton, SIGNAL(clicked()), this, SLOT(save()));
+	connect(cancelButton, SIGNAL(clicked()), this, SLOT(cancel()));
+	//connect(volumeSlider, SIGNAL(AudioOutput::volumeChanged ( qreal )), this, SLOT(setVolume(int)));
 }
 
 
@@ -52,12 +54,12 @@ void Qaudio::setUI(){
     playerFrame->setLayout(seekerLayout);
      
     
-    //volumeSlider = new Phonon::VolumeSlider(this);
-    //volumeSlider->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-    //QHBoxLayout *volumeLayout = new QHBoxLayout;
-    //volumeLayout->addWidget(volumeSlider);  
-    //volumeFrame->setLayout(volumeLayout);
-    //volumeSlider->setAudioOutput(audioOutput);
+    volumeSlider = new Phonon::VolumeSlider(this);
+    volumeSlider->setAudioOutput(audioOutput);
+    volumeSlider->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);    
+    QHBoxLayout *volumeLayout = new QHBoxLayout;
+    volumeLayout->addWidget(volumeSlider);  
+    volumeFrame->setLayout(volumeLayout);   
 
 }
 
@@ -77,11 +79,29 @@ void Qaudio::loadDua()
 }
 
 void Qaudio::play()
-{
-	Phonon::MediaSource source(prayerLineEdit->text());
-	mediaObject->setCurrentSource(source);
-	metaInformationResolver->setCurrentSource(source);
-	mediaObject->play();
+{	
+	//if (isplay){	
+	//QMessageBox::warning(this, tr("My Application"),QString::number(mediaObject->state()),QMessageBox::Ok);	
+	if (mediaObject->state() == Phonon::LoadingState || mediaObject->state() == Phonon::StoppedState){	
+		Phonon::MediaSource source(prayerLineEdit->text());
+		mediaObject->setCurrentSource(source);
+		metaInformationResolver->setCurrentSource(source);
+		mediaObject->play();
+		//isplay = false;
+		playIcon = style()->standardIcon(QStyle::SP_MediaPause);
+		playButton->setIcon(playIcon);
+	}
+	else if (mediaObject->state() == Phonon::PlayingState) {
+		mediaObject->pause();		
+		playIcon = style()->standardIcon(QStyle::SP_MediaPlay);
+		playButton->setIcon(playIcon);	
+		//isplay = false;	
+	}
+	else if (mediaObject->state() == Phonon::PausedState) {
+		mediaObject->play();
+		playIcon = style()->standardIcon(QStyle::SP_MediaPause);
+		playButton->setIcon(playIcon);
+	}
 }
 
 void Qaudio::stop()
@@ -89,4 +109,35 @@ void Qaudio::stop()
 	//Phonon::MediaSource source(prayerLineEdit->text());
 	//mediaObject->setCurrentSource(source);
 	mediaObject->stop();
+	playIcon = style()->standardIcon(QStyle::SP_MediaPlay);
+	playButton->setIcon(playIcon);
+}
+
+void Qaudio::setVolume(int volume)
+{
+    Q_UNUSED(volume);
+    audioOutput->setVolume(volume/100.0f);
+    if (volumeLabel) {
+        if (volume == 0)
+            volumeLabel->setPixmap(mutedIcon);
+        else
+            volumeLabel->setPixmap(volumeIcon);    
+    }
+    QMessageBox::warning(this, tr("My Application"),QString::number(volume),QMessageBox::Ok);
+    
+    
+}
+
+void Qaudio::save()
+{
+	//Phonon::MediaSource source(prayerLineEdit->text());
+	//mediaObject->setCurrentSource(source);
+	mediaObject->stop();
+}
+
+void Qaudio::cancel()
+{
+	//Phonon::MediaSource source(prayerLineEdit->text());
+	//mediaObject->setCurrentSource(source);
+	close();
 }

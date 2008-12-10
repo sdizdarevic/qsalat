@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'audio.ui'
 **
-** Created: Tue Dec 9 13:20:08 2008
+** Created: Tue Dec 9 22:11:35 2008
 **      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -52,17 +52,19 @@ public:
     QFrame *volumeFrame;
     QPushButton *cancelButton;
     QPushButton *saveButton;
+    QPushButton *okButton;
+    QLabel *label;
 
     void setupUi(QDialog *Audio)
     {
     if (Audio->objectName().isEmpty())
         Audio->setObjectName(QString::fromUtf8("Audio"));
-    Audio->resize(484, 440);
-    Audio->setMinimumSize(QSize(484, 440));
-    Audio->setMaximumSize(QSize(484, 440));
+    Audio->resize(484, 461);
+    Audio->setMinimumSize(QSize(484, 461));
+    Audio->setMaximumSize(QSize(484, 461));
     groupBox = new QGroupBox(Audio);
     groupBox->setObjectName(QString::fromUtf8("groupBox"));
-    groupBox->setGeometry(QRect(10, 10, 461, 141));
+    groupBox->setGeometry(QRect(10, 30, 461, 141));
     prayerButton = new QPushButton(groupBox);
     prayerButton->setObjectName(QString::fromUtf8("prayerButton"));
     prayerButton->setGeometry(QRect(360, 20, 91, 28));
@@ -92,7 +94,7 @@ public:
     duaLabel->setGeometry(QRect(10, 97, 101, 31));
     groupBox_2 = new QGroupBox(Audio);
     groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
-    groupBox_2->setGeometry(QRect(10, 160, 461, 61));
+    groupBox_2->setGeometry(QRect(10, 180, 461, 61));
     salatCheckBox = new QCheckBox(groupBox_2);
     salatCheckBox->setObjectName(QString::fromUtf8("salatCheckBox"));
     salatCheckBox->setGeometry(QRect(20, 30, 191, 24));
@@ -103,7 +105,7 @@ public:
     duaCheckBox->setChecked(true);
     groupBox_3 = new QGroupBox(Audio);
     groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
-    groupBox_3->setGeometry(QRect(10, 230, 461, 151));
+    groupBox_3->setGeometry(QRect(10, 250, 461, 151));
     playButton = new QPushButton(groupBox_3);
     playButton->setObjectName(QString::fromUtf8("playButton"));
     playButton->setGeometry(QRect(20, 100, 41, 28));
@@ -135,10 +137,22 @@ public:
     volumeFrame->setFrameShadow(QFrame::Raised);
     cancelButton = new QPushButton(Audio);
     cancelButton->setObjectName(QString::fromUtf8("cancelButton"));
-    cancelButton->setGeometry(QRect(390, 400, 80, 28));
+    cancelButton->setGeometry(QRect(390, 420, 80, 28));
     saveButton = new QPushButton(Audio);
     saveButton->setObjectName(QString::fromUtf8("saveButton"));
-    saveButton->setGeometry(QRect(290, 400, 80, 28));
+    saveButton->setGeometry(QRect(300, 420, 80, 28));
+    okButton = new QPushButton(Audio);
+    okButton->setObjectName(QString::fromUtf8("okButton"));
+    okButton->setGeometry(QRect(210, 420, 80, 28));
+    label = new QLabel(Audio);
+    label->setObjectName(QString::fromUtf8("label"));
+    label->setGeometry(QRect(10, 10, 461, 21));
+    QFont font;
+    font.setPointSize(11);
+    font.setBold(true);
+    font.setWeight(75);
+    label->setFont(font);
+    label->setAlignment(Qt::AlignCenter);
 
     retranslateUi(Audio);
 
@@ -168,6 +182,8 @@ public:
     duaRadioButton->setText(QApplication::translate("Audio", "Play dua", 0, QApplication::UnicodeUTF8));
     cancelButton->setText(QApplication::translate("Audio", "Cancel", 0, QApplication::UnicodeUTF8));
     saveButton->setText(QApplication::translate("Audio", "Save", 0, QApplication::UnicodeUTF8));
+    okButton->setText(QApplication::translate("Audio", "OK", 0, QApplication::UnicodeUTF8));
+    label->setText(QApplication::translate("Audio", "Set audio files and audio options", 0, QApplication::UnicodeUTF8));
     Q_UNUSED(Audio);
     } // retranslateUi
 

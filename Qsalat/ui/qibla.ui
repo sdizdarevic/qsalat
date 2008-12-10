@@ -28,6 +28,29 @@
    <string notr="true" >background-image: url(:/images/boussole.png);
 </string>
   </property>
+  <widget class="QLabel" name="label" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>7</y>
+     <width>281</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font" >
+    <font>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text" >
+    <string>Qibla direction : 57,6N</string>
+   </property>
+   <property name="alignment" >
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
  </widget>
  <resources>
   <include location="../qibla.qrc" />

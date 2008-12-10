@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'qaudio.h'
 **
-** Created: Tue Dec 9 13:20:36 2008
+** Created: Tue Dec 9 22:11:57 2008
 **      by: The Qt Meta Object Compiler version 59 (Qt 4.4.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Qaudio[] = {
        1,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   10, // methods
+       8,   10, // methods
        0,    0, // properties
        0,    0, // enums/sets
 
@@ -33,13 +33,17 @@ static const uint qt_meta_data_Qaudio[] = {
       32,    7,    7,    7, 0x08,
       42,    7,    7,    7, 0x08,
       49,    7,    7,    7, 0x08,
+      56,    7,    7,    7, 0x08,
+      71,    7,    7,    7, 0x08,
+      78,    7,    7,    7, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_Qaudio[] = {
     "Qaudio\0\0loadPrayer()\0loadFajr()\0"
-    "loadDua()\0play()\0stop()\0"
+    "loadDua()\0play()\0stop()\0setVolume(int)\0"
+    "save()\0cancel()\0"
 };
 
 const QMetaObject Qaudio::staticMetaObject = {
@@ -74,8 +78,11 @@ int Qaudio::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 2: loadDua(); break;
         case 3: play(); break;
         case 4: stop(); break;
+        case 5: setVolume((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 6: save(); break;
+        case 7: cancel(); break;
         }
-        _id -= 5;
+        _id -= 8;
     }
     return _id;
 }

@@ -28,7 +28,7 @@
    <property name="geometry" >
     <rect>
      <x>10</x>
-     <y>20</y>
+     <y>30</y>
      <width>331</width>
      <height>80</height>
     </rect>
@@ -46,7 +46,7 @@
      </rect>
     </property>
     <property name="text" >
-     <string/>
+     <string>Select</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="pathEdit" >
@@ -77,7 +77,7 @@
    <property name="geometry" >
     <rect>
      <x>10</x>
-     <y>119</y>
+     <y>120</y>
      <width>331</width>
      <height>121</height>
     </rect>
@@ -152,6 +152,29 @@
    </property>
    <property name="text" >
     <string>Generate</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>331</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font" >
+    <font>
+     <pointsize>11</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text" >
+    <string>Generate prayer times for one month</string>
+   </property>
+   <property name="alignment" >
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>

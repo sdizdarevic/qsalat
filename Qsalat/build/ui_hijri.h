@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'hijri.ui'
 **
-** Created: Tue Dec 9 13:20:08 2008
+** Created: Tue Dec 9 22:11:35 2008
 **      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -44,17 +44,18 @@ public:
     QGroupBox *groupBox_3;
     QRadioButton *radioButton;
     QRadioButton *radioButton_2;
+    QLabel *label_7;
 
     void setupUi(QDialog *Hijri)
     {
     if (Hijri->objectName().isEmpty())
         Hijri->setObjectName(QString::fromUtf8("Hijri"));
-    Hijri->resize(300, 400);
-    Hijri->setMinimumSize(QSize(300, 400));
-    Hijri->setMaximumSize(QSize(300, 400));
+    Hijri->resize(300, 411);
+    Hijri->setMinimumSize(QSize(300, 411));
+    Hijri->setMaximumSize(QSize(300, 411));
     groupBox = new QGroupBox(Hijri);
     groupBox->setObjectName(QString::fromUtf8("groupBox"));
-    groupBox->setGeometry(QRect(10, 10, 281, 111));
+    groupBox->setGeometry(QRect(10, 30, 281, 111));
     label = new QLabel(groupBox);
     label->setObjectName(QString::fromUtf8("label"));
     label->setGeometry(QRect(210, 30, 54, 18));
@@ -77,7 +78,7 @@ public:
     hdayBox->setGeometry(QRect(200, 60, 75, 27));
     groupBox_2 = new QGroupBox(Hijri);
     groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
-    groupBox_2->setGeometry(QRect(10, 130, 281, 111));
+    groupBox_2->setGeometry(QRect(10, 150, 281, 111));
     jdayBox = new QComboBox(groupBox_2);
     jdayBox->setObjectName(QString::fromUtf8("jdayBox"));
     jdayBox->setEnabled(false);
@@ -101,18 +102,27 @@ public:
     label_6->setGeometry(QRect(210, 30, 54, 18));
     convertButton = new QPushButton(Hijri);
     convertButton->setObjectName(QString::fromUtf8("convertButton"));
-    convertButton->setGeometry(QRect(210, 360, 80, 28));
+    convertButton->setGeometry(QRect(210, 370, 80, 28));
     groupBox_3 = new QGroupBox(Hijri);
     groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
-    groupBox_3->setGeometry(QRect(10, 250, 281, 80));
+    groupBox_3->setGeometry(QRect(10, 270, 281, 80));
     radioButton = new QRadioButton(groupBox_3);
     radioButton->setObjectName(QString::fromUtf8("radioButton"));
-    radioButton->setGeometry(QRect(20, 30, 91, 24));
+    radioButton->setGeometry(QRect(20, 30, 111, 24));
     radioButton->setChecked(true);
     radioButton_2 = new QRadioButton(groupBox_3);
     radioButton_2->setObjectName(QString::fromUtf8("radioButton_2"));
-    radioButton_2->setGeometry(QRect(150, 30, 91, 24));
+    radioButton_2->setGeometry(QRect(150, 30, 111, 24));
     radioButton_2->setChecked(false);
+    label_7 = new QLabel(Hijri);
+    label_7->setObjectName(QString::fromUtf8("label_7"));
+    label_7->setGeometry(QRect(10, 10, 281, 21));
+    QFont font;
+    font.setPointSize(11);
+    font.setBold(true);
+    font.setWeight(75);
+    label_7->setFont(font);
+    label_7->setAlignment(Qt::AlignCenter);
 
     retranslateUi(Hijri);
 
@@ -126,14 +136,15 @@ public:
     label->setText(QApplication::translate("Hijri", "Day", 0, QApplication::UnicodeUTF8));
     label_2->setText(QApplication::translate("Hijri", "Month", 0, QApplication::UnicodeUTF8));
     label_3->setText(QApplication::translate("Hijri", "Year", 0, QApplication::UnicodeUTF8));
-    groupBox_2->setTitle(QApplication::translate("Hijri", "Julian", 0, QApplication::UnicodeUTF8));
+    groupBox_2->setTitle(QApplication::translate("Hijri", "Georgian", 0, QApplication::UnicodeUTF8));
     label_4->setText(QApplication::translate("Hijri", "Year", 0, QApplication::UnicodeUTF8));
     label_5->setText(QApplication::translate("Hijri", "Month", 0, QApplication::UnicodeUTF8));
     label_6->setText(QApplication::translate("Hijri", "Day", 0, QApplication::UnicodeUTF8));
     convertButton->setText(QApplication::translate("Hijri", "Convert", 0, QApplication::UnicodeUTF8));
     groupBox_3->setTitle(QApplication::translate("Hijri", "Convertion", 0, QApplication::UnicodeUTF8));
-    radioButton->setText(QApplication::translate("Hijri", "Hijri to julian", 0, QApplication::UnicodeUTF8));
-    radioButton_2->setText(QApplication::translate("Hijri", "Julian to hijri", 0, QApplication::UnicodeUTF8));
+    radioButton->setText(QApplication::translate("Hijri", "Hijri to georgian", 0, QApplication::UnicodeUTF8));
+    radioButton_2->setText(QApplication::translate("Hijri", "georgian to hijri", 0, QApplication::UnicodeUTF8));
+    label_7->setText(QApplication::translate("Hijri", "Hijri - georgian date conversion", 0, QApplication::UnicodeUTF8));
     Q_UNUSED(Hijri);
     } // retranslateUi
 

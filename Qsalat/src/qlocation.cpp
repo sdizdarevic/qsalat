@@ -113,6 +113,18 @@ void Qlocation::setActions(){
     connect(searchButton,SIGNAL(clicked()),this,SLOT(showItem()));  
     connect(applyButton,SIGNAL(clicked()),this,SLOT(updateLatLng()));
     connect(this,SIGNAL(updateMap()),this,SLOT(updateLatLng()));
+    
+    
+	//QStringList scriptStr1,scriptStr2; 
+	//scriptStr1 << "document.getElementById(\"lat\").value;";
+	//QVariant vres1 = webView->page()->mainFrame()->evaluateJavaScript( scriptStr1.join("\n") );
+    //QString sres1 = vres1.toString();
+    //scriptStr2 << "document.getElementById(\"lng\").value;";
+	//QVariant vres2 = webView->page()->mainFrame()->evaluateJavaScript( scriptStr2.join("\n") );
+    //QString sres2 = vres2.toString();
+    //latLabel->setText(sres1);
+    //lngLabel->setText(sres2);
+	//QMessageBox::warning(this, tr("My Application"),sres1,QMessageBox::Ok);
 }
 
 //
