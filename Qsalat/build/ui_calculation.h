@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'calculation.ui'
 **
-** Created: Tue Dec 9 22:11:35 2008
+** Created: Wed Dec 10 09:46:34 2008
 **      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -72,6 +72,9 @@ public:
     label = new QLabel(groupBox);
     label->setObjectName(QString::fromUtf8("label"));
     label->setGeometry(QRect(20, 30, 301, 18));
+    QFont font;
+    font.setItalic(true);
+    label->setFont(font);
     groupBox_2 = new QGroupBox(Calculation);
     groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
     groupBox_2->setGeometry(QRect(190, 160, 161, 111));
@@ -85,6 +88,7 @@ public:
     label_2 = new QLabel(groupBox_2);
     label_2->setObjectName(QString::fromUtf8("label_2"));
     label_2->setGeometry(QRect(10, 30, 141, 18));
+    label_2->setFont(font);
     groupBox_3 = new QGroupBox(Calculation);
     groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
     groupBox_3->setGeometry(QRect(10, 160, 171, 111));
@@ -95,6 +99,7 @@ public:
     label_3 = new QLabel(groupBox_3);
     label_3->setObjectName(QString::fromUtf8("label_3"));
     label_3->setGeometry(QRect(10, 30, 141, 18));
+    label_3->setFont(font);
     label_4 = new QLabel(groupBox_3);
     label_4->setObjectName(QString::fromUtf8("label_4"));
     label_4->setGeometry(QRect(10, 59, 41, 31));
@@ -110,6 +115,7 @@ public:
     label_10 = new QLabel(groupBox_4);
     label_10->setObjectName(QString::fromUtf8("label_10"));
     label_10->setGeometry(QRect(10, 30, 141, 18));
+    label_10->setFont(font);
     cancelButton = new QPushButton(Calculation);
     cancelButton->setObjectName(QString::fromUtf8("cancelButton"));
     cancelButton->setGeometry(QRect(280, 410, 71, 28));
@@ -127,6 +133,7 @@ public:
     label_6 = new QLabel(groupBox_5);
     label_6->setObjectName(QString::fromUtf8("label_6"));
     label_6->setGeometry(QRect(10, 30, 141, 18));
+    label_6->setFont(font);
     label_8 = new QLabel(groupBox_5);
     label_8->setObjectName(QString::fromUtf8("label_8"));
     label_8->setGeometry(QRect(10, 60, 41, 31));
@@ -136,11 +143,11 @@ public:
     label_7 = new QLabel(Calculation);
     label_7->setObjectName(QString::fromUtf8("label_7"));
     label_7->setGeometry(QRect(10, 10, 341, 21));
-    QFont font;
-    font.setPointSize(11);
-    font.setBold(true);
-    font.setWeight(75);
-    label_7->setFont(font);
+    QFont font1;
+    font1.setPointSize(11);
+    font1.setBold(true);
+    font1.setWeight(75);
+    label_7->setFont(font1);
     label_7->setAlignment(Qt::AlignCenter);
     okButton = new QPushButton(Calculation);
     okButton->setObjectName(QString::fromUtf8("okButton"));
@@ -171,12 +178,12 @@ public:
     highLatBox->setText(QApplication::translate("Calculation", "Higher Latitudes", 0, QApplication::UnicodeUTF8));
     label_10->setText(QApplication::translate("Calculation", "Set high Latitudes option", 0, QApplication::UnicodeUTF8));
     cancelButton->setText(QApplication::translate("Calculation", "Cancel", 0, QApplication::UnicodeUTF8));
-    saveButton->setText(QApplication::translate("Calculation", "Save", 0, QApplication::UnicodeUTF8));
+    saveButton->setText(QApplication::translate("Calculation", "Apply", 0, QApplication::UnicodeUTF8));
     groupBox_5->setTitle(QApplication::translate("Calculation", "Hijri date adjustment", 0, QApplication::UnicodeUTF8));
     label_6->setText(QApplication::translate("Calculation", "Set hijri custom date", 0, QApplication::UnicodeUTF8));
     label_8->setText(QApplication::translate("Calculation", "Add", 0, QApplication::UnicodeUTF8));
     label_9->setText(QApplication::translate("Calculation", "days", 0, QApplication::UnicodeUTF8));
-    label_7->setText(QApplication::translate("Calculation", "Prayer calculation options", 0, QApplication::UnicodeUTF8));
+    label_7->setText(QApplication::translate("Calculation", "Calculations options", 0, QApplication::UnicodeUTF8));
     okButton->setText(QApplication::translate("Calculation", "OK", 0, QApplication::UnicodeUTF8));
     Q_UNUSED(Calculation);
     } // retranslateUi

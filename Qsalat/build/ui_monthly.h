@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'monthly.ui'
 **
-** Created: Tue Dec 9 18:03:48 2008
+** Created: Wed Dec 10 09:46:34 2008
 **      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -37,6 +37,7 @@ public:
     QComboBox *monthBox;
     QSpinBox *yearBox;
     QPushButton *generateButton;
+    QLabel *label_7;
 
     void setupUi(QDialog *Monthly)
     {
@@ -47,7 +48,7 @@ public:
     Monthly->setMaximumSize(QSize(352, 305));
     groupBox_2 = new QGroupBox(Monthly);
     groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
-    groupBox_2->setGeometry(QRect(10, 20, 331, 80));
+    groupBox_2->setGeometry(QRect(10, 30, 331, 80));
     selectButton = new QPushButton(groupBox_2);
     selectButton->setObjectName(QString::fromUtf8("selectButton"));
     selectButton->setGeometry(QRect(249, 30, 71, 28));
@@ -59,7 +60,7 @@ public:
     label_4->setGeometry(QRect(10, 30, 81, 31));
     groupBox = new QGroupBox(Monthly);
     groupBox->setObjectName(QString::fromUtf8("groupBox"));
-    groupBox->setGeometry(QRect(10, 119, 331, 121));
+    groupBox->setGeometry(QRect(10, 120, 331, 121));
     label_5 = new QLabel(groupBox);
     label_5->setObjectName(QString::fromUtf8("label_5"));
     label_5->setGeometry(QRect(10, 70, 91, 31));
@@ -78,6 +79,15 @@ public:
     generateButton = new QPushButton(Monthly);
     generateButton->setObjectName(QString::fromUtf8("generateButton"));
     generateButton->setGeometry(QRect(260, 260, 80, 28));
+    label_7 = new QLabel(Monthly);
+    label_7->setObjectName(QString::fromUtf8("label_7"));
+    label_7->setGeometry(QRect(10, 10, 331, 21));
+    QFont font;
+    font.setPointSize(11);
+    font.setBold(true);
+    font.setWeight(75);
+    label_7->setFont(font);
+    label_7->setAlignment(Qt::AlignCenter);
 
     retranslateUi(Monthly);
 
@@ -88,12 +98,13 @@ public:
     {
     Monthly->setWindowTitle(QApplication::translate("Monthly", "Qsalat - monthly prayers", 0, QApplication::UnicodeUTF8));
     groupBox_2->setTitle(QApplication::translate("Monthly", "Folder", 0, QApplication::UnicodeUTF8));
-    selectButton->setText(QString());
+    selectButton->setText(QApplication::translate("Monthly", "Select", 0, QApplication::UnicodeUTF8));
     label_4->setText(QApplication::translate("Monthly", "Select folder", 0, QApplication::UnicodeUTF8));
     groupBox->setTitle(QApplication::translate("Monthly", "Monthly generation", 0, QApplication::UnicodeUTF8));
     label_5->setText(QApplication::translate("Monthly", "Select a year", 0, QApplication::UnicodeUTF8));
     label_2->setText(QApplication::translate("Monthly", "Select a month", 0, QApplication::UnicodeUTF8));
     generateButton->setText(QApplication::translate("Monthly", "Generate", 0, QApplication::UnicodeUTF8));
+    label_7->setText(QApplication::translate("Monthly", "Generate prayer times for one month", 0, QApplication::UnicodeUTF8));
     Q_UNUSED(Monthly);
     } // retranslateUi
 

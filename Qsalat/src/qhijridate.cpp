@@ -16,6 +16,6 @@ void Qhijridate::closeEvent(QCloseEvent *event)
 void Qhijridate::setUI()
 {
 	setWindowIcon(QIcon("images/mecque.png"));
-	//selectButton->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
+	convertButton->setIcon(style()->standardIcon(QStyle::SP_DialogApplyButton));
 }
 

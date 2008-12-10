@@ -17,4 +17,5 @@ void Qyearly::setUI()
 {
 	setWindowIcon(QIcon("images/mecque.png"));
 	selectButton->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
+	generateButton->setIcon(style()->standardIcon(QStyle::SP_DialogApplyButton));
 }

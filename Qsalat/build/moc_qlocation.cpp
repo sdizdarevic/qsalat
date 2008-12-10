@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'qlocation.h'
 **
-** Created: Tue Dec 9 22:11:55 2008
+** Created: Wed Dec 10 10:01:59 2008
 **      by: The Qt Meta Object Compiler version 59 (Qt 4.4.3)
 **
 ** WARNING! All changes made in this file will be lost!

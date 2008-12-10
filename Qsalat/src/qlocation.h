@@ -41,6 +41,7 @@ private:
 	QList<QPointF> coordinates;
 	int pendingRequests;	
 	void setActions();
+	void setUI();
 };
 #endif
 

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'qibla.ui'
 **
-** Created: Tue Dec 9 22:11:35 2008
+** Created: Wed Dec 10 09:58:14 2008
 **      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -51,7 +51,7 @@ public:
     void retranslateUi(QDialog *Qibla)
     {
     Qibla->setWindowTitle(QApplication::translate("Qibla", "Qsalat - qibla direction", 0, QApplication::UnicodeUTF8));
-    label->setText(QApplication::translate("Qibla", "Qibla direction : 57,6N", 0, QApplication::UnicodeUTF8));
+    label->setText(QApplication::translate("Qibla", "Qibla angle direction : 57,6N", 0, QApplication::UnicodeUTF8));
     Q_UNUSED(Qibla);
     } // retranslateUi
 

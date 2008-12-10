@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'audio.ui'
 **
-** Created: Tue Dec 9 22:11:35 2008
+** Created: Wed Dec 10 09:46:34 2008
 **      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -181,7 +181,7 @@ public:
     fajrRadioButton->setText(QApplication::translate("Audio", "Play Fajr athan", 0, QApplication::UnicodeUTF8));
     duaRadioButton->setText(QApplication::translate("Audio", "Play dua", 0, QApplication::UnicodeUTF8));
     cancelButton->setText(QApplication::translate("Audio", "Cancel", 0, QApplication::UnicodeUTF8));
-    saveButton->setText(QApplication::translate("Audio", "Save", 0, QApplication::UnicodeUTF8));
+    saveButton->setText(QApplication::translate("Audio", "Apply", 0, QApplication::UnicodeUTF8));
     okButton->setText(QApplication::translate("Audio", "OK", 0, QApplication::UnicodeUTF8));
     label->setText(QApplication::translate("Audio", "Set audio files and audio options", 0, QApplication::UnicodeUTF8));
     Q_UNUSED(Audio);

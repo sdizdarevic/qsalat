@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'location.ui'
 **
-** Created: Tue Dec 9 22:11:35 2008
+** Created: Wed Dec 10 10:01:43 2008
 **      by: Qt User Interface Compiler version 4.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -64,13 +64,13 @@ public:
     lngLabel->setGeometry(QRect(160, 380, 131, 20));
     cancelButton = new QPushButton(Location);
     cancelButton->setObjectName(QString::fromUtf8("cancelButton"));
-    cancelButton->setGeometry(QRect(229, 410, 61, 28));
+    cancelButton->setGeometry(QRect(219, 410, 71, 28));
     applyButton = new QPushButton(Location);
     applyButton->setObjectName(QString::fromUtf8("applyButton"));
-    applyButton->setGeometry(QRect(160, 410, 61, 28));
+    applyButton->setGeometry(QRect(150, 410, 61, 28));
     okButton = new QPushButton(Location);
     okButton->setObjectName(QString::fromUtf8("okButton"));
-    okButton->setGeometry(QRect(90, 410, 61, 28));
+    okButton->setGeometry(QRect(80, 410, 61, 28));
     label_2 = new QLabel(Location);
     label_2->setObjectName(QString::fromUtf8("label_2"));
     label_2->setGeometry(QRect(10, 10, 281, 21));

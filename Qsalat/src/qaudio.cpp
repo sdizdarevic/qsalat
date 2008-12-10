@@ -33,18 +33,19 @@ void Qaudio::setActions(){
 
 
 void Qaudio::setUI(){
-        setWindowIcon(QIcon("images/mecque.png"));
-        playIcon = style()->standardIcon(QStyle::SP_MediaPlay);
-        playButton->setIcon(playIcon);
-        stopIcon = style()->standardIcon(QStyle::SP_MediaStop);
-        stopButton->setIcon(stopIcon);
-        volumeIcon = style()->standardPixmap(QStyle::SP_MediaVolume);
+    setWindowIcon(QIcon("images/mecque.png"));
+    playIcon = style()->standardIcon(QStyle::SP_MediaPlay);
+    playButton->setIcon(playIcon);
+    stopIcon = style()->standardIcon(QStyle::SP_MediaStop);
+    stopButton->setIcon(stopIcon);
+    volumeIcon = style()->standardPixmap(QStyle::SP_MediaVolume);
     mutedIcon = style()->standardPixmap(QStyle::SP_MediaVolumeMuted);
     volumeLabel->setPixmap(volumeIcon);
     prayerButton->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
     fajrButton->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
     duaButton->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
-    saveButton->setIcon(style()->standardIcon(QStyle::SP_DialogSaveButton));
+    okButton->setIcon(style()->standardIcon(QStyle::SP_DialogOkButton));
+    saveButton->setIcon(style()->standardIcon(QStyle::SP_DialogApplyButton));
     cancelButton->setIcon(style()->standardIcon(QStyle::SP_DialogCancelButton));
     
     seekSlider = new Phonon::SeekSlider(this);   

@@ -45,7 +45,7 @@
     </font>
    </property>
    <property name="text" >
-    <string>Qibla direction : 57,6N</string>
+    <string>Qibla angle direction : 57,6N</string>
    </property>
    <property name="alignment" >
     <set>Qt::AlignCenter</set>

@@ -17,7 +17,8 @@ void Qcalculation::closeEvent(QCloseEvent *event)
 void Qcalculation::setUI()
 {
 	setWindowIcon(QIcon("images/mecque.png"));
-	saveButton->setIcon(style()->standardIcon(QStyle::SP_DialogSaveButton));
+	okButton->setIcon(style()->standardIcon(QStyle::SP_DialogOkButton));
+	saveButton->setIcon(style()->standardIcon(QStyle::SP_DialogApplyButton));
 	cancelButton->setIcon(style()->standardIcon(QStyle::SP_DialogCancelButton));
 }
 
