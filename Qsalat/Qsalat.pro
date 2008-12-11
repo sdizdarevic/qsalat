@@ -3,7 +3,8 @@ QT = gui \
  core \
  network \
  webkit \
- phonon
+ phonon \
+ xml
 CONFIG += qt warn_on console release
 DESTDIR = bin
 OBJECTS_DIR = build
@@ -29,7 +30,8 @@ HEADERS = src/qsalat.h \
  src/qabout.h \
  src/qworldTime.h \
  src/qcalculation.h \
- src/qhijridate.h
+ src/qhijridate.h \
+ src/domparser.h
 SOURCES = src/qsalat.cpp \
  src/main.cpp \
  src/qpray.cpp \
@@ -42,5 +44,9 @@ SOURCES = src/qsalat.cpp \
  src/qabout.cpp \
  src/qcalculation.cpp \
  src/qworldTime.cpp \
- src/qhijridate.cpp
+ src/qhijridate.cpp \
+ src/domparser.cpp
 RESOURCES += salat.qrc qibla.qrc worldtime.qrc
+TRANSLATIONS    = qsalat_en.ts \
+                  qsalat_fr.ts 
+CODECFORTR      = UTF-8
