@@ -1,0 +1,24 @@
+<qsalat>
+	<location>
+		<latitude></latitude>
+		<longitude></longitude>
+		<city></city>
+		<country></country>
+		<timezone></timezone>
+	</location>
+	<audio>
+		<prayer></prayer>
+		<fajrPrayer></fajrPrayer>
+		<dua></dua>
+		<playAthan></playAthan>
+		<playDua></playDua>
+	</audio>
+	<calculation>
+		<method></method>
+		<asr></asr>
+		<duhr></duhr>
+		<asr></asr>
+		<hijri></hijri>
+		<higherLat></higherLat>
+	</calculation>
+</qsalat>
