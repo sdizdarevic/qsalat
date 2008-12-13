@@ -9,10 +9,10 @@ class DomParser
 {
 public:
     DomParser();
-
+    static bool changed;
     bool readFile(const QString &fileName);
 	void changeElement(QString text, int index1, int index2);
-	void saveData();
+	void saveData(QString);
 	QString params[4][5];  
 	
 private:

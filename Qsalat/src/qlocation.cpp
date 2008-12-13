@@ -5,42 +5,21 @@ Qlocation::Qlocation( QWidget * parent, Qt::WFlags f)
 {
 	setupUi(this);
 	setUI();
-	manager = new QNetworkAccessManager(this);	   
+	manager = new QNetworkAccessManager(this);
 	setActions();
-    //emit( updateMap() );  
-    //adjustWindow();  
-}
-
-void Qlocation::adjustWindow(){
-	QDesktopWidget *desktop = QApplication::desktop();
-	int screenWidth, width; 
-	int screenHeight, height;
-	int x, y;
-	QSize windowSize;	 
-	screenWidth = desktop->width(); // get width of screen
-	screenHeight = desktop->height(); // get height of screen	 
-	windowSize = size(); // size of our application window
-	width = windowSize.width(); 
-	height = windowSize.height();	 
-	 //little computations
-	x = (screenWidth - width) / 2;
-	y = (screenHeight - height) / 2;
-	y -= 50;	 
-	// move window to desired coordinates
-	move ( x, y );	
 }
 
 void Qlocation::geoCode(const QString& address)
 {
 	adress = address;
-    clearCoordinates();
-    QString requestStr( tr("http://maps.google.com/maps/geo?q=%1&output=%2&key=%3")
-            .arg(address)
-            .arg("csv")
-            .arg("ABQIAAAADK2Z-2Uhvnv0BtjasvfxpBQ9r-JX5Ew3YiWGH5u4o4FZAQdnQRRB9I6-zAG7Un8nsXxMTDtquMbY2A") );
+	clearCoordinates();
+	QString requestStr( tr("http://maps.google.com/maps/geo?q=%1&output=%2&key=%3")
+		.arg(address)
+		.arg("csv")
+		.arg("ABQIAAAADK2Z-2Uhvnv0BtjasvfxpBQ9r-JX5Ew3YiWGH5u4o4FZAQdnQRRB9I6-zAG7Un8nsXxMTDtquMbY2A") );
 	//QMessageBox::warning(this, tr("My Application"),requestStr,QMessageBox::Ok);
-    manager->get( QNetworkRequest(requestStr) );
-    ++pendingRequests;    
+	manager->get( QNetworkRequest(requestStr) );
+	++pendingRequests;    
 }
 
 void Qlocation::replyFinished(QNetworkReply *reply)
@@ -62,8 +41,8 @@ void Qlocation::loadCoordinates()
 {
     QStringList scriptStr;    
     foreach( QPointF point, coordinates ) {
-        latLabel->setText(QString::number(point.x()));
-        lngLabel->setText(QString::number(point.y()));
+        latLineEdit->setText(QString::number(point.x()));
+        lngLineEdit->setText(QString::number(point.y()));
     }   
    scriptStr << QString("http://www.skanderjabouzi.com/qpray/?adr=%1")                        
                              .arg(adress);
@@ -95,8 +74,16 @@ void Qlocation::updateLatLng(){
     scriptStr2 << "document.getElementById(\"lng\").value;";
 	QVariant vres2 = webView->page()->mainFrame()->evaluateJavaScript( scriptStr2.join("\n") );
     QString sres2 = vres2.toString();
-    latLabel->setText(sres1);
-    lngLabel->setText(sres2);
+    latLineEdit->setText(sres1);
+    lngLineEdit->setText(sres2);
+    /*QHttp *qhttp = new QHttp();
+    qhttp->setHost ( "http://ws.geonames.org/timezone?lat=36.75&lng=10.30", 80 );
+    const QString url = "http://ws.geonames.org/timezone?lat=36.75&lng=10.30";
+    QFile file("res.xml");
+    int getRes = qhttp->get ( url, file);*/
+    
+    apply();
+    //"http://ws.geonames.org/timezone?lat=36.75&lng=10.30";
     //QMessageBox::warning(this, tr("My Application"),sres1,QMessageBox::Ok);
 }
 
@@ -118,8 +105,29 @@ void Qlocation::setActions(){
 void Qlocation::setUI(){
 	setWindowIcon(QIcon("images/mecque.png"));
 	okButton->setIcon(style()->standardIcon(QStyle::SP_DialogOkButton));
-    applyButton->setIcon(style()->standardIcon(QStyle::SP_DialogApplyButton));
-    cancelButton->setIcon(style()->standardIcon(QStyle::SP_DialogCancelButton));
+	applyButton->setIcon(style()->standardIcon(QStyle::SP_DialogApplyButton));
+	cancelButton->setIcon(style()->standardIcon(QStyle::SP_DialogCancelButton));
+}
+
+void Qlocation::apply()
+{
+	QString file = "data/qsalat.xml";
+	parser.readFile(file);
+	parser.changeElement(latLineEdit->text(),0,0);
+	parser.changeElement(lngLineEdit->text(),0,1);
+	parser.saveData(file);
+	DomParser::changed = true; 
+}
+
+void Qlocation::save()
+{
+	apply();
+	close();
+}
+
+void Qlocation::cancel()
+{
+	close();
 }
 
 //

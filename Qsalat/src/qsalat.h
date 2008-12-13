@@ -5,8 +5,8 @@
 #include <QtGui>
 #include <QSystemTrayIcon>
 #include <QMenu>
-#include <QNetworkAddressEntry>
-#include <QHostAddress>
+//#include <QNetworkAddressEntry>
+//#include <QHostAddress>
 #include "ui_salat.h"
 #include "qpray.h"
 #include "qhijri.h"
@@ -23,7 +23,7 @@ class Qsalat : public QMainWindow, public Ui::Salat
 {
 Q_OBJECT
 public:
-	Qsalat( QWidget * parent = 0, Qt::WFlags f = 0 );
+	Qsalat( QWidget * parent = 0, Qt::WFlags f = 0 );	
 	void getSalats();
 	void getHijri();		
 	Qpray *prayers;

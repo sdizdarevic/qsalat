@@ -1,24 +1,31 @@
+<?xml version="1.0" ?>
 <qsalat>
 	<location>
-		<latitude></latitude>
-		<longitude></longitude>
-		<city></city>
-		<country></country>
-		<timezone></timezone>
+		<latitude>-73.5833</latitude>
+		<longitude>45.5000</longitude>
+		<city>Montreal</city>
+		<country>Canada</country>
+		<timezone>-5</timezone>
 	</location>
 	<audio>
-		<prayer></prayer>
-		<fajrPrayer></fajrPrayer>
-		<dua></dua>
-		<playAthan></playAthan>
-		<playDua></playDua>
+		<prayer>athan.mp3</prayer>
+		<fajrPrayer>fajr.mp3</fajrPrayer>
+		<dua>dua.mp3</dua>
+		<playAthan>1</playAthan>
+		<playDua>1</playDua>
 	</audio>
 	<calculation>
-		<method></method>
-		<asr></asr>
+		<method>1</method>	
+		<duhr>0</duhr>
+		<asr>0</asr>
+		<hijri>1</hijri>
+		<higherLat>0</higherLat>
+	</calculation>
+	<prayers>
+		<fajr>06:00</fajr>
 		<duhr></duhr>
 		<asr></asr>
-		<hijri></hijri>
-		<higherLat></higherLat>
-	</calculation>
+		<maghreb>16:00</maghreb>
+		<isha>18:00</isha>
+	</prayers>
 </qsalat>

@@ -5,7 +5,7 @@ QT = gui \
  webkit \
  phonon \
  xml
-CONFIG += qt warn_on console release
+CONFIG += qt warn_on release
 DESTDIR = bin
 OBJECTS_DIR = build
 MOC_DIR = build
@@ -47,6 +47,5 @@ SOURCES = src/qsalat.cpp \
  src/qhijridate.cpp \
  src/domparser.cpp
 RESOURCES += salat.qrc qibla.qrc worldtime.qrc
-TRANSLATIONS    = qsalat_en.ts \
-                  qsalat_fr.ts 
-CODECFORTR      = UTF-8
+TRANSLATIONS = qsalat_en.ts qsalat_fr.ts
+CODECFORTR = UTF-8

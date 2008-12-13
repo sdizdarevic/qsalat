@@ -10,7 +10,9 @@
 #include <QNetworkReply>
 #include <QMessageBox>
 #include <QVariant>
+#include <QHttp>
 #include "ui_location.h"
+#include "domparser.h"
 //
 class Qlocation : public QDialog, public Ui::Location
 {
@@ -18,8 +20,7 @@ Q_OBJECT
 public:
 	Qlocation( QWidget * parent = 0, Qt::WFlags f = 0 );
 	//double x, y;
-	QString adress;
-	void adjustWindow();
+	QString adress;	
 	
 public slots:
 	void replyFinished(QNetworkReply*);
@@ -28,6 +29,9 @@ public slots:
 	void clearCoordinates();
 	void showItem();
 	void updateLatLng();
+	void apply();
+	void save();
+	void cancel();
 
 protected:
 	void closeEvent(QCloseEvent *);
@@ -39,6 +43,7 @@ signals:
 private:
 	QNetworkAccessManager *manager;
 	QList<QPointF> coordinates;
+	DomParser parser;
 	int pendingRequests;	
 	void setActions();
 	void setUI();

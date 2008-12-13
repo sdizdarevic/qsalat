@@ -9,6 +9,8 @@ DomParser::DomParser()
 {    
 }
 
+bool DomParser::changed = false; 
+
 bool DomParser::readFile(const QString &fileName)
 {
     QFile file(fileName);
@@ -139,8 +141,8 @@ void DomParser::changeElement(QString text, int index1, int index2){
 	//cout << "apres : " << params[index1][index2].toLatin1().data() << endl;	
 }
 
-void DomParser::saveData(){
-	QFile data("qsalat.xml");
+void DomParser::saveData(QString file){
+	QFile data(file);
 	 if (data.open(QFile::WriteOnly | QFile::Truncate)) {
 		 QTextStream out(&data);
 		 out.setCodec("UTF-8");

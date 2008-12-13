@@ -39,6 +39,7 @@ private slots:
 	void play();
 	void stop();
 	void setVolume(int);
+	//void apply();
 	void save();
 	void cancel();
 };

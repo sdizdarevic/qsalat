@@ -45,7 +45,7 @@ Qsalat::Qsalat( QWidget * parent, Qt::WFlags f)
 	Gfirst = true;
 	locationFirst = true;
 	connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-            this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
+            this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));    
 }
 
 void Qsalat::adjustWindow(){
