@@ -16,8 +16,8 @@
 	</audio>
 	<calculation>
 		<method>1</method>	
-		<duhr>00:00</duhr>
-		<asr>00:00</asr>
+		<duhr></duhr>
+		<asr></asr>
 		<hijri>1</hijri>
 		<higherLat>0</higherLat>
 	</calculation>

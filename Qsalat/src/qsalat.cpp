@@ -30,15 +30,15 @@ Qsalat::Qsalat( QWidget * parent, Qt::WFlags f)
 	hijri = new Qhijri();	
 	trayIcon = new QSystemTrayIcon(this);
 	trayIconMenu = new QMenu(this);		
-	createActions();
-	createTrayIcon();	
+	createActions();	
 	setVisible(true);
 	Gfirst = true;
 	locationFirst = true;	 
 	init();  	
 	getSalats();
 	getHijri();
-	initTimer();	
+	initTimer();
+	createTrayIcon();		
     
 }
 
@@ -328,33 +328,40 @@ void Qsalat::timerEvent(QTimerEvent *e)
   			init();  	
 			getSalats();
 			getHijri();
+			createTrayIcon();	
+			qibla.init();
+			//QPaintEvent *event;
+			//qibla.paintEvent(event);
   			DomParser::changed = false;
 		}		
   		QTime time = QTime::currentTime();   		
-    	QString strTime = time.toString("HH:mm");
-    	if ("00:00" == strTime){
+    	QString strTime = time.toString("HH:mm:ss");
+    	if ("00:00:00" == strTime){
     		init();  	
 			getSalats();
 			getHijri();
+			createTrayIcon();	
    		}
    		if (parser.getElement(1,3) == "1"){
-		   	if ("00:59" == strTime){//label_fajr->text()
+		   	if (label_fajr->text() == strTime){//label_fajr->text()
 		   		audioList << "audio/athanFajr.mp3";
 		   		QProcess::execute ("player/Player.exe", audioList );
+		   		audioList.clear();
 		   		if (parser.getElement(1,4) == "1"){
 			   		audioList << "audio/dua.mp3";
 			   		QProcess::execute ("player/Player.exe", audioList );
 		   		}
 		  	}
-   			else if (label_duhr->text() == strTime){
+   			else if (label_duhr->text()+"00" == strTime){
 		  		audioList << "audio/athan.mp3";
 		   		QProcess::execute ("player/Player.exe", audioList );	
+		   		audioList.clear();
 		   		if (parser.getElement(1,4) == "1"){
 			   		audioList << "audio/dua.mp3";
 			   		QProcess::execute ("player/Player.exe", audioList );
 		   		}	   			
 		  	}
-   			else if (label_asr->text() == strTime){
+   			else if (label_asr->text()+"00" == strTime){
 		   		audioList << "audio/athan.mp3";
 		   		QProcess::execute ("player/Player.exe", audioList );	
 		   		if (parser.getElement(1,4) == "1"){
@@ -362,7 +369,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
 			   		QProcess::execute ("player/Player.exe", audioList );
 		   		}
 		  	}
-	  		else if (label_maghreb->text() == strTime){
+	  		else if (label_maghreb->text()+"00" == strTime){
 	  			audioList << "audio/athan.mp3";
 		   		QProcess::execute ("player/Player.exe", audioList );
 		   		if (parser.getElement(1,4) == "1"){
@@ -370,7 +377,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
 			   		QProcess::execute ("player/Player.exe", audioList );
 		   		}		   			
 	  		}
-	  		else if (label_isha->text() == strTime){
+	  		else if (label_isha->text()+"00" == strTime){
 	  			audioList << "audio/athan.mp3";
 		   		QProcess::execute ("player/Player.exe", audioList );
 		   		if (parser.getElement(1,4) == "1"){

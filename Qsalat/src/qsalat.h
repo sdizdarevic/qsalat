@@ -6,6 +6,7 @@
 #include <QSystemTrayIcon>
 #include <QMenu>
 #include <QProcess>
+#include <QPaintEvent>
 //#include <QNetworkAddressEntry>
 //#include <QHostAddress>
 #include "ui_salat.h"
