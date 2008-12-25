@@ -84,12 +84,14 @@ int* Qhijri::islToChr(int y, int m, int d) {
 
 QString* Qhijri::isToString(int y, int m, int d){
 	QString months[] = {"Muharram","Safar","Rabi-al Awwal","Rabi-al Thani","Jumada al-Ula","Jumada al-Thani","Rajab","Sha\'ban","Ramadhan","Shawwal","Dhul Qa\'dah","Dhul Hijjah"};
+	QString monthsH[] = {"محرّم" ,"صفر" ,"ربيع الأول" ,"ربيع الثاني"  ,"جمادى الأولى" ,"جمادى الثاني" ,"رجب" ,"شعبان" ,"رمضان" ,"شوال" ,"ذو القعدة" ,"ذو الحجة"};
 	int * res = new int [3];
 	res = chrToIsl(y,m,d);
-	QString* ress = new QString [3];
+	QString* ress = new QString [4];
 	ress[0] = QString::number(res[0]);
 	ress[1] = months[res[1]-1];
-	ress[2] = QString::number(res[2]);
+	ress[2] = monthsH[res[1]-1];
+	ress[3] = QString::number(res[2]);
 	return ress;
 }
 

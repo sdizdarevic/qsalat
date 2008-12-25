@@ -101,10 +101,13 @@ void Qsalat::getSalats(){
 }
 
 void Qsalat::getHijri(){
-	QString *dates = new QString[3];
+	QString *dates = new QString[4];
 	dates = hijri->isToString(year, month, day);
-	QString text = dates[0]+" "+dates[1]+" "+dates[2];
-	label_hijri->setText(text);
+	QString text = dates[0]+" "+dates[1]+" "+dates[3];	
+	label_hijri->setText(QString::fromUtf8(dates[2].toLatin1().data()));
+	label_hijri_3->setText(dates[3]);
+	label_hijri_4->setText(dates[0]);
+	label_hijri_2->setText(text);
 }
 
 void Qsalat::createTrayIcon()
@@ -122,8 +125,7 @@ void Qsalat::createTrayIcon()
     trayIconMenu->addAction(quitAction);    
     trayIcon->setContextMenu(trayIconMenu);
     trayIcon->setIcon(QIcon("images/mecque.png"));
-	QString ttmessage = "Qsalat cross-platform Islamic prayer times V0.1\nFajr : "+label_fajr->text()+"\nDuhr : "
-	+label_duhr->text()+"\nAsr : "+label_asr->text()+"\nMaghreb : "+label_maghreb->text()+"\nIsha : "+label_isha->text();
+	QString ttmessage = "Prayer times for : "+city+", "+country+"\nFajr :"+label_fajr->text()+"\nDuhr : "	+label_duhr->text()+"\nAsr : "+label_asr->text()+"\nMaghreb : "+label_maghreb->text()+"\nIsha : "+label_isha->text();
     trayIcon->setToolTip("Qsalat Islamic cross-platform prayers time V0.1");
     trayIcon->setToolTip(ttmessage);
 	trayIcon->show();	
@@ -343,7 +345,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
 			createTrayIcon();	
    		}
    		if (parser.getElement(1,3) == "1"){
-		   	if (label_fajr->text() == strTime){//label_fajr->text()
+		   	if (label_fajr->text()+":00" == strTime){//label_fajr->text()
 		   		audioList << "audio/athanFajr.mp3";
 		   		QProcess::execute ("player/Player.exe", audioList );
 		   		audioList.clear();
@@ -352,7 +354,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
 			   		QProcess::execute ("player/Player.exe", audioList );
 		   		}
 		  	}
-   			else if (label_duhr->text()+"00" == strTime){
+   			else if (label_duhr->text()+":00" == strTime){
 		  		audioList << "audio/athan.mp3";
 		   		QProcess::execute ("player/Player.exe", audioList );	
 		   		audioList.clear();
@@ -361,7 +363,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
 			   		QProcess::execute ("player/Player.exe", audioList );
 		   		}	   			
 		  	}
-   			else if (label_asr->text()+"00" == strTime){
+   			else if (label_asr->text()+":00" == strTime){
 		   		audioList << "audio/athan.mp3";
 		   		QProcess::execute ("player/Player.exe", audioList );	
 		   		if (parser.getElement(1,4) == "1"){
@@ -369,7 +371,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
 			   		QProcess::execute ("player/Player.exe", audioList );
 		   		}
 		  	}
-	  		else if (label_maghreb->text()+"00" == strTime){
+	  		else if (label_maghreb->text()+":00" == strTime){
 	  			audioList << "audio/athan.mp3";
 		   		QProcess::execute ("player/Player.exe", audioList );
 		   		if (parser.getElement(1,4) == "1"){
@@ -377,7 +379,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
 			   		QProcess::execute ("player/Player.exe", audioList );
 		   		}		   			
 	  		}
-	  		else if (label_isha->text()+"00" == strTime){
+	  		else if (label_isha->text()+":00" == strTime){
 	  			audioList << "audio/athan.mp3";
 		   		QProcess::execute ("player/Player.exe", audioList );
 		   		if (parser.getElement(1,4) == "1"){
