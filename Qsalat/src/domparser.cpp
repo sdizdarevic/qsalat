@@ -135,10 +135,16 @@ QString DomParser::parsePageElement(const QDomElement &element)
     return page;
 }
 
-void DomParser::changeElement(QString text, int index1, int index2){
+void DomParser::changeElement(QString text, int index1, int index2)
+{
 	//cout << "avant : " << params[index1][index2].toLatin1().data() << endl;
 	params[index1][index2] = text;
 	//cout << "apres : " << params[index1][index2].toLatin1().data() << endl;	
+}
+
+QString DomParser::getElement( int index1, int index2)
+{
+	return params[index1][index2];
 }
 
 void DomParser::saveData(QString file){

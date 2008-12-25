@@ -23,9 +23,10 @@ public:
 	QString adress;	
 	
 public slots:
-	void replyFinished(QNetworkReply*);
-	void loadCoordinates();
-	void geoCode(const QString &address);
+	//void replyFinished(QNetworkReply*);
+	void loadAddress(QString);
+	void loadCoordinates(float,float);
+	//void geoCode(const QString &address);
 	void clearCoordinates();
 	void showItem();
 	void updateLatLng();
@@ -44,9 +45,15 @@ private:
 	QNetworkAccessManager *manager;
 	QList<QPointF> coordinates;
 	DomParser parser;
+	QString file;	
+	float latitude;
+	float longitude;
+	QString country;
+	QString city;
+	int timezone;
 	int pendingRequests;	
 	void setActions();
-	void setUI();
+	void setUI();	
 };
 #endif
 

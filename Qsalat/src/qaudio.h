@@ -38,10 +38,11 @@ private slots:
 	void loadDua();
 	void play();
 	void stop();
-	void setVolume(int);
+	void setVolume();
 	//void apply();
 	void save();
 	void cancel();
+	void finished();
 };
 
 #endif // __QAUDIO_H__

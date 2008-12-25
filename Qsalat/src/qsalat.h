@@ -74,6 +74,8 @@ private slots:
 	void showYearly();
 	void showHijridate();
 	void _about();
+	void _hide();
+	void _showNormal();
 };
 #endif
 

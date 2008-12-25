@@ -1,8 +1,13 @@
 <?xml version="1.0" ?>
 <qsalat>
 	<location>
+<<<<<<< .mine
+		<latitude>-73.591779</latitude>
+		<longitude>45.583709</longitude>
+=======
 		<latitude>48.8566667</latitude>
 		<longitude>2.3509871</longitude>
+>>>>>>> .r46
 		<city>Montreal</city>
 		<country>Canada</country>
 		<timezone>-5</timezone>
@@ -22,10 +27,10 @@
 		<higherLat>0</higherLat>
 	</calculation>
 	<prayers>
-		<fajr>06:00</fajr>
+		<fajr>00:00</fajr>
 		<duhr></duhr>
 		<asr></asr>
-		<maghreb>16:00</maghreb>
-		<isha>18:00</isha>
+		<maghreb>00:00</maghreb>
+		<isha>00:00</isha>
 	</prayers>
 </qsalat>

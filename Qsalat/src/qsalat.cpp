@@ -153,9 +153,9 @@ void Qsalat::closeEvent(QCloseEvent *event)
 void Qsalat::createActions()
 {
     minimizeAction = new QAction(tr("Mi&nimize"), this);
-    connect(minimizeAction, SIGNAL(triggered()), this, SLOT(hide()));
+    connect(minimizeAction, SIGNAL(triggered()), this, SLOT(_hide()));
     restoreAction = new QAction(tr("&Restore"), this);
-    connect(restoreAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+    connect(restoreAction, SIGNAL(triggered()), this, SLOT(_showNormal()));
     quitAction = new QAction(tr("&Quit"), this);
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));    
     connect(actionLocation, SIGNAL(triggered()), this, SLOT(showLocation()));    
@@ -266,4 +266,38 @@ void Qsalat::_about()
              tr("<b> Qsalat V0.1</b> Copyright (c) 2008 Skander Jabouzi skander@skanderjabouzi.com<br>"             
              	" This is a free software distributed under the terms of the GNU General Public License version 3\n(http://www.gnu.org/licenses/gpl-3.0.html)"));     
 } 
+
+void::Qsalat::_hide()
+{
+	hide();	
+	if (!qibla.isHidden()){		
+		qibla.hide();
+	}
+	if (!location.isHidden()){		
+		location.hide();
+	}
+	if (!audio.isHidden()){		
+		audio.hide();
+	}	
+	if (!calculation.isHidden()){		
+		calculation.hide();
+	}	
+	if (!worldtime.isHidden()){		
+		worldtime.hide();
+	}	
+	if (!monthly.isHidden()){		
+		monthly.hide();
+	}	
+	if (!yearly.isHidden()){		
+		yearly.hide();
+	}	
+	if (!hijridate.isHidden()){		
+		hijridate.hide();
+	}	
+}
+
+void::Qsalat::_showNormal()
+{
+	showNormal();
+}
 //

@@ -1,34 +1,35 @@
 #include "qaudio.h"
 
-Qaudio::Qaudio( QWidget * parent, Qt::WFlags f)
-        : QDialog(parent, f)
+Qaudio::Qaudio( QWidget * parent, Qt::WFlags f) : QDialog(parent, f )
 {
-        setupUi(this);          
-        audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
-    mediaObject = new Phonon::MediaObject(this);
-    metaInformationResolver = new Phonon::MediaObject(this);
-    mediaObject->setTickInterval(1000);   
-    setUI();
-        setActions();
-        Phonon::createPath(mediaObject, audioOutput);
-        isplay = true;
+	//setWindowFlags(Qt::WindowMinimizeButtonHint);
+	setupUi(this);
+	audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
+	mediaObject = new Phonon::MediaObject(this);
+	metaInformationResolver = new Phonon::MediaObject(this);
+	mediaObject->setTickInterval(1000);   
+	setUI();
+	setActions();
+	Phonon::createPath(mediaObject, audioOutput);
+	isplay = true;
 }
 
 void Qaudio::closeEvent(QCloseEvent *event)
 {
-        hide();
-        event->ignore();
+	hide();
+	event->ignore();
 }
 
 void Qaudio::setActions(){
-        connect(prayerButton, SIGNAL(clicked()), this, SLOT(loadPrayer()));
-        connect(fajrButton, SIGNAL(clicked()), this, SLOT(loadFajr()));
-        connect(duaButton, SIGNAL(clicked()), this, SLOT(loadDua()));
-        connect(playButton, SIGNAL(clicked()), this, SLOT(play()));
-        connect(stopButton, SIGNAL(clicked()), this, SLOT(stop()));
-        connect(saveButton, SIGNAL(clicked()), this, SLOT(save()));
-        connect(cancelButton, SIGNAL(clicked()), this, SLOT(cancel()));
-        //connect(volumeSlider, SIGNAL(AudioOutput::volumeChanged ( qreal )), this, SLOT(setVolume(int)));
+	connect(prayerButton, SIGNAL(clicked()), this, SLOT(loadPrayer()));
+	connect(fajrButton, SIGNAL(clicked()), this, SLOT(loadFajr()));
+	connect(duaButton, SIGNAL(clicked()), this, SLOT(loadDua()));
+	connect(playButton, SIGNAL(clicked()), this, SLOT(play()));
+	connect(stopButton, SIGNAL(clicked()), this, SLOT(stop()));
+	connect(saveButton, SIGNAL(clicked()), this, SLOT(save()));
+	connect(cancelButton, SIGNAL(clicked()), this, SLOT(cancel()));
+	connect(mediaObject, SIGNAL(finished()), this, SLOT(finished()));
+	connect(audioOutput, SIGNAL(volumeChanged ( qreal )), this, SLOT(setVolume()));
 }
 
 
@@ -56,12 +57,12 @@ void Qaudio::setUI(){
      
     
     volumeSlider = new Phonon::VolumeSlider(this);
+    //volumeSlider->setMuteVisible(true);
     volumeSlider->setAudioOutput(audioOutput);
     volumeSlider->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);    
     QHBoxLayout *volumeLayout = new QHBoxLayout;
     volumeLayout->addWidget(volumeSlider);  
-    volumeFrame->setLayout(volumeLayout);   
-
+    volumeFrame->setLayout(volumeLayout);
 }
 
 void Qaudio::loadPrayer()
@@ -107,26 +108,15 @@ void Qaudio::play()
 
 void Qaudio::stop()
 {
-        //Phonon::MediaSource source(prayerLineEdit->text());
-        //mediaObject->setCurrentSource(source);
         mediaObject->stop();
         playIcon = style()->standardIcon(QStyle::SP_MediaPlay);
         playButton->setIcon(playIcon);
 }
 
-void Qaudio::setVolume(int volume)
+void Qaudio::setVolume()
 {
-    Q_UNUSED(volume);
-    audioOutput->setVolume(volume/100.0f);
-    if (volumeLabel) {
-        if (volume == 0)
-            volumeLabel->setPixmap(mutedIcon);
-        else
-            volumeLabel->setPixmap(volumeIcon);    
-    }
-    QMessageBox::warning(this, tr("My Application"),QString::number(volume),QMessageBox::Ok);
-    
-    
+    if (audioOutput->volume () == 0.0) volumeLabel->setPixmap(mutedIcon);
+    else volumeLabel->setPixmap(volumeIcon);       
 }
 
 void Qaudio::save()
@@ -141,4 +131,8 @@ void Qaudio::cancel()
         //Phonon::MediaSource source(prayerLineEdit->text());
         //mediaObject->setCurrentSource(source);
         close();
+}
+
+void Qaudio::finished(){
+	stop();
 }
