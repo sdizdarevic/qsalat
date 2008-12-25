@@ -75,6 +75,11 @@ private:
 	QString file;	
 	int timer;	
 	QStringList audioList;
+	QString prayerAudio;
+	QString fajraAudio;
+	QString duaAudio;
+	QString playAthan;
+	QString playDua;
 	
 private slots:
 	void iconActivated(QSystemTrayIcon::ActivationReason);

@@ -107,6 +107,7 @@ void Qlocation::setActions(){
     connect(searchButton,SIGNAL(clicked()),this,SLOT(showItem()));  
     connect(applyButton,SIGNAL(clicked()),this,SLOT(updateLatLng()));
     connect(okButton,SIGNAL(clicked()),this,SLOT(save()));
+    connect(cancelButton,SIGNAL(clicked()),this,SLOT(cancel()));
     connect(webView,SIGNAL(loadFinished ( bool )),this,SLOT(update()));
     connect(this,SIGNAL(updateMap()),this,SLOT(updateLatLng())); 
 }

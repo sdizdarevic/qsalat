@@ -8,9 +8,9 @@
 		<timezone>-5</timezone>
 	</location>
 	<audio>
-		<prayer>athan.mp3</prayer>
-		<fajrPrayer>fajr.mp3</fajrPrayer>
-		<dua>dua.mp3</dua>
+		<prayer>/home/skander/Developpement/Qsalat/audio/athan.mp3</prayer>
+		<fajrPrayer>/home/skander/Developpement/Qsalat/audio/athanFajr.mp3</fajrPrayer>
+		<dua>/home/skander/Developpement/Qsalat/audio/dua.mp3</dua>
 		<playAthan>1</playAthan>
 		<playDua>1</playDua>
 	</audio>

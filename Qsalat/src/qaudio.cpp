@@ -12,6 +12,30 @@ Qaudio::Qaudio( QWidget * parent, Qt::WFlags f) : QDialog(parent, f )
 	setActions();
 	Phonon::createPath(mediaObject, audioOutput);
 	isplay = true;
+	file = "data/qsalat.xml";
+	parser.readFile(file);	
+	init();
+}
+
+void Qaudio::init()
+{
+	bool ok;
+	prayerLineEdit->setText(parser.getElement(1,0));
+    fajrLineEdit->setText(parser.getElement(1,1));
+    duaLineEdit->setText(parser.getElement(1,2));
+    if (0 == parser.getElement(1,3).toInt(&ok)) {
+		salatCheckBox->setChecked(false); 		
+	}
+	else{
+		salatCheckBox->setChecked(true);
+	}
+	if (0 == parser.getElement(1,4).toInt(&ok)) {
+		duaCheckBox->setChecked(false); 		
+	}
+	else{
+		duaCheckBox->setChecked(true);
+	}
+    
 }
 
 void Qaudio::closeEvent(QCloseEvent *event)
@@ -26,7 +50,8 @@ void Qaudio::setActions(){
 	connect(duaButton, SIGNAL(clicked()), this, SLOT(loadDua()));
 	connect(playButton, SIGNAL(clicked()), this, SLOT(play()));
 	connect(stopButton, SIGNAL(clicked()), this, SLOT(stop()));
-	connect(saveButton, SIGNAL(clicked()), this, SLOT(save()));
+	connect(saveButton, SIGNAL(clicked()), this, SLOT(apply()));
+	connect(okButton, SIGNAL(clicked()), this, SLOT(save()));
 	connect(cancelButton, SIGNAL(clicked()), this, SLOT(cancel()));
 	connect(mediaObject, SIGNAL(finished()), this, SLOT(finished()));
 	connect(audioOutput, SIGNAL(volumeChanged ( qreal )), this, SLOT(setVolume()));
@@ -84,8 +109,12 @@ void Qaudio::play()
 {       
         //if (isplay){  
         //QMessageBox::warning(this, tr("My Application"),QString::number(mediaObject->state()),QMessageBox::Ok);       
+		QString audioFile = "";		
+		if (regularRadioButton->isChecked()) audioFile = prayerLineEdit->text();
+		else if (fajrRadioButton->isChecked()) audioFile = fajrLineEdit->text(); 
+		else audioFile = duaLineEdit->text();   
         if (mediaObject->state() == Phonon::LoadingState || mediaObject->state() == Phonon::StoppedState){      
-                Phonon::MediaSource source(prayerLineEdit->text());
+                Phonon::MediaSource source(audioFile);
                 mediaObject->setCurrentSource(source);
                 metaInformationResolver->setCurrentSource(source);
                 mediaObject->play();
@@ -119,17 +148,32 @@ void Qaudio::setVolume()
     else volumeLabel->setPixmap(volumeIcon);       
 }
 
+void Qaudio::apply()
+{
+	int prayerChecked = 0;
+	int duaChecked = 0;
+	parser.changeElement(prayerLineEdit->text(),1,0);
+	parser.changeElement(fajrLineEdit->text(),1,1);
+	parser.changeElement(duaLineEdit->text(),1,2);
+	if (salatCheckBox->isChecked()) prayerChecked = 1;
+	if (duaCheckBox->isChecked()) duaChecked = 1;
+	parser.changeElement(QString::number(prayerChecked),1,3);	
+	parser.changeElement(QString::number(duaChecked),1,4);
+	parser.saveData(file);
+	DomParser::changed = true; 
+}
+
+
 void Qaudio::save()
 {
-        //Phonon::MediaSource source(prayerLineEdit->text());
-        //mediaObject->setCurrentSource(source);
-        mediaObject->stop();
+        apply();
+        stop();
+        close();
 }
 
 void Qaudio::cancel()
 {
-        //Phonon::MediaSource source(prayerLineEdit->text());
-        //mediaObject->setCurrentSource(source);
+		mediaObject->stop();;
         close();
 }
 

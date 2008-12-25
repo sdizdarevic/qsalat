@@ -22,7 +22,7 @@ public:
 	//double x, y;
 	QString adress;	
 	
-public slots:
+private slots:
 	//void replyFinished(QNetworkReply*);
 	void loadAddress(QString);
 	void loadCoordinates(float,float);

@@ -4,6 +4,8 @@
 #include <QtGui>
 #include <phonon>
 #include "ui_audio.h"
+#include "domparser.h"
+
 class Qaudio : public QDialog, public Ui::Audio
 {
 Q_OBJECT
@@ -30,7 +32,10 @@ private:
     Phonon::AudioOutput *audioOutput;
     void setActions();
     void setUI();
+    void init();
     bool isplay;    
+    DomParser parser;
+	QString file;		
 
 private slots:
 	void loadPrayer();
@@ -43,6 +48,7 @@ private slots:
 	void save();
 	void cancel();
 	void finished();
+	void apply();
 };
 
 #endif // __QAUDIO_H__
