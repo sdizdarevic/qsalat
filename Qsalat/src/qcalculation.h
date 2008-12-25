@@ -11,16 +11,18 @@ Q_OBJECT
 public:
 	Qcalculation( QWidget * parent = 0, Qt::WFlags f = 0 );	
 	
-public slots:	
-
 protected:
 	void closeEvent(QCloseEvent *);
 	
-signals:	
+private slots:	
+	void save();
+	void cancel();
+	void apply();
 	
 private:
 	 void setUI();
 	 void setMethods();
+	 void init();
 };
 
 #endif // __CALCULATION_H__

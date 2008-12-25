@@ -173,7 +173,7 @@ void Qaudio::save()
 
 void Qaudio::cancel()
 {
-		mediaObject->stop();;
+		mediaObject->stop();
         close();
 }
 
