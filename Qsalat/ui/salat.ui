@@ -63,7 +63,7 @@ opacity:1.0;
 background-image: url(:/images/slider3.png);</string>
      </property>
      <property name="text" >
-      <string>06:00</string>
+      <string>00:00</string>
      </property>
      <property name="alignment" >
       <set>Qt::AlignCenter</set>
@@ -150,7 +150,7 @@ opacity:1.0;
 background-image: url(:/images/slider3.png);</string>
      </property>
      <property name="text" >
-      <string>06:00</string>
+      <string>00:00</string>
      </property>
      <property name="alignment" >
       <set>Qt::AlignCenter</set>
@@ -179,7 +179,7 @@ opacity:1.0;
 background-image: url(:/images/slider3.png);</string>
      </property>
      <property name="text" >
-      <string>06:00</string>
+      <string>00:00</string>
      </property>
      <property name="alignment" >
       <set>Qt::AlignCenter</set>

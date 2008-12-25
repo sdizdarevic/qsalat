@@ -123,20 +123,20 @@
    </property>
    <property name="geometry" >
     <rect>
-     <x>100</x>
+     <x>90</x>
      <y>500</y>
-     <width>111</width>
+     <width>121</width>
      <height>28</height>
     </rect>
    </property>
    <property name="text" >
-    <string>Get coordinates</string>
+    <string>Show coordinates</string>
    </property>
   </widget>
   <widget class="QPushButton" name="okButton" >
    <property name="geometry" >
     <rect>
-     <x>30</x>
+     <x>20</x>
      <y>500</y>
      <width>61</width>
      <height>28</height>

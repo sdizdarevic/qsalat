@@ -29,23 +29,41 @@ Qsalat::Qsalat( QWidget * parent, Qt::WFlags f)
 	prayers = new Qpray();
 	hijri = new Qhijri();	
 	trayIcon = new QSystemTrayIcon(this);
-	trayIconMenu = new QMenu(this);
-	date = QDate::currentDate();	
-	year = date.year();;
-	month = date.month();
-	day = date.day();
-	latitude = 45.5454;
-	longitude = -73.6391;
-	timezone = -5.0;
-	getSalats();
-	getHijri();
+	trayIconMenu = new QMenu(this);		
 	createActions();
 	createTrayIcon();	
 	setVisible(true);
 	Gfirst = true;
-	locationFirst = true;
-	connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-            this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));    
+	locationFirst = true;	 
+	init();  	
+	getSalats();
+	getHijri();
+	initTimer();	
+    
+}
+
+void Qsalat::init()
+{
+	//QMessageBox::warning(this, tr("My Application"),parser.getElement(0,2),QMessageBox::Ok);
+	date = QDate::currentDate();	
+	year = date.year();;
+	month = date.month();
+	day = date.day();		
+	file = "data/qsalat.xml";
+	parser.readFile(file);
+	bool ok;
+	latitude = parser.getElement(0,0).toDouble(&ok);
+	longitude = parser.getElement(0,1).toDouble(&ok);	
+	city = parser.getElement(0,2);
+	country = parser.getElement(0,3);
+	timezone = parser.getElement(0,4).toDouble(&ok);		
+}
+
+void Qsalat::initTimer()
+{
+	timer = startTimer(1000);
+	QTimerEvent * e = new QTimerEvent(timer);
+	QCoreApplication::postEvent(this,e);	
 }
 
 void Qsalat::adjustWindow(){
@@ -65,11 +83,11 @@ void Qsalat::adjustWindow(){
 	y -= 50;	 
 	// move window to desired coordinates
 	move ( x, y );	
-	screenx = x;
-	screeny = y;
+	//screenx = x;
+	//screeny = y;
 }
 
-void Qsalat::getSalats(){	
+void Qsalat::getSalats(){			
 	QString *times = new QString[7];
 	prayers->setCalcMethod(3);
 	times = prayers->getDatePrayerTimes(year,month,day,latitude,longitude,timezone);
@@ -79,7 +97,7 @@ void Qsalat::getSalats(){
 	label_maghreb->setText(times[5]);
 	label_isha->setText(times[6]);
 	//QNetworkAddressEntry *host =  new QNetworkAddressEntry();//host->ip().toString()
-	label_location->setText("Montreal, Canada");
+	label_location->setText(city+", "+country);	
 }
 
 void Qsalat::getHijri(){
@@ -152,6 +170,7 @@ void Qsalat::closeEvent(QCloseEvent *event)
 
 void Qsalat::createActions()
 {
+	connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason))); 
     minimizeAction = new QAction(tr("Mi&nimize"), this);
     connect(minimizeAction, SIGNAL(triggered()), this, SLOT(_hide()));
     restoreAction = new QAction(tr("&Restore"), this);
@@ -296,8 +315,50 @@ void::Qsalat::_hide()
 	}	
 }
 
-void::Qsalat::_showNormal()
+void Qsalat::_showNormal()
 {
 	showNormal();
+}
+
+void Qsalat::timerEvent(QTimerEvent *e)
+{
+	if (!e) return;
+  	if (e->timerId() == timer){
+  		if (DomParser::changed) {
+  			init();  	
+			getSalats();
+			getHijri();
+  			DomParser::changed = false;
+		}		
+  		QTime time = QTime::currentTime();   		
+    	QString strTime = time.toString("HH:mm");
+    	if ("00:00" == strTime){
+    		init();  	
+			getSalats();
+			getHijri();
+   		}
+   		if (parser.getElement(1,3) == "1"){
+		   	if ("00:36" == strTime){//label_fajr->text()
+		   		audioList << "audio/athanFajr.mp3";
+		   		QProcess::execute ("player/Player.exe", audioList );
+		  	}
+   			else if (label_duhr->text() == strTime){
+		  		audioList << "audio/athan.mp3";
+		   		QProcess::execute ("player/Player.exe", audioList );		   			
+		  	}
+   			else if (label_asr->text() == strTime){
+		   		audioList << "audio/athan.mp3";
+		   		QProcess::execute ("player/Player.exe", audioList );	
+		  	}
+	  		else if (label_maghreb->text() == strTime){
+	  			audioList << "audio/athan.mp3";
+		   		QProcess::execute ("player/Player.exe", audioList );		   			
+	  		}
+	  		else if (label_isha->text() == strTime){
+	  			audioList << "audio/athan.mp3";
+		   		QProcess::execute ("player/Player.exe", audioList );		   			
+	  		}
+  		}    		
+ 	}	
 }
 //

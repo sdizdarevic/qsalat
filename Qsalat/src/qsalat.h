@@ -5,6 +5,7 @@
 #include <QtGui>
 #include <QSystemTrayIcon>
 #include <QMenu>
+#include <QProcess>
 //#include <QNetworkAddressEntry>
 //#include <QHostAddress>
 #include "ui_salat.h"
@@ -18,6 +19,7 @@
 #include "qmonthly.h"
 #include "qyearly.h"
 #include "qhijridate.h"
+#include "domparser.h"
 //
 class Qsalat : public QMainWindow, public Ui::Salat
 {
@@ -37,6 +39,7 @@ public:
 	Qmonthly monthly;
 	Qyearly yearly;
 	Qhijridate hijridate;
+	
 protected:
 	int year;
 	int month;
@@ -44,6 +47,8 @@ protected:
 	double latitude;
 	double longitude;
 	double timezone;
+	QString country;
+	QString city;
 	void closeEvent(QCloseEvent *);
 	void adjustWindow();
 	
@@ -57,11 +62,18 @@ private:
 	QMenu *trayIconMenu;
 	void createActions();
 	void createTrayIcon();
-	void setVisible(bool);		
+	void setVisible(bool);	
+	void timerEvent(QTimerEvent *e);
+	void init();	
+	void initTimer();
 	bool Gfirst; 
 	bool locationFirst;
-	int screenx;
-	int screeny;
+	//int screenx;
+	//int screeny;
+	DomParser parser;
+	QString file;	
+	int timer;	
+	QStringList audioList;
 	
 private slots:
 	void iconActivated(QSystemTrayIcon::ActivationReason);

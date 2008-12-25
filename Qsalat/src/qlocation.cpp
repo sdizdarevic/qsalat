@@ -8,19 +8,26 @@ Qlocation::Qlocation( QWidget * parent, Qt::WFlags f)
 	manager = new QNetworkAccessManager(this);
 	setActions();
 	file = "data/qsalat.xml";
-	parser.readFile(file);	
-	bool ok;	
+	parser.readFile(file);			
+	init();
+	
+}
+
+void Qlocation::init()
+{
+	bool ok;
 	latitude = parser.getElement(0,0).toFloat(&ok);
 	longitude = parser.getElement(0,1).toFloat(&ok);
 	country = parser.getElement(0,2);
 	city = parser.getElement(0,3);
-	timezone = parser.getElement(0,1).toInt(&ok);	
-	loadCoordinates(longitude,latitude);
+	timezone = parser.getElement(0,4).toInt(&ok);	
+	loadCoordinates(latitude,longitude);
 	latLineEdit->setText(QString::number(latitude));
     lngLineEdit->setText(QString::number(longitude));
     countryLineEdit->setText(country);
     cityLineEdit->setText(city);
     timezoneLineEdit->setText(QString::number(timezone));
+    locationLineEdit->setText("");
 }
 
 void Qlocation::loadAddress(QString adr)
@@ -101,6 +108,7 @@ void Qlocation::updateLatLng(){
 void Qlocation::closeEvent(QCloseEvent *event)
 {
 	hide();
+	init();
 	event->ignore();
 }
 
@@ -110,6 +118,7 @@ void Qlocation::setActions(){
     //connect(this,SIGNAL(reloadMap()),this,SLOT(loadCoordinates()));
     connect(searchButton,SIGNAL(clicked()),this,SLOT(showItem()));  
     connect(applyButton,SIGNAL(clicked()),this,SLOT(updateLatLng()));
+    connect(okButton,SIGNAL(clicked()),this,SLOT(save()));
     connect(webView,SIGNAL(loadFinished ( bool )),this,SLOT(updateLatLng()));
     connect(this,SIGNAL(updateMap()),this,SLOT(updateLatLng())); 
 }
@@ -125,14 +134,18 @@ void Qlocation::apply()
 {
 	parser.changeElement(latLineEdit->text(),0,0);
 	parser.changeElement(lngLineEdit->text(),0,1);
+	parser.changeElement(cityLineEdit->text(),0,2);
+	parser.changeElement(countryLineEdit->text(),0,3);	
+	parser.changeElement(timezoneLineEdit->text(),0,4);
 	parser.saveData(file);
 	DomParser::changed = true; 
 }
 
 void Qlocation::save()
 {
+	updateLatLng();
 	apply();
-	close();
+	//close();
 }
 
 void Qlocation::cancel()

@@ -54,6 +54,7 @@ private:
 	int pendingRequests;	
 	void setActions();
 	void setUI();	
+	void init();
 };
 #endif
 
