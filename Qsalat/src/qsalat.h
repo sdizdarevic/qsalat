@@ -80,6 +80,9 @@ private:
 	QString duaAudio;
 	QString playAthan;
 	QString playDua;
+	int calcMethod;
+	int asrMethod;
+	int duhrMinutes;
 	
 private slots:
 	void iconActivated(QSystemTrayIcon::ActivationReason);

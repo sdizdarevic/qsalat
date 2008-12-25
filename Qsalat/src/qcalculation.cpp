@@ -5,7 +5,9 @@ Qcalculation::Qcalculation( QWidget * parent, Qt::WFlags f)
 {
 	setupUi(this);	
 	setUI();
-	setMethods();
+	file = "data/qsalat.xml";
+	parser.readFile(file);
+	setActions();
 	init();
 }
 
@@ -17,7 +19,17 @@ void Qcalculation::closeEvent(QCloseEvent *event)
 
 void Qcalculation::init()
 {
-	
+	bool ok;
+	list << "Ithna Ashari"<<"University of Islamic Sciences, Karachi"<<"Islamic Society of North America (ISNA)"
+		 <<"Muslim World League (MWL)"<<"Umm al-Qura, Makkah"<<"Egyptian General Authority of Survey";
+		 //<<"Custom settings";	
+	calcList->addItems(list);
+	calcList->setCurrentIndex(parser.getElement(2,0).toInt(&ok));
+	duhrBox->setValue(parser.getElement(2,1).toInt(&ok));
+	if (parser.getElement(2,2).toInt(&ok) == 0) shafiiButton->setChecked(true);
+	else hanafiButton->setChecked(true);
+	hijriBox->setValue(parser.getElement(2,3).toInt(&ok));	
+	if (parser.getElement(2,4).toInt(&ok) == 1) highLatBox->setChecked(true);
 }
 
 void Qcalculation::setUI()
@@ -28,28 +40,25 @@ void Qcalculation::setUI()
 	cancelButton->setIcon(style()->standardIcon(QStyle::SP_DialogCancelButton));
 }
 
-void Qcalculation::setMethods()
-{
-	QStringList list;	
-	list << "Ithna Ashari"<<"University of Islamic Sciences, Karachi"<<"Islamic Society of North America (ISNA)"
-		 <<"Muslim World League (MWL)"<<"Umm al-Qura, Makkah"<<"Egyptian General Authority of Survey";
-		 //<<"Custom settings";	
-	calcBox->addItems(list);
+void Qcalculation::setActions(){   
+    connect(saveButton,SIGNAL(clicked()),this,SLOT(apply()));
+    connect(okButton,SIGNAL(clicked()),this,SLOT(save()));
+    connect(cancelButton,SIGNAL(clicked()),this,SLOT(cancel()));   
 }
 
 void Qcalculation::apply()
 {
-	//int prayerChecked = 0;
-	//int duaChecked = 0;
-	//parser.changeElement(prayerLineEdit->text(),1,0);
-	//parser.changeElement(fajrLineEdit->text(),1,1);
-	//parser.changeElement(duaLineEdit->text(),1,2);
-	//if (salatCheckBox->isChecked()) prayerChecked = 1;
-	//if (duaCheckBox->isChecked()) duaChecked = 1;
-	//parser.changeElement(QString::number(prayerChecked),1,3);	
-	//parser.changeElement(QString::number(duaChecked),1,4);
-	//parser.saveData(file);
-	//DomParser::changed = true; 
+	int asrChecked = 0;
+	int highChecked = 0;
+	parser.changeElement(QString::number(calcList->currentIndex()),2,0);
+	parser.changeElement(QString::number(duhrBox->value()),2,1);
+	if (hanafiButton->isChecked()) asrChecked = 1;	
+	parser.changeElement(QString::number(asrChecked),2,2);
+	parser.changeElement(QString::number(hijriBox->value()),2,3);
+	if (highLatBox->isChecked()) highChecked = 1;		
+	parser.changeElement(QString::number(highChecked),2,4);
+	parser.saveData(file);
+	DomParser::changed = true; 
 }
 
 

@@ -15,17 +15,10 @@
 		<playDua>1</playDua>
 	</audio>
 	<calculation>
-		<method>1</method>	
-		<duhr></duhr>
-		<asr></asr>
-		<hijri>1</hijri>
+		<method>3</method>	
+		<duhr>0</duhr>
+		<asr>0</asr>
+		<hijri>0</hijri>
 		<higherLat>0</higherLat>
 	</calculation>
-	<prayers>
-		<fajr>00:00</fajr>
-		<duhr></duhr>
-		<asr></asr>
-		<maghreb>00:00</maghreb>
-		<isha>00:00</isha>
-	</prayers>
 </qsalat>

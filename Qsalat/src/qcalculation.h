@@ -4,6 +4,7 @@
 #include <QtGui>
 #include <QString>
 #include "ui_calculation.h"
+#include "domparser.h"
 
 class Qcalculation : public QDialog, public Ui::Calculation
 {
@@ -21,8 +22,11 @@ private slots:
 	
 private:
 	 void setUI();
-	 void setMethods();
 	 void init();
+	 void setActions();
+	 DomParser parser;
+	 QString file;
+	 QStringList list;		
 };
 
 #endif // __CALCULATION_H__

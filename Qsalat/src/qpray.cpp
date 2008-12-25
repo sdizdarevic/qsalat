@@ -43,7 +43,7 @@ Qpray::Qpray()
 		calcMethod   = 0;		// caculation method
 		asrJuristic  = 0.0;		// Juristic method for Asr
 		dhuhrMinutes = 0.0;		// minutes after mid-day for Dhuhr
-		adjustHighLats = 1;	// adjusting method for higher latitudes
+		adjustHighLats = 0;	// adjusting method for higher latitudes
 
 		timeFormat   = 0;		// time format
 

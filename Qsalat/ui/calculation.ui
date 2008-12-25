@@ -36,7 +36,7 @@
    <property name="title" >
     <string>Calculation methods</string>
    </property>
-   <widget class="QComboBox" name="calcBox" >
+   <widget class="QComboBox" name="calcList" >
     <property name="geometry" >
      <rect>
       <x>20</x>

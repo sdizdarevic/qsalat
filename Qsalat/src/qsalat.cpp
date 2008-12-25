@@ -61,6 +61,9 @@ void Qsalat::init()
 	duaAudio = parser.getElement(1,2);	
 	playAthan = parser.getElement(1,3);
 	playDua = parser.getElement(1,4);
+	calcMethod = parser.getElement(2,0).toInt(&ok);
+	asrMethod = parser.getElement(2,2).toInt(&ok);
+	duhrMinutes = parser.getElement(2,1).toInt(&ok);
 }
 
 void Qsalat::initTimer()
@@ -93,7 +96,9 @@ void Qsalat::adjustWindow(){
 
 void Qsalat::getSalats(){			
 	QString *times = new QString[7];
-	prayers->setCalcMethod(3);
+	prayers->setCalcMethod(calcMethod);
+	prayers->setAsrMethod(asrMethod);
+	prayers->setDhuhrMinutes(duhrMinutes);
 	times = prayers->getDatePrayerTimes(year,month,day,latitude,longitude,timezone);
 	label_fajr->setText(times[0]);
 	label_duhr->setText(times[2]);

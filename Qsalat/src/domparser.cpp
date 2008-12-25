@@ -108,22 +108,7 @@ void DomParser::parseEntryElement(const QDomElement &element)
         }
         else if (child.toElement().tagName() == "higherLat") {
             params[2][4] =  parsePageElement(child.toElement());
-        }
-        else if (child.toElement().tagName() == "fajr") {
-            params[3][0] =  parsePageElement(child.toElement());
-        }
-        else if (child.toElement().tagName() == "duhr") {
-            params[3][1] =  parsePageElement(child.toElement());
-        }
-        else if (child.toElement().tagName() == "asr") {
-            params[3][2] =  parsePageElement(child.toElement());
-        }
-        else if (child.toElement().tagName() == "maghreb") {
-            params[3][3] =  parsePageElement(child.toElement());
-        }
-        else if (child.toElement().tagName() == "isha") {
-            params[3][4] =  parsePageElement(child.toElement());
-        }       
+        }        
         child = child.nextSibling();
     }
 }
@@ -175,13 +160,6 @@ void DomParser::saveData(QString file){
 			<< "		<hijri>" << Qt::escape(params[2][3]) << "</hijri>\n"
 			<< "		<higherLat>" << Qt::escape(params[2][4]) << "</higherLat>\n"
 			<< "	</calculation>\n"
-			<< "	<prayers>\n"
-			<< "		<fajr>" << Qt::escape(params[3][0]) << "</fajr>\n"
-			<< "		<duhr>" << Qt::escape(params[3][1]) << "</duhr>\n"
-			<< "		<asr>" << Qt::escape(params[3][2]) << "</asr>\n"
-			<< "		<maghreb>" << Qt::escape(params[3][3]) << "</maghreb>\n"
-			<< "		<isha>" << Qt::escape(params[3][4]) << "</isha>\n"
-			<< "	</prayers>\n"
 			<< "</qsalat>\n";
 	 }
 }
