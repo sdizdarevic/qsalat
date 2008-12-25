@@ -338,25 +338,45 @@ void Qsalat::timerEvent(QTimerEvent *e)
 			getHijri();
    		}
    		if (parser.getElement(1,3) == "1"){
-		   	if ("00:36" == strTime){//label_fajr->text()
+		   	if ("00:59" == strTime){//label_fajr->text()
 		   		audioList << "audio/athanFajr.mp3";
 		   		QProcess::execute ("player/Player.exe", audioList );
+		   		if (parser.getElement(1,4) == "1"){
+			   		audioList << "audio/dua.mp3";
+			   		QProcess::execute ("player/Player.exe", audioList );
+		   		}
 		  	}
    			else if (label_duhr->text() == strTime){
 		  		audioList << "audio/athan.mp3";
-		   		QProcess::execute ("player/Player.exe", audioList );		   			
+		   		QProcess::execute ("player/Player.exe", audioList );	
+		   		if (parser.getElement(1,4) == "1"){
+			   		audioList << "audio/dua.mp3";
+			   		QProcess::execute ("player/Player.exe", audioList );
+		   		}	   			
 		  	}
    			else if (label_asr->text() == strTime){
 		   		audioList << "audio/athan.mp3";
 		   		QProcess::execute ("player/Player.exe", audioList );	
+		   		if (parser.getElement(1,4) == "1"){
+			   		audioList << "audio/dua.mp3";
+			   		QProcess::execute ("player/Player.exe", audioList );
+		   		}
 		  	}
 	  		else if (label_maghreb->text() == strTime){
 	  			audioList << "audio/athan.mp3";
-		   		QProcess::execute ("player/Player.exe", audioList );		   			
+		   		QProcess::execute ("player/Player.exe", audioList );
+		   		if (parser.getElement(1,4) == "1"){
+			   		audioList << "audio/dua.mp3";
+			   		QProcess::execute ("player/Player.exe", audioList );
+		   		}		   			
 	  		}
 	  		else if (label_isha->text() == strTime){
 	  			audioList << "audio/athan.mp3";
-		   		QProcess::execute ("player/Player.exe", audioList );		   			
+		   		QProcess::execute ("player/Player.exe", audioList );
+		   		if (parser.getElement(1,4) == "1"){
+			   		audioList << "audio/dua.mp3";
+			   		QProcess::execute ("player/Player.exe", audioList );
+		   		}		   			
 	  		}
   		}    		
  	}	

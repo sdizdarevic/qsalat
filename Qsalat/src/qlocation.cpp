@@ -10,12 +10,12 @@ Qlocation::Qlocation( QWidget * parent, Qt::WFlags f)
 	file = "data/qsalat.xml";
 	parser.readFile(file);			
 	init();
-	
 }
 
 void Qlocation::init()
 {
 	bool ok;
+	okButton->setEnabled(false); 	
 	latitude = parser.getElement(0,0).toFloat(&ok);
 	longitude = parser.getElement(0,1).toFloat(&ok);
 	country = parser.getElement(0,2);
@@ -32,6 +32,7 @@ void Qlocation::init()
 
 void Qlocation::loadAddress(QString adr)
 {
+	okButton->setEnabled(false); 
     QStringList scriptStr;    
     foreach( QPointF point, coordinates ) {
         latLineEdit->setText(QString::number(point.x()));
@@ -47,35 +48,24 @@ void Qlocation::loadAddress(QString adr)
 
 void Qlocation::loadCoordinates(float lat, float lng)
 {
-    QStringList scriptStr;    
-    //foreach( QPointF point, coordinates ) {
-        //latLineEdit->setText(QString::number(point.x()));
-        //lngLineEdit->setText(QString::number(point.y()));
-    //}   
+	okButton->setEnabled(false); 
+    QStringList scriptStr;   
    scriptStr << QString("http://www.skanderjabouzi.com/qpray/?adr=0&lat=%1&lng=%2")                        
                              .arg(QString::number(lat))
                              .arg(QString::number(lng));
     
     QUrl url(scriptStr.join("\n"));
     webView->load(url);
-    //update();    
-}
-
-void Qlocation::clearCoordinates()
-{
-    coordinates.clear();   
 }
 
 void Qlocation::showItem()
 {
-    //geoCode( locationLineEdit->text() );   
     applyButton->setEnabled(false);
-    loadAddress( locationLineEdit->text() );  
-    //emit(updateMap());    
+    loadAddress( locationLineEdit->text() );    
 }
 
 void Qlocation::updateLatLng(){
-	applyButton->setEnabled(true);
+	
 	QStringList scriptStr1,scriptStr2,scriptStr3,scriptStr4,scriptStr5; 
 	scriptStr1 << "document.getElementById(\"lat\").value;";
 	QVariant vres1 = webView->page()->mainFrame()->evaluateJavaScript( scriptStr1.join("\n") );
@@ -101,8 +91,9 @@ void Qlocation::updateLatLng(){
     lngLineEdit->setText(sres2);
     countryLineEdit->setText(sres3);
     cityLineEdit->setText(sres4);
-    timezoneLineEdit->setText(sres5);    
-    //apply();   
+    timezoneLineEdit->setText(sres5); 
+    
+    okButton->setEnabled(true);
 }
 
 void Qlocation::closeEvent(QCloseEvent *event)
@@ -113,13 +104,10 @@ void Qlocation::closeEvent(QCloseEvent *event)
 }
 
 void Qlocation::setActions(){
-	//connect(manager, SIGNAL(finished(QNetworkReply*)),this, SLOT(replyFinished(QNetworkReply*)));
-    //connect(this,SIGNAL(loadFinished(ok)),this,SLOT(updateLatLng()));
-    //connect(this,SIGNAL(reloadMap()),this,SLOT(loadCoordinates()));
     connect(searchButton,SIGNAL(clicked()),this,SLOT(showItem()));  
     connect(applyButton,SIGNAL(clicked()),this,SLOT(updateLatLng()));
     connect(okButton,SIGNAL(clicked()),this,SLOT(save()));
-    connect(webView,SIGNAL(loadFinished ( bool )),this,SLOT(updateLatLng()));
+    connect(webView,SIGNAL(loadFinished ( bool )),this,SLOT(update()));
     connect(this,SIGNAL(updateMap()),this,SLOT(updateLatLng())); 
 }
 
@@ -151,5 +139,10 @@ void Qlocation::save()
 void Qlocation::cancel()
 {
 	close();
+}
+
+void Qlocation::update()
+{
+	applyButton->setEnabled(true);
 }
 //

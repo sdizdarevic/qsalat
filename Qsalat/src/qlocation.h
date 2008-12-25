@@ -27,12 +27,13 @@ public slots:
 	void loadAddress(QString);
 	void loadCoordinates(float,float);
 	//void geoCode(const QString &address);
-	void clearCoordinates();
+	//void clearCoordinates();
 	void showItem();
 	void updateLatLng();
 	void apply();
 	void save();
 	void cancel();
+	void update();
 
 protected:
 	void closeEvent(QCloseEvent *);

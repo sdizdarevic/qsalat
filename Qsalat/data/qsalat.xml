@@ -1,11 +1,11 @@
 <?xml version="1.0" ?>
 <qsalat>
 	<location>
-		<latitude>24.4609</latitude>
-		<longitude>39.6202</longitude>
-		<city>Riyadh</city>
-		<country>Saudi Arabia</country>
-		<timezone>+3</timezone>
+		<latitude>45.545447</latitude>
+		<longitude>-73.639076</longitude>
+		<city>Montreal</city>
+		<country>Canada</country>
+		<timezone>-5</timezone>
 	</location>
 	<audio>
 		<prayer>athan.mp3</prayer>
@@ -16,15 +16,15 @@
 	</audio>
 	<calculation>
 		<method>1</method>	
-		<duhr>0</duhr>
-		<asr>0</asr>
+		<duhr>00:00</duhr>
+		<asr>00:00</asr>
 		<hijri>1</hijri>
 		<higherLat>0</higherLat>
 	</calculation>
 	<prayers>
 		<fajr>00:00</fajr>
-		<duhr>00:00</duhr>
-		<asr>00:00</asr>
+		<duhr></duhr>
+		<asr></asr>
 		<maghreb>00:00</maghreb>
 		<isha>00:00</isha>
 	</prayers>
