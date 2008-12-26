@@ -352,50 +352,144 @@ void Qsalat::timerEvent(QTimerEvent *e)
 			getSalats();
 			getHijri();
 			createTrayIcon();	
+			QString image = "images/worldtime/img"+QString::number(0 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("01:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(1 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("02:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(2 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("03:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(3 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("04:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(4 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("05:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(5 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("06:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(6 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("07:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(7 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("08:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(8 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("09:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(9 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("10:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(10 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("11:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(11 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("12:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(12 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("13:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(13 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("14:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(14 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("15:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(15 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("16:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(16 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("17:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(17 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("18:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(18 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("19:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(19 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("20:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(20 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("21:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(21 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("22:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(22 - int(timezone))+".jpg";
+			worldtime.setImage(image);
+   		}
+   		else if ("23:00:00" == strTime){    		
+			QString image = "images/worldtime/img"+QString::number(23 - int(timezone))+".jpg";
+			worldtime.setImage(image);
    		}
    		if (playAthan == "1"){
-		   	if (label_fajr->text()+":00" == strTime){//label_fajr->text()
-		   		audioList << fajraAudio;
+		   	if (label_fajr->text()+":00" == strTime){
+		   		audioList << fajraAudio << "Fajr prayer صلاة الفجر";
 		   		QProcess::execute ("player/Player.exe", audioList );
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio;;
+			   		audioList << duaAudio << "Fajr prayer صلاة الفجر";
 			   		QProcess::execute ("player/Player.exe", audioList );
 		   		}
 		  	}
    			else if (label_duhr->text()+":00" == strTime){
-		  		audioList <<  prayerAudio;
+		  		audioList <<  prayerAudio << "Duhr prayer";
 		   		QProcess::execute ("player/Player.exe", audioList );	
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio;
+			   		audioList << duaAudio << "Duhr prayer";
 			   		QProcess::execute ("player/Player.exe", audioList );
 		   		}	   			
 		  	}
    			else if (label_asr->text()+":00" == strTime){
-		   		audioList << prayerAudio;
+		   		audioList << prayerAudio << "Asr prayer";
 		   		QProcess::execute ("player/Player.exe", audioList );	
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio;
+			   		audioList << duaAudio << "Asr prayer";
 			   		QProcess::execute ("player/Player.exe", audioList );
 		   		}
 		  	}
 	  		else if (label_maghreb->text()+":00" == strTime){
-	  			audioList << prayerAudio;
+	  			audioList << prayerAudio << "Maghreb prayer";
 		   		QProcess::execute ("player/Player.exe", audioList );
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio;
+			   		audioList << duaAudio << "Maghreb prayer";
 			   		QProcess::execute ("player/Player.exe", audioList );
 		   		}		   			
 	  		}
 	  		else if (label_isha->text()+":00" == strTime){
-	  			audioList << prayerAudio;
+	  			audioList << prayerAudio << "Isha prayer";
 		   		QProcess::execute ("player/Player.exe", audioList );
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio;
+			   		audioList << duaAudio << "Isha prayer";
 			   		QProcess::execute ("player/Player.exe", audioList );
 		   		}		   			
 	  		}

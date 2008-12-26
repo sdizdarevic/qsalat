@@ -9,13 +9,10 @@ class Qworldtime : public QDialog, public Ui::WorldTime
 Q_OBJECT
 public:
 	Qworldtime( QWidget * parent = 0, Qt::WFlags f = 0 );	
-	
-public slots:	
+	void setImage(QString);
 
 protected:
 	void closeEvent(QCloseEvent *);
-	
-signals:	
 	
 private:
 	 void setUI();	

@@ -7,6 +7,12 @@ Qworldtime::Qworldtime( QWidget * parent, Qt::WFlags f)
 	setUI();	
 }
 
+void Qworldtime::setImage(QString img)
+{
+	QImage image(img);	
+	label->setPixmap(QPixmap::fromImage(image));
+}
+
 void Qworldtime::closeEvent(QCloseEvent *event)
 {
 	hide();
