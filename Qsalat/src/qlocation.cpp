@@ -15,7 +15,7 @@ Qlocation::Qlocation( QWidget * parent, Qt::WFlags f)
 void Qlocation::init()
 {
 	bool ok;
-	okButton->setEnabled(false); 	
+	//okButton->setEnabled(false); 	
 	latitude = parser.getElement(0,0).toFloat(&ok);
 	longitude = parser.getElement(0,1).toFloat(&ok);
 	country = parser.getElement(0,2);
@@ -32,7 +32,7 @@ void Qlocation::init()
 
 void Qlocation::loadAddress(QString adr)
 {
-	okButton->setEnabled(false); 
+	//okButton->setEnabled(false); 
     QStringList scriptStr;    
     foreach( QPointF point, coordinates ) {
         latLineEdit->setText(QString::number(point.x()));
@@ -48,7 +48,7 @@ void Qlocation::loadAddress(QString adr)
 
 void Qlocation::loadCoordinates(float lat, float lng)
 {
-	okButton->setEnabled(false); 
+	//okButton->setEnabled(false); 
     QStringList scriptStr;   
    scriptStr << QString("http://www.skanderjabouzi.com/qpray/?adr=0&lat=%1&lng=%2")                        
                              .arg(QString::number(lat))
@@ -108,7 +108,8 @@ void Qlocation::setActions(){
     connect(applyButton,SIGNAL(clicked()),this,SLOT(updateLatLng()));
     connect(okButton,SIGNAL(clicked()),this,SLOT(save()));
     connect(cancelButton,SIGNAL(clicked()),this,SLOT(cancel()));
-    connect(webView,SIGNAL(loadFinished ( bool )),this,SLOT(update()));
+    //connect(webView,SIGNAL(loadFinished ( bool )),this,SLOT(update()));
+    connect(cityLineEdit,SIGNAL(textChanged(const QString &)),this,SLOT(update()));
     connect(this,SIGNAL(updateMap()),this,SLOT(updateLatLng())); 
 }
 
@@ -132,8 +133,13 @@ void Qlocation::apply()
 
 void Qlocation::save()
 {
-	updateLatLng();
-	apply();
+	//updateLatLng();
+	if (latLineEdit->text().length() == 0) QMessageBox::warning(this, tr("My Application"),"The latitude is empty",QMessageBox::Ok);
+	else if (lngLineEdit->text().length() == 0) QMessageBox::warning(this, tr("My Application"),"The longitude is empty",QMessageBox::Ok);	
+	else if (cityLineEdit->text().length() == 0) QMessageBox::warning(this, tr("My Application"),"The city is empty",QMessageBox::Ok);
+	else if (countryLineEdit->text().length() == 0) QMessageBox::warning(this, tr("My Application"),"The country is empty",QMessageBox::Ok);
+	else if (timezoneLineEdit->text().length() == 0) QMessageBox::warning(this, tr("My Application"),"The timezone is empty",QMessageBox::Ok);
+	else apply();
 	//close();
 }
 
@@ -144,6 +150,6 @@ void Qlocation::cancel()
 
 void Qlocation::update()
 {
-	applyButton->setEnabled(true);
+	//applyButton->setEnabled(true);
 }
 //

@@ -12,5 +12,6 @@ public:
 	int* chrToIsl(int, int, int);
 	int* islToChr(int, int, int);
 	QString* isToString(int, int, int);
+	QString* chrToString(int, int, int);
 };
 #endif // __HIJRI_H__

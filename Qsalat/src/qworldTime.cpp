@@ -13,6 +13,11 @@ void Qworldtime::setImage(QString img)
 	label->setPixmap(QPixmap::fromImage(image));
 }
 
+QString Qworldtime::getImage(int hour, int timezone)
+{
+	return "images/worldtime/img"+QString::number(abs(24 - (hour - int(timezone))))+".jpg";
+}
+
 void Qworldtime::closeEvent(QCloseEvent *event)
 {
 	hide();
@@ -23,3 +28,5 @@ void Qworldtime::setUI()
 {
 	setWindowIcon(QIcon("images/mecque.png"));	
 }
+
+

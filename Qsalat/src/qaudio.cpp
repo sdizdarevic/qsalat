@@ -44,7 +44,8 @@ void Qaudio::closeEvent(QCloseEvent *event)
 	event->ignore();
 }
 
-void Qaudio::setActions(){
+void Qaudio::setActions()
+{
 	connect(prayerButton, SIGNAL(clicked()), this, SLOT(loadPrayer()));
 	connect(fajrButton, SIGNAL(clicked()), this, SLOT(loadFajr()));
 	connect(duaButton, SIGNAL(clicked()), this, SLOT(loadDua()));
@@ -58,7 +59,8 @@ void Qaudio::setActions(){
 }
 
 
-void Qaudio::setUI(){
+void Qaudio::setUI()
+{
     setWindowIcon(QIcon("images/mecque.png"));
     playIcon = style()->standardIcon(QStyle::SP_MediaPlay);
     playButton->setIcon(playIcon);
@@ -177,6 +179,7 @@ void Qaudio::cancel()
         close();
 }
 
-void Qaudio::finished(){
+void Qaudio::finished()
+{
 	stop();
 }

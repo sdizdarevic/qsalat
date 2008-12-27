@@ -10,6 +10,7 @@ Q_OBJECT
 public:
 	Qworldtime( QWidget * parent = 0, Qt::WFlags f = 0 );	
 	void setImage(QString);
+	QString getImage(int,int);
 
 protected:
 	void closeEvent(QCloseEvent *);

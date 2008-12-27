@@ -4,6 +4,9 @@
 #include <QtGui>
 #include <QString>
 #include "ui_monthly.h"
+#include "utils.h"
+#include "qpray.h"
+#include "domparser.h"
 
 class Qmonthly : public QDialog, public Ui::Monthly
 {
@@ -11,16 +14,26 @@ Q_OBJECT
 public:
 	Qmonthly( QWidget * parent = 0, Qt::WFlags f = 0 );	
 	
-public slots:	
-
 protected:
 	void closeEvent(QCloseEvent *);
 	
-signals:	
-	
+private slots:
+	 void generate();
+	 void load();
+		
 private:
 	 void setUI();
 	 void setMethods();
+	 void init();
+	 void setActions();
+	 QDate date;
+	 Qpray *prayers;
+	 DomParser parser;
+	 QString file;
+	 int calcMethod;
+	 int asrMethod;
+	 int duhrMinutes;
+	
 };
 
 

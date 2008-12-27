@@ -95,4 +95,15 @@ QString* Qhijri::isToString(int y, int m, int d){
 	return ress;
 }
 
+QString* Qhijri::chrToString(int y, int m, int d){
+	QString months[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+	int * res = new int [3];
+	res = islToChr(y,m,d);
+	QString* ress = new QString [3];
+	ress[0] = QString::number(res[0]);
+	ress[1] = months[res[1]-1];	
+	ress[2] = QString::number(res[2]);
+	return ress;
+}
+
 

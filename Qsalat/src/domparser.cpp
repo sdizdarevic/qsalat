@@ -69,11 +69,11 @@ void DomParser::parseEntryElement(const QDomElement &element)
         }
         else if (child.toElement().tagName() == "longitude") {
             params[0][1] = parsePageElement(child.toElement());
-        }        
-        else if (child.toElement().tagName() == "city") {
-            params[0][2] = parsePageElement(child.toElement());
         }
         else if (child.toElement().tagName() == "country") {
+            params[0][2] = parsePageElement(child.toElement());
+        }
+        else if (child.toElement().tagName() == "city") {
             params[0][3] = parsePageElement(child.toElement());
         }
         else if (child.toElement().tagName() == "timezone") {
@@ -142,8 +142,8 @@ void DomParser::saveData(QString file){
 			<< "	<location>\n"
 			<< "		<latitude>" << Qt::escape(params[0][0]) << "</latitude>\n"
 			<< "		<longitude>" << Qt::escape(params[0][1]) << "</longitude>\n"
-		    << "		<city>" << Qt::escape(params[0][2]) << "</city>\n"
-			<< "		<country>" << Qt::escape(params[0][3]) << "</country>\n"
+			<< "		<country>" << Qt::escape(params[0][2]) << "</country>\n"
+		    << "		<city>" << Qt::escape(params[0][3]) << "</city>\n"
 			<< "		<timezone>" << Qt::escape(params[0][4]) << "</timezone>\n"
 			<< "	</location>\n"
 			<< "	<audio>\n"

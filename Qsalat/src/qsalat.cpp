@@ -50,20 +50,23 @@ void Qsalat::init()
 	day = date.day();		
 	file = "data/qsalat.xml";
 	parser.readFile(file);
-	bool ok;
-	latitude = parser.getElement(0,0).toDouble(&ok);
-	longitude = parser.getElement(0,1).toDouble(&ok);	
-	city = parser.getElement(0,2);
-	country = parser.getElement(0,3);
-	timezone = parser.getElement(0,4).toDouble(&ok);
+	//bool ok;
+	latitude = parser.getElement(0,0).toDouble();
+	longitude = parser.getElement(0,1).toDouble();	
+	country = parser.getElement(0,2);
+	city = parser.getElement(0,3);
+	timezone = parser.getElement(0,4).toDouble();
 	prayerAudio = parser.getElement(1,0);
 	fajraAudio = parser.getElement(1,1);
 	duaAudio = parser.getElement(1,2);	
 	playAthan = parser.getElement(1,3);
 	playDua = parser.getElement(1,4);
-	calcMethod = parser.getElement(2,0).toInt(&ok);
-	asrMethod = parser.getElement(2,2).toInt(&ok);
-	duhrMinutes = parser.getElement(2,1).toInt(&ok);
+	calcMethod = parser.getElement(2,0).toInt();
+	asrMethod = parser.getElement(2,2).toInt();
+	duhrMinutes = parser.getElement(2,1).toInt();
+	QTime time = QTime::currentTime();   		
+    QString strTime = time.toString("HH");    
+    worldtime.setImage(worldtime.getImage(strTime.toInt(),timezone));    
 }
 
 void Qsalat::initTimer()
@@ -341,8 +344,6 @@ void Qsalat::timerEvent(QTimerEvent *e)
 			getHijri();
 			createTrayIcon();	
 			qibla.init();
-			//QPaintEvent *event;
-			//qibla.paintEvent(event);
   			DomParser::changed = false;
 		}		
   		QTime time = QTime::currentTime();   		
@@ -352,104 +353,80 @@ void Qsalat::timerEvent(QTimerEvent *e)
 			getSalats();
 			getHijri();
 			createTrayIcon();	
-			QString image = "images/worldtime/img"+QString::number(0 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(0,timezone));
    		}
    		else if ("01:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(1 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(1,timezone));
    		}
    		else if ("02:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(2 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(2,timezone));
    		}
    		else if ("03:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(3 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(3,timezone));
    		}
    		else if ("04:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(4 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(4,timezone));
    		}
    		else if ("05:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(5 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(5,timezone));
    		}
    		else if ("06:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(6 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(6,timezone));
    		}
    		else if ("07:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(7 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(7,timezone));
    		}
    		else if ("08:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(8 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(8,timezone));
    		}
    		else if ("09:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(9 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(9,timezone));
    		}
    		else if ("10:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(10 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(10,timezone));
    		}
    		else if ("11:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(11 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(11,timezone));
    		}
    		else if ("12:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(12 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(12,timezone));
    		}
    		else if ("13:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(13 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(13,timezone));
    		}
    		else if ("14:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(14 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(14,timezone));
    		}
    		else if ("15:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(15 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(15,timezone));
    		}
    		else if ("16:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(16 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(16,timezone));
    		}
    		else if ("17:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(17 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(17,timezone));
    		}
    		else if ("18:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(18 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(18,timezone));
    		}
    		else if ("19:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(19 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+   			worldtime.setImage(worldtime.getImage(19,timezone));
    		}
    		else if ("20:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(20 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(20,timezone));
    		}
    		else if ("21:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(21 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(21,timezone));
    		}
    		else if ("22:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(22 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(22,timezone));
    		}
    		else if ("23:00:00" == strTime){    		
-			QString image = "images/worldtime/img"+QString::number(23 - int(timezone))+".jpg";
-			worldtime.setImage(image);
+			worldtime.setImage(worldtime.getImage(23,timezone));
    		}
    		if (playAthan == "1"){
 		   	if (label_fajr->text()+":00" == strTime){
-		   		audioList << fajraAudio << "Fajr prayer صلاة الفجر";
+		   		audioList << fajraAudio << QString::fromUtf8("Fajr prayer صلاة الفجر");
 		   		QProcess::execute ("player/Player.exe", audioList );
 		   		audioList.clear();
 		   		if (playDua == "1"){

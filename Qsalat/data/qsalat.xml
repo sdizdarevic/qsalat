@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
 <qsalat>
 	<location>
-		<latitude>45.545447</latitude>
-		<longitude>-73.639076</longitude>
-		<city>Montreal</city>
-		<country>Canada</country>
+		<latitude>45.5837</latitude>
+		<longitude>-73.5918</longitude>
+		<country>منتريال</country>
+		<city>كندا</city>
 		<timezone>-5</timezone>
 	</location>
 	<audio>
@@ -16,7 +16,7 @@
 	</audio>
 	<calculation>
 		<method>3</method>	
-		<duhr>60</duhr>
+		<duhr>0</duhr>
 		<asr>0</asr>
 		<hijri>0</hijri>
 		<higherLat>0</higherLat>

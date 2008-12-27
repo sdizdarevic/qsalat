@@ -32,7 +32,8 @@ HEADERS = src/qsalat.h \
  src/qworldTime.h \
  src/qcalculation.h \
  src/qhijridate.h \
- src/domparser.h
+ src/domparser.h \
+ src/utils.h
 SOURCES = src/qsalat.cpp \
  src/main.cpp \
  src/qpray.cpp \
@@ -46,7 +47,8 @@ SOURCES = src/qsalat.cpp \
  src/qcalculation.cpp \
  src/qworldTime.cpp \
  src/qhijridate.cpp \
- src/domparser.cpp
+ src/domparser.cpp \
+ src/utils.cpp
 RESOURCES += salat.qrc qibla.qrc worldtime.qrc
 TRANSLATIONS = qsalat_en.ts qsalat_fr.ts
 CODECFORTR = UTF-8

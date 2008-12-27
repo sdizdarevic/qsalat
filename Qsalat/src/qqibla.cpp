@@ -30,7 +30,7 @@ double Qqibla::getQibla(){
 	double Result = atan(x1/(y1-y2))*180/Pi;
 	if (Result < 0) Result = 360.0 + Result;
 	
-	if ((longitude < MLONG) and (longitude > MLONG-180)) {
+	if ((longitude < MLONG) && (longitude > MLONG-180)) {
 		if (Result > 180)	Result = Result - 180;
 	}
 	if (Result > 360) Result =	Result - 360;	

@@ -194,6 +194,11 @@ background-image: url(:/images/slider3.png);</string>
        <height>41</height>
       </rect>
      </property>
+     <property name="font" >
+      <font>
+       <family>Arial</family>
+      </font>
+     </property>
      <property name="styleSheet" >
       <string notr="true" >background-image: url(:/images/slider3.png);
 color:white;</string>
