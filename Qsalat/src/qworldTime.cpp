@@ -15,7 +15,10 @@ void Qworldtime::setImage(QString img)
 
 QString Qworldtime::getImage(int hour, int timezone)
 {
-	return "images/worldtime/img"+QString::number(abs(24 - (hour - int(timezone))))+".jpg";
+	int number = hour - int(timezone);
+	if (number >= 24) number = number -24;
+	else if (number < 0) number = 24 - timezone;
+	return "images/worldtime/img"+QString::number(number)+".jpg";
 }
 
 void Qworldtime::closeEvent(QCloseEvent *event)

@@ -11,8 +11,7 @@ Qmonthly::Qmonthly( QWidget * parent, Qt::WFlags f)
 	date = QDate::currentDate();
 	prayers = new Qpray();
 	init();
-	setActions();	
-	
+	setActions();
 }
 
 void Qmonthly::closeEvent(QCloseEvent *event)
@@ -66,7 +65,7 @@ void Qmonthly::generate()
 		prayers->setAsrMethod(asrMethod);
 		prayers->setDhuhrMinutes(duhrMinutes);
 		QString months[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
-		if (QDate::isLeapYear ( date.year() )) february = 29;
+		if (QDate::isLeapYear ( yearBox->value() )) february = 29;
 		else february = 28;
 		int days[] = {31,february,31,30,31,30,31,31,30,31,30,31};
 		QString text = utils.readFile("data/part1");
