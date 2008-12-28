@@ -81,9 +81,12 @@ void Qmonthly::generate()
 			text += "</tr>\n";
 		}
 		text += "</tbody></table></body></html>";
-	 	utils.saveFile(pathEdit->text()+"monthly.html", text);
+		QString slash = "";
+		if (pathEdit->text().data()[pathEdit->text().size() - 1] != '/') slash = "/";		
+	 		//utils.saveFile(pathEdit->text()+"monthly.html", text);
+		utils.saveFile(pathEdit->text()+slash+"monthly.html", text);
 	 	QUrl url;
-	 	url.setUrl(pathEdit->text()+"monthly.html");
+	 	url.setUrl(pathEdit->text()+slash+"monthly.html");
 		QDesktopServices::openUrl(url);
 	}
 }

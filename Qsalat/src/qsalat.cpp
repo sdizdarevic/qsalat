@@ -427,25 +427,25 @@ void Qsalat::timerEvent(QTimerEvent *e)
    		if (playAthan == "1"){
 		   	if (label_fajr->text()+":00" == strTime){
 		   		audioList << fajraAudio << QString::fromUtf8("Fajr prayer صلاة الفجر");
-		   		QProcess::execute ("player/Player.exe", audioList );
+		   		QProcess::execute ("Player.exe", audioList );
 		   		audioList.clear();
 		   		if (playDua == "1"){
 			   		audioList << duaAudio << "Fajr prayer صلاة الفجر";
-			   		QProcess::execute ("player/Player.exe", audioList );
+			   		QProcess::execute ("Player.exe", audioList );
 		   		}
 		  	}
    			else if (label_duhr->text()+":00" == strTime){
 		  		audioList <<  prayerAudio << "Duhr prayer";
-		   		QProcess::execute ("player/Player.exe", audioList );	
+		   		QProcess::execute ("Player.exe", audioList );	
 		   		audioList.clear();
 		   		if (playDua == "1"){
 			   		audioList << duaAudio << "Duhr prayer";
-			   		QProcess::execute ("player/Player.exe", audioList );
+			   		QProcess::execute ("Player.exe", audioList );
 		   		}	   			
 		  	}
    			else if (label_asr->text()+":00" == strTime){
 		   		audioList << prayerAudio << "Asr prayer";
-		   		QProcess::execute ("player/Player.exe", audioList );	
+		   		QProcess::execute ("Player.exe", audioList );	
 		   		audioList.clear();
 		   		if (playDua == "1"){
 			   		audioList << duaAudio << "Asr prayer";
@@ -454,16 +454,16 @@ void Qsalat::timerEvent(QTimerEvent *e)
 		  	}
 	  		else if (label_maghreb->text()+":00" == strTime){
 	  			audioList << prayerAudio << "Maghreb prayer";
-		   		QProcess::execute ("player/Player.exe", audioList );
+		   		QProcess::execute ("Player.exe", audioList );
 		   		audioList.clear();
 		   		if (playDua == "1"){
 			   		audioList << duaAudio << "Maghreb prayer";
-			   		QProcess::execute ("player/Player.exe", audioList );
+			   		QProcess::execute ("Player.exe", audioList );
 		   		}		   			
 	  		}
 	  		else if (label_isha->text()+":00" == strTime){
 	  			audioList << prayerAudio << "Isha prayer";
-		   		QProcess::execute ("player/Player.exe", audioList );
+		   		QProcess::execute ("Player.exe", audioList );
 		   		audioList.clear();
 		   		if (playDua == "1"){
 			   		audioList << duaAudio << "Isha prayer";
