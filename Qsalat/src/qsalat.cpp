@@ -108,7 +108,7 @@ void Qsalat::getSalats(){
 	label_fajr->setText(times[0]);
 	label_duhr->setText(times[2]);
 	label_asr->setText(times[3]);
-	label_maghreb->setText(times[5]);
+	label_maghreb->setText("16:24");
 	label_isha->setText(times[6]);
 	//QNetworkAddressEntry *host =  new QNetworkAddressEntry();//host->ip().toString()
 	label_location->setText(city+", "+country);	
@@ -469,7 +469,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
 		   		audioList.clear();
 		   		if (playDua == "1"){
 			   		audioList << duaAudio << "Isha prayer صلاة العشاء";
-			   		QProcess::execute (path+"player/Player.exe", audioList );
+			   		QProcess::execute (path+"Player.exe", audioList );
 		   		}		   			
 	  		}
   		}    		
