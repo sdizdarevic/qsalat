@@ -3,11 +3,12 @@
 Qlocation::Qlocation( QWidget * parent, Qt::WFlags f) 
 	: QDialog(parent, f)
 {
+	path = QCoreApplication::applicationDirPath ();
 	setupUi(this);
 	setUI();
 	manager = new QNetworkAccessManager(this);
 	setActions();
-	file = "data/qsalat.xml";
+	file = path+"data/qsalat.xml";
 	parser.readFile(file);			
 	init();
 }
@@ -114,7 +115,7 @@ void Qlocation::setActions(){
 }
 
 void Qlocation::setUI(){
-	setWindowIcon(QIcon("images/mecque.png"));
+	setWindowIcon(QIcon(path+"images/mecque.png"));
 	okButton->setIcon(style()->standardIcon(QStyle::SP_DialogOkButton));
 	applyButton->setIcon(style()->standardIcon(QStyle::SP_DialogApplyButton));
 	cancelButton->setIcon(style()->standardIcon(QStyle::SP_DialogCancelButton));

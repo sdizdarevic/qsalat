@@ -4,14 +4,15 @@
 Qqibla::Qqibla( QWidget * parent, Qt::WFlags f) 
 	: QDialog(parent, f)
 {
+	path = QCoreApplication::applicationDirPath ();
 	setupUi(this);
-	setWindowIcon(QIcon("images/mecque.png"));
+	setWindowIcon(QIcon(path+"images/mecque.png"));
 	init();
 }
 
 void Qqibla::init()
 {
-	file = "data/qsalat.xml";
+	file = path+"data/qsalat.xml";
 	parser.readFile(file);
 	bool ok;
 	latitude = parser.getElement(0,0).toDouble(&ok);

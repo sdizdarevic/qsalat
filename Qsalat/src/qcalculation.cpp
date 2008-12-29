@@ -3,9 +3,10 @@
 Qcalculation::Qcalculation( QWidget * parent, Qt::WFlags f) 
 	: QDialog(parent, f)
 {
+	path = QCoreApplication::applicationDirPath ();
 	setupUi(this);	
 	setUI();
-	file = "data/qsalat.xml";
+	file = path+"data/qsalat.xml";
 	parser.readFile(file);
 	setActions();
 	init();
@@ -34,7 +35,7 @@ void Qcalculation::init()
 
 void Qcalculation::setUI()
 {
-	setWindowIcon(QIcon("images/mecque.png"));
+	setWindowIcon(QIcon(path+"images/mecque.png"));
 	okButton->setIcon(style()->standardIcon(QStyle::SP_DialogOkButton));
 	saveButton->setIcon(style()->standardIcon(QStyle::SP_DialogApplyButton));
 	cancelButton->setIcon(style()->standardIcon(QStyle::SP_DialogCancelButton));

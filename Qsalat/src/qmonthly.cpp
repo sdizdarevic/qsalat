@@ -3,10 +3,11 @@
 Qmonthly::Qmonthly( QWidget * parent, Qt::WFlags f) 
 	: QDialog(parent, f)
 {
+	path = QCoreApplication::applicationDirPath ();
 	setupUi(this);	
 	setUI();
 	setMethods();
-	file = "data/qsalat.xml";
+	file = path+"data/qsalat.xml";
 	parser.readFile(file);
 	date = QDate::currentDate();
 	prayers = new Qpray();
@@ -36,7 +37,7 @@ void Qmonthly::setActions()
 
 void Qmonthly::setUI()
 {
-	setWindowIcon(QIcon("images/mecque.png"));
+	setWindowIcon(QIcon(path+"images/mecque.png"));
 	selectButton->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
 	generateButton->setIcon(style()->standardIcon(QStyle::SP_DialogApplyButton));
 }
@@ -68,9 +69,9 @@ void Qmonthly::generate()
 		if (QDate::isLeapYear ( yearBox->value() )) february = 29;
 		else february = 28;
 		int days[] = {31,february,31,30,31,30,31,31,30,31,30,31};
-		QString text = utils.readFile("data/part1");
+		QString text = utils.readFile(path+"data/part1");
 		text += months[monthBox->currentIndex()]+" "+QString::number(yearBox->value());
-		text += utils.readFile("data/part2");
+		text += utils.readFile(path+"data/part2");
 		int index[] = {0,2,3,5,6};
 		for (int i = 1; i <= days[monthBox->currentIndex()]; i++){
 			text += "<tr><td id=\"\" width=\"25\">"+QString::number(i)+"</td>\n";

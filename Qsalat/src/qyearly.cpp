@@ -3,9 +3,10 @@
 Qyearly::Qyearly( QWidget * parent, Qt::WFlags f) 
 	: QDialog(parent, f)
 {
+	path = QCoreApplication::applicationDirPath ();
 	setupUi(this);	
 	setUI();
-	file = "data/qsalat.xml";
+	file = path+"data/qsalat.xml";
 	parser.readFile(file);
 	date = QDate::currentDate();
 	prayers = new Qpray();
@@ -35,7 +36,7 @@ void Qyearly::setActions()
 
 void Qyearly::setUI()
 {
-	setWindowIcon(QIcon("images/mecque.png"));
+	setWindowIcon(QIcon(path+"images/mecque.png"));
 	selectButton->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
 	generateButton->setIcon(style()->standardIcon(QStyle::SP_DialogApplyButton));
 }
@@ -59,9 +60,9 @@ void Qyearly::generate()
 		if (QDate::isLeapYear ( yearBox->value() )) february = 29;
 		else february = 28;
 		int days[] = {31,february,31,30,31,30,31,31,30,31,30,31};
-		QString text = utils.readFile("data/part4");
+		QString text = utils.readFile(path+"data/part4");
 		text += QString::number(yearBox->value());
-		text += utils.readFile("data/part3");
+		text += utils.readFile(path+"data/part3");
 		int index[] = {0,2,3,5,6};
 		for (int k = 0; k < 12; k++){
 			for (int i = 1; i <= days[k]; i++){

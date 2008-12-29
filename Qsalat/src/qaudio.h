@@ -35,7 +35,8 @@ private:
     void init();
     bool isplay;    
     DomParser parser;
-	QString file;		
+	QString file;	
+	QString path;
 
 private slots:
 	void loadPrayer();

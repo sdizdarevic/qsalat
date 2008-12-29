@@ -56,6 +56,7 @@ private:
 	void setActions();
 	void setUI();	
 	void init();
+	QString path;
 };
 #endif
 

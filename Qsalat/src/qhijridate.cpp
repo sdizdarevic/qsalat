@@ -3,6 +3,7 @@
 Qhijridate::Qhijridate( QWidget * parent, Qt::WFlags f) 
 	: QDialog(parent, f)
 {
+	path = QCoreApplication::applicationDirPath ();
 	setupUi(this);	
 	setUI();
 	setActions();	
@@ -26,7 +27,7 @@ void Qhijridate::init(){
 
 void Qhijridate::setUI()
 {
-	setWindowIcon(QIcon("images/mecque.png"));
+	setWindowIcon(QIcon(path+"images/mecque.png"));
 	convertButton->setIcon(style()->standardIcon(QStyle::SP_DialogApplyButton));
 	glist << "January"<<"February"<<"March"<<"April"<<"May"<<"June"<<"July"<<"August"<<"September"<<"October"<<"November"<<"December";	
 	jmonthBox->addItems(glist);

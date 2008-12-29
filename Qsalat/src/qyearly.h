@@ -31,6 +31,7 @@ private:
 	 int calcMethod;
 	 int asrMethod;
 	 int duhrMinutes;
+	 QString path;
 };
 
 

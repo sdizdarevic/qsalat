@@ -83,6 +83,7 @@ private:
 	int calcMethod;
 	int asrMethod;
 	int duhrMinutes;
+	QString path;
 	
 private slots:
 	void iconActivated(QSystemTrayIcon::ActivationReason);

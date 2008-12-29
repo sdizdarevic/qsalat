@@ -25,6 +25,7 @@ private:
 	 QStringList glist;	
 	 QStringList hlist;	
 	 void init();
+	 QString path;
 };
 
 #endif // __QHIJRIDATE_H__

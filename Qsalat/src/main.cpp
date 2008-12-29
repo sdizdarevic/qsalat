@@ -3,6 +3,7 @@
 //
 int main(int argc, char ** argv)
 {
+	//path = QCoreApplication::applicationDirPath ();
 	QApplication app( argc, argv );
 	QPixmap pixmap("images/splash.png");
 	QSplashScreen splash(pixmap);

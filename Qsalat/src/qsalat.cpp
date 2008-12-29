@@ -24,6 +24,7 @@
 Qsalat::Qsalat( QWidget * parent, Qt::WFlags f) 
 	: QMainWindow(parent, f)
 {
+	path = QCoreApplication::applicationDirPath ();
 	setupUi(this);	
 	adjustWindow();	
 	prayers = new Qpray();
@@ -48,7 +49,7 @@ void Qsalat::init()
 	year = date.year();;
 	month = date.month();
 	day = date.day();		
-	file = "data/qsalat.xml";
+	file = path+"data/qsalat.xml";
 	parser.readFile(file);
 	//bool ok;
 	latitude = parser.getElement(0,0).toDouble();
@@ -124,7 +125,7 @@ void Qsalat::getHijri(){
 
 void Qsalat::createTrayIcon()
 {
-	setWindowIcon(QIcon("images/mecque.png"));
+	setWindowIcon(QIcon(path+"images/mecque.png"));
 	QColor *c = new QColor ( 238, 238, 157, 255 );	
 	QPalette * p = new QPalette();
 	p->setColor(QPalette::ToolTipBase,*c);
@@ -136,7 +137,7 @@ void Qsalat::createTrayIcon()
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(quitAction);    
     trayIcon->setContextMenu(trayIconMenu);
-    trayIcon->setIcon(QIcon("images/mecque.png"));
+    trayIcon->setIcon(QIcon(path+"images/mecque.png"));
 	QString ttmessage = "Prayer times for : "+city+", "+country+"\nFajr :"+label_fajr->text()+"\nDuhr : "	+label_duhr->text()+"\nAsr : "+label_asr->text()+"\nMaghreb : "+label_maghreb->text()+"\nIsha : "+label_isha->text();
     trayIcon->setToolTip("Qsalat Islamic cross-platform prayers time V0.1");
     trayIcon->setToolTip(ttmessage);
@@ -427,47 +428,47 @@ void Qsalat::timerEvent(QTimerEvent *e)
    		if (playAthan == "1"){
 		   	if (label_fajr->text()+":00" == strTime){
 		   		audioList << fajraAudio << QString::fromUtf8("Fajr prayer صلاة الفجر");
-		   		QProcess::execute ("Player.exe", audioList );
+		   		QProcess::execute (path+"Player.exe", audioList );
 		   		audioList.clear();
 		   		if (playDua == "1"){
 			   		audioList << duaAudio << "Fajr prayer صلاة الفجر";
-			   		QProcess::execute ("Player.exe", audioList );
+			   		QProcess::execute (path+"Player.exe", audioList );
 		   		}
 		  	}
    			else if (label_duhr->text()+":00" == strTime){
-		  		audioList <<  prayerAudio << "Duhr prayer";
-		   		QProcess::execute ("Player.exe", audioList );	
+		  		audioList <<  prayerAudio << "Duhr prayer صلاة الظهر";
+		   		QProcess::execute (path+"Player.exe", audioList );	
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << "Duhr prayer";
-			   		QProcess::execute ("Player.exe", audioList );
+			   		audioList << duaAudio << "Duhr prayer صلاة الظهر";
+			   		QProcess::execute (path+"Player.exe", audioList );
 		   		}	   			
 		  	}
    			else if (label_asr->text()+":00" == strTime){
-		   		audioList << prayerAudio << "Asr prayer";
-		   		QProcess::execute ("Player.exe", audioList );	
+		   		audioList << prayerAudio << "Asr prayer صلاة العصر";
+		   		QProcess::execute (path+"Player.exe", audioList );	
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << "Asr prayer";
-			   		QProcess::execute ("player/Player.exe", audioList );
+			   		audioList << duaAudio << "Asr prayer صلاة العصر";
+			   		QProcess::execute (path+"player/Player.exe", audioList );
 		   		}
 		  	}
 	  		else if (label_maghreb->text()+":00" == strTime){
-	  			audioList << prayerAudio << "Maghreb prayer";
-		   		QProcess::execute ("Player.exe", audioList );
+	  			audioList << prayerAudio << "Maghreb prayer صلاة المغرب";
+		   		QProcess::execute (path+"Player.exe", audioList );
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << "Maghreb prayer";
-			   		QProcess::execute ("Player.exe", audioList );
+			   		audioList << duaAudio << "Maghreb prayer صلاة المغرب";
+			   		QProcess::execute (path+"Player.exe", audioList );
 		   		}		   			
 	  		}
 	  		else if (label_isha->text()+":00" == strTime){
-	  			audioList << prayerAudio << "Isha prayer";
-		   		QProcess::execute ("Player.exe", audioList );
+	  			audioList << prayerAudio << "Isha prayer صلاة العشاء";
+		   		QProcess::execute (path+"Player.exe", audioList );
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << "Isha prayer";
-			   		QProcess::execute ("player/Player.exe", audioList );
+			   		audioList << duaAudio << "Isha prayer صلاة العشاء";
+			   		QProcess::execute (path+"player/Player.exe", audioList );
 		   		}		   			
 	  		}
   		}    		

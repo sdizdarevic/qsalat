@@ -17,6 +17,7 @@ protected:
 	
 private:
 	 void setUI();	
+	 QString path;
 };
 
 #endif // __WORLDTIME_H__

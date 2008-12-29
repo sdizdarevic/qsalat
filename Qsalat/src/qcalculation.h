@@ -27,6 +27,7 @@ private:
 	 DomParser parser;
 	 QString file;
 	 QStringList list;		
+	 QString path;
 };
 
 #endif // __CALCULATION_H__

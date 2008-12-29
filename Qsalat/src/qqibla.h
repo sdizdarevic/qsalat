@@ -25,6 +25,7 @@ private:
 	double latitude;
 	double longitude;	
 	double qiblaAngle;
+	QString path;
 };
 #endif
 

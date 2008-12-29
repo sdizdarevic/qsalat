@@ -3,6 +3,7 @@
 Qaudio::Qaudio( QWidget * parent, Qt::WFlags f) : QDialog(parent, f )
 {
 	//setWindowFlags(Qt::WindowMinimizeButtonHint);
+	path = QCoreApplication::applicationDirPath ();
 	setupUi(this);
 	audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
 	mediaObject = new Phonon::MediaObject(this);
@@ -12,7 +13,7 @@ Qaudio::Qaudio( QWidget * parent, Qt::WFlags f) : QDialog(parent, f )
 	setActions();
 	Phonon::createPath(mediaObject, audioOutput);
 	isplay = true;
-	file = "data/qsalat.xml";
+	file = path+"data/qsalat.xml";
 	parser.readFile(file);	
 	init();
 }
@@ -61,7 +62,7 @@ void Qaudio::setActions()
 
 void Qaudio::setUI()
 {
-    setWindowIcon(QIcon("images/mecque.png"));
+    setWindowIcon(QIcon(path+"images/mecque.png"));
     playIcon = style()->standardIcon(QStyle::SP_MediaPlay);
     playButton->setIcon(playIcon);
     stopIcon = style()->standardIcon(QStyle::SP_MediaStop);
