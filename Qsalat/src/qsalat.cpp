@@ -24,7 +24,8 @@
 Qsalat::Qsalat( QWidget * parent, Qt::WFlags f) 
 	: QMainWindow(parent, f)
 {
-	path = QCoreApplication::applicationDirPath ();
+	path = QCoreApplication::applicationDirPath ();	
+	if (path.data()[path.size() - 1] != '/') path += "/";
 	setupUi(this);	
 	adjustWindow();	
 	prayers = new Qpray();
@@ -44,7 +45,7 @@ Qsalat::Qsalat( QWidget * parent, Qt::WFlags f)
 
 void Qsalat::init()
 {
-	//QMessageBox::warning(this, tr("My Application"),parser.getElement(0,2),QMessageBox::Ok);
+	//QMessageBox::warning(this, tr("My Application"),path,QMessageBox::Ok);
 	date = QDate::currentDate();	
 	year = date.year();;
 	month = date.month();

@@ -4,6 +4,7 @@ Qaudio::Qaudio( QWidget * parent, Qt::WFlags f) : QDialog(parent, f )
 {
 	//setWindowFlags(Qt::WindowMinimizeButtonHint);
 	path = QCoreApplication::applicationDirPath ();
+	if (path.data()[path.size() - 1] != '/') path += "/";
 	setupUi(this);
 	audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
 	mediaObject = new Phonon::MediaObject(this);

@@ -3,9 +3,11 @@
 //
 int main(int argc, char ** argv)
 {
-	//path = QCoreApplication::applicationDirPath ();
+	QString path = QCoreApplication::applicationDirPath ();
+	if (path.data()[path.size() - 1] != '/') path += "/";
 	QApplication app( argc, argv );
-	QPixmap pixmap("images/splash.png");
+	//QPixmap pixmap(":/images/splash.png");
+	QPixmap pixmap(path+"images/splash.png");
 	QSplashScreen splash(pixmap);
 	splash.show();
 	//app.processEvents();

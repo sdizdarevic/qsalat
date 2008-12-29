@@ -4,6 +4,7 @@ Qworldtime::Qworldtime( QWidget * parent, Qt::WFlags f)
 	: QDialog(parent, f)
 {
 	path = QCoreApplication::applicationDirPath ();
+	if (path.data()[path.size() - 1] != '/') path += "/";
 	setupUi(this);	
 	setUI();	
 }
