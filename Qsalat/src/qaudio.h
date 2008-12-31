@@ -11,7 +11,8 @@ class Qaudio : public QDialog, public Ui::Audio
 Q_OBJECT
 public:
 	Qaudio( QWidget * parent = 0, Qt::WFlags f = 0 );
-
+	void init(int);
+	
 public slots:
 
 protected:
@@ -32,7 +33,6 @@ private:
     Phonon::AudioOutput *audioOutput;
     void setActions();
     void setUI();
-    void init();
     bool isplay;    
     DomParser parser;
 	QString file;	

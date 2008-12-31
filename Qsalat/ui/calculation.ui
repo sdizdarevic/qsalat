@@ -158,6 +158,9 @@
       <height>28</height>
      </rect>
     </property>
+    <property name="minimum" >
+     <number>5</number>
+    </property>
     <property name="maximum" >
      <number>60</number>
     </property>
@@ -166,7 +169,7 @@
     <property name="geometry" >
      <rect>
       <x>10</x>
-      <y>30</y>
+      <y>20</y>
       <width>141</width>
       <height>18</height>
      </rect>
@@ -177,7 +180,7 @@
      </font>
     </property>
     <property name="text" >
-     <string>Set duhr custom time</string>
+     <string>Set duhr custom time </string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4" >
@@ -204,6 +207,24 @@
     </property>
     <property name="text" >
      <string>minutes</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>141</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="font" >
+     <font>
+      <italic>true</italic>
+     </font>
+    </property>
+    <property name="text" >
+     <string>before asr</string>
     </property>
    </widget>
   </widget>

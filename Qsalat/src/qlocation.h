@@ -19,15 +19,11 @@ class Qlocation : public QDialog, public Ui::Location
 Q_OBJECT
 public:
 	Qlocation( QWidget * parent = 0, Qt::WFlags f = 0 );
-	//double x, y;
-	QString adress;	
+	void init(int);
 	
 private slots:
-	//void replyFinished(QNetworkReply*);
 	void loadAddress(QString);
 	void loadCoordinates(float,float);
-	//void geoCode(const QString &address);
-	//void clearCoordinates();
 	void showItem();
 	void updateLatLng();
 	void apply();
@@ -55,7 +51,7 @@ private:
 	int pendingRequests;	
 	void setActions();
 	void setUI();	
-	void init();
+	
 	QString path;
 };
 #endif

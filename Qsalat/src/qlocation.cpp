@@ -8,28 +8,28 @@ Qlocation::Qlocation( QWidget * parent, Qt::WFlags f)
 	setupUi(this);
 	setUI();
 	manager = new QNetworkAccessManager(this);
-	setActions();
-	file = path+"data/qsalat.xml";
-	parser.readFile(file);			
-	init();
+	setActions();			
+	init(0);
 }
 
-void Qlocation::init()
+void Qlocation::init(int flag = 0)
 {
-	bool ok;
-	//okButton->setEnabled(false); 	
-	latitude = parser.getElement(0,0).toFloat(&ok);
-	longitude = parser.getElement(0,1).toFloat(&ok);
-	country = parser.getElement(0,2);
-	city = parser.getElement(0,3);
-	timezone = parser.getElement(0,4).toInt(&ok);	
-	loadCoordinates(latitude,longitude);
-	latLineEdit->setText(QString::number(latitude));
-    lngLineEdit->setText(QString::number(longitude));
-    countryLineEdit->setText(country);
-    cityLineEdit->setText(city);
-    timezoneLineEdit->setText(QString::number(timezone));
-    locationLineEdit->setText("");
+	file = path+"data/qsalat.xml";
+	parser.readFile(file);	
+	if (0 == flag){
+		latitude = parser.getElement(0,0).toFloat();
+		longitude = parser.getElement(0,1).toFloat();
+		country = parser.getElement(0,2);
+		city = parser.getElement(0,3);
+		timezone = parser.getElement(0,4).toInt();	
+		loadCoordinates(latitude,longitude);
+		latLineEdit->setText(QString::number(latitude));
+	    lngLineEdit->setText(QString::number(longitude));
+	    countryLineEdit->setText(country);
+	    cityLineEdit->setText(city);
+	    timezoneLineEdit->setText(QString::number(timezone));
+	    locationLineEdit->setText("");    		
+	}
 }
 
 void Qlocation::loadAddress(QString adr)
@@ -62,7 +62,7 @@ void Qlocation::loadCoordinates(float lat, float lng)
 
 void Qlocation::showItem()
 {
-    applyButton->setEnabled(false);
+    //applyButton->setEnabled(false);
     loadAddress( locationLineEdit->text() );    
 }
 
@@ -95,7 +95,7 @@ void Qlocation::updateLatLng(){
     cityLineEdit->setText(sres4);
     timezoneLineEdit->setText(sres5); 
     
-    okButton->setEnabled(true);
+    //okButton->setEnabled(true);
 }
 
 void Qlocation::closeEvent(QCloseEvent *event)
@@ -124,6 +124,12 @@ void Qlocation::setUI(){
 
 void Qlocation::apply()
 {
+	//for (int i = 0; i <= 4; i++){
+		//for (int j = 0; j <= 4; j++){
+			//parser.changeElement(latLineEdit->text(),i,j);
+		//}
+	//}
+	QMessageBox::warning(this, tr("My Application"),parser.getElement(2,1),QMessageBox::Ok);
 	parser.changeElement(latLineEdit->text(),0,0);
 	parser.changeElement(lngLineEdit->text(),0,1);
 	parser.changeElement(cityLineEdit->text(),0,2);

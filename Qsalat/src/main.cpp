@@ -4,8 +4,8 @@
 //
 int main(int argc, char ** argv)
 {
-	QString path = QCoreApplication::applicationDirPath ();
-	if (path.data()[path.size() - 1] != '/') path += "/";
+	//QString path = QCoreApplication::applicationDirPath ();
+	//if (path.data()[path.size() - 1] != '/') path += "/";
 	QApplication app( argc, argv );
 	DSingleApplication instance( "Qsalat" );
   
@@ -14,13 +14,13 @@ int main(int argc, char ** argv)
 	    return 0;
 	  }
 	//QPixmap pixmap(":/images/splash.png");
-	QPixmap pixmap(path+"images/splash.png");
-	QSplashScreen splash(pixmap);
-	splash.show();
+	//QPixmap pixmap(path+"images/splash.png");
+	//QSplashScreen splash(pixmap);
+	//splash.show();
 	//app.processEvents();
 	Qsalat win;
 	win.show(); 
-	splash.finish(&win);
+	//splash.finish(&win);
 	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
 	return app.exec();
 }

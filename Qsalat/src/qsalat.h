@@ -66,7 +66,7 @@ private:
 	void setVisible(bool);	
 	void timerEvent(QTimerEvent *e);
 	void init();	
-	void initTimer();
+	void initTimer();	
 	bool Gfirst; 
 	bool locationFirst;
 	//int screenx;

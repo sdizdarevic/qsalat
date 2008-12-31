@@ -52,7 +52,6 @@ void Qsalat::init()
 	day = date.day();		
 	file = path+"data/qsalat.xml";
 	parser.readFile(file);
-	//bool ok;
 	latitude = parser.getElement(0,0).toDouble();
 	longitude = parser.getElement(0,1).toDouble();	
 	country = parser.getElement(0,2);
@@ -108,9 +107,9 @@ void Qsalat::getSalats(){
 	label_fajr->setText(times[0]);
 	label_duhr->setText(times[2]);
 	label_asr->setText(times[3]);
-	label_maghreb->setText("16:24");
+	label_maghreb->setText(times[5]);
 	label_isha->setText(times[6]);
-	//QNetworkAddressEntry *host =  new QNetworkAddressEntry();//host->ip().toString()
+	//QMessageBox::warning(this, tr("My Application"),times[2],QMessageBox::Ok);
 	label_location->setText(city+", "+country);	
 }
 
@@ -341,7 +340,10 @@ void Qsalat::timerEvent(QTimerEvent *e)
 	if (!e) return;
   	if (e->timerId() == timer){
   		if (DomParser::changed) {
-  			init();  	
+  			init();  
+  			calculation.init(1);	
+  			location.init(1);
+  			audio.init(1);
 			getSalats();
 			getHijri();
 			createTrayIcon();	
@@ -432,43 +434,43 @@ void Qsalat::timerEvent(QTimerEvent *e)
 		   		QProcess::execute (path+"Player.exe", audioList );
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << "Fajr prayer صلاة الفجر";
+			   		audioList << duaAudio << QString::fromUtf8("Fajr prayer صلاة الفجر");
 			   		QProcess::execute (path+"Player.exe", audioList );
 		   		}
 		  	}
    			else if (label_duhr->text()+":00" == strTime){
-		  		audioList <<  prayerAudio << "Duhr prayer صلاة الظهر";
+		  		audioList <<  prayerAudio << QString::fromUtf8("Duhr prayer صلاة الظهر");
 		   		QProcess::execute (path+"Player.exe", audioList );	
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << "Duhr prayer صلاة الظهر";
+			   		audioList << duaAudio << QString::fromUtf8("Duhr prayer صلاة الظهر");
 			   		QProcess::execute (path+"Player.exe", audioList );
 		   		}	   			
 		  	}
    			else if (label_asr->text()+":00" == strTime){
-		   		audioList << prayerAudio << "Asr prayer صلاة العصر";
+		   		audioList << prayerAudio << QString::fromUtf8("Asr prayer صلاة العصر");
 		   		QProcess::execute (path+"Player.exe", audioList );	
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << "Asr prayer صلاة العصر";
+			   		audioList << duaAudio << QString::fromUtf8("Asr prayer صلاة العصر");
 			   		QProcess::execute (path+"player/Player.exe", audioList );
 		   		}
 		  	}
 	  		else if (label_maghreb->text()+":00" == strTime){
-	  			audioList << prayerAudio << "Maghreb prayer صلاة المغرب";
+	  			audioList << prayerAudio << QString::fromUtf8("Maghreb prayer صلاة المغرب");
 		   		QProcess::execute (path+"Player.exe", audioList );
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << "Maghreb prayer صلاة المغرب";
+			   		audioList << duaAudio << QString::fromUtf8("Maghreb prayer صلاة المغرب");
 			   		QProcess::execute (path+"Player.exe", audioList );
 		   		}		   			
 	  		}
 	  		else if (label_isha->text()+":00" == strTime){
-	  			audioList << prayerAudio << "Isha prayer صلاة العشاء";
+	  			audioList << prayerAudio << QString::fromUtf8("Isha prayer صلاة العشاء");
 		   		QProcess::execute (path+"Player.exe", audioList );
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << "Isha prayer صلاة العشاء";
+			   		audioList << duaAudio << QString::fromUtf8("Isha prayer صلاة العشاء");
 			   		QProcess::execute (path+"Player.exe", audioList );
 		   		}		   			
 	  		}

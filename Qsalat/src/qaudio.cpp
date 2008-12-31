@@ -13,31 +13,30 @@ Qaudio::Qaudio( QWidget * parent, Qt::WFlags f) : QDialog(parent, f )
 	setUI();
 	setActions();
 	Phonon::createPath(mediaObject, audioOutput);
-	isplay = true;
-	file = path+"data/qsalat.xml";
-	parser.readFile(file);	
-	init();
+	init(0);
 }
 
-void Qaudio::init()
+void Qaudio::init(int flag = 0)
 {
-	bool ok;
-	prayerLineEdit->setText(parser.getElement(1,0));
-    fajrLineEdit->setText(parser.getElement(1,1));
-    duaLineEdit->setText(parser.getElement(1,2));
-    if (0 == parser.getElement(1,3).toInt(&ok)) {
-		salatCheckBox->setChecked(false); 		
-	}
-	else{
-		salatCheckBox->setChecked(true);
-	}
-	if (0 == parser.getElement(1,4).toInt(&ok)) {
-		duaCheckBox->setChecked(false); 		
-	}
-	else{
-		duaCheckBox->setChecked(true);
-	}
-    
+	file = path+"data/qsalat.xml";
+	parser.readFile(file);	
+	if (0 == flag){
+		prayerLineEdit->setText(parser.getElement(1,0));
+	    fajrLineEdit->setText(parser.getElement(1,1));
+	    duaLineEdit->setText(parser.getElement(1,2));
+	    if (0 == parser.getElement(1,3).toInt()) {
+			salatCheckBox->setChecked(false); 		
+		}
+		else{
+			salatCheckBox->setChecked(true);
+		}
+		if (0 == parser.getElement(1,4).toInt()) {
+			duaCheckBox->setChecked(false); 		
+		}
+		else{
+			duaCheckBox->setChecked(true);
+		}			
+	}    
 }
 
 void Qaudio::closeEvent(QCloseEvent *event)
