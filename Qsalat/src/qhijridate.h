@@ -4,12 +4,14 @@
 #include <QtGui>
 #include "ui_hijri.h"
 #include "qhijri.h"
+#include "domparser.h"
 
 class Qhijridate : public QDialog, public Ui::Hijri
 {
 Q_OBJECT
 public:
 	Qhijridate( QWidget * parent = 0, Qt::WFlags f = 0 );	
+	void init();
 	
 protected:
 	void closeEvent(QCloseEvent *);
@@ -24,8 +26,9 @@ private:
 	 void setActions();
 	 QStringList glist;	
 	 QStringList hlist;	
-	 void init();
 	 QString path;
+	 DomParser parser;
+	 QString file;
 };
 
 #endif // __QHIJRIDATE_H__

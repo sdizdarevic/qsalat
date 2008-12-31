@@ -19,9 +19,11 @@ void Qhijridate::closeEvent(QCloseEvent *event)
 }
 
 void Qhijridate::init(){
+	file = path+"data/qsalat.xml";
+	parser.readFile(file);	
 	QDate date = QDate::currentDate(); 
 	QString *dates = new QString[4];
-	dates = hijri->isToString(date.year(), date.month(), date.day());	
+	dates = hijri->isToString(date.year(), date.month(), date.day(),parser.getElement(2,3).toInt());	
 	hyearBox->setValue(dates[3].toInt());
 	jyearBox->setValue(date.year());
 }
@@ -47,12 +49,12 @@ void Qhijridate::convert()
 	QString *dates = new QString[4];
 	QString text = "";	
 	if (hijriButton->isChecked()){
-		dates = hijri->chrToString(hyearBox->value(),hmonthBox->currentIndex()+1,hdayBox->value());
+		dates = hijri->chrToString(hyearBox->value(),hmonthBox->currentIndex()+1,hdayBox->value(),parser.getElement(2,3).toInt());
 		text = dates[0]+" "+dates[1]+" "+dates[2];	
 		QMessageBox::information(this, tr("My Application"),text,QMessageBox::Ok);
 	}
 	else{
-		dates = hijri->isToString(jyearBox->value(),jmonthBox->currentIndex()+1,jdayBox->value());
+		dates = hijri->isToString(jyearBox->value(),jmonthBox->currentIndex()+1,jdayBox->value(),parser.getElement(2,3).toInt());
 		text = dates[0]+" "+dates[1]+" "+dates[3];	
 		QMessageBox::information(this, tr("My Application"),text,QMessageBox::Ok);
 	}

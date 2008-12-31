@@ -9,9 +9,9 @@ public:
 	Qhijri();
 	~Qhijri();
 	int intPart(int);
-	int* chrToIsl(int, int, int);
-	int* islToChr(int, int, int);
-	QString* isToString(int, int, int);
-	QString* chrToString(int, int, int);
+	int* chrToIsl(int, int, int, int);
+	int* islToChr(int, int, int, int);
+	QString* isToString(int, int, int, int);
+	QString* chrToString(int, int, int, int);
 };
 #endif // __HIJRI_H__

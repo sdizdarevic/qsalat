@@ -63,8 +63,9 @@ void Qsalat::init()
 	playAthan = parser.getElement(1,3);
 	playDua = parser.getElement(1,4);
 	calcMethod = parser.getElement(2,0).toInt();
-	asrMethod = parser.getElement(2,2).toInt();
 	duhrMinutes = parser.getElement(2,1).toInt();
+	asrMethod = parser.getElement(2,2).toInt();	
+	hijriDays = parser.getElement(2,3).toInt();
 	QTime time = QTime::currentTime();   		
     QString strTime = time.toString("HH");    
     worldtime.setImage(worldtime.getImage(strTime.toInt(),timezone));    
@@ -115,7 +116,7 @@ void Qsalat::getSalats(){
 
 void Qsalat::getHijri(){
 	QString *dates = new QString[4];
-	dates = hijri->isToString(year, month, day);
+	dates = hijri->isToString(year, month, day,hijriDays);
 	QString text = dates[0]+" "+dates[1]+" "+dates[3];	
 	label_hijri->setText(QString::fromUtf8(dates[2].toLatin1().data()));
 	label_hijri_3->setText(dates[3]);
@@ -344,6 +345,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
   			calculation.init(1);	
   			location.init(1);
   			audio.init(1);
+  			hijridate.init();
 			getSalats();
 			getHijri();
 			createTrayIcon();	

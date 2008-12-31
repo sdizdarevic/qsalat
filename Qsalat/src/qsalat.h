@@ -83,6 +83,7 @@ private:
 	int calcMethod;
 	int asrMethod;
 	int duhrMinutes;
+	int hijriDays;
 	QString path;
 	
 private slots:

@@ -16,7 +16,7 @@ return int(floor(floatNum +0.0000001));
 }
 
 
-int* Qhijri::chrToIsl(int y, int m, int d) {
+int* Qhijri::chrToIsl(int y, int m, int d, int diff = 0) {
 	
 	int jd = 0;
 	if ((y>1582)||((y==1582)&&(m>10))||((y==1582)&&(m==10)&&(d>14))) 
@@ -31,7 +31,7 @@ int* Qhijri::chrToIsl(int y, int m, int d) {
 		
 		int l=jd-1948440+10632;
 		int n=intPart((l-1)/10631);
-		l=l-10631*n+354;
+		l=l-10631*n+354+diff;
 		int j=(intPart((10985-l)/5316))*(intPart((50*l)/17719))+(intPart(l/5670))*(intPart((43*l)/15238));
 		l=l-(intPart((30-j)/15))*(intPart((17719*j)/50))-(intPart(j/16))*(intPart((15238*j)/43))+29;
 		m=intPart((24*l)/709);
@@ -45,9 +45,9 @@ int* Qhijri::chrToIsl(int y, int m, int d) {
 	return res;
 }
 
-int* Qhijri::islToChr(int y, int m, int d) {
+int* Qhijri::islToChr(int y, int m, int d, int diff = 0) {
 	
-	int jd=intPart((11*y+3)/30)+354*y+30*m-intPart((m-1)/2)+d+1948440-385;	
+	int jd=intPart((11*y+3)/30)+354*y+30*m-intPart((m-1)/2)+d+1948440-385-diff;	
 	if (jd> 2299160 )
 	{
 		int l=jd+68569;
@@ -82,11 +82,11 @@ int* Qhijri::islToChr(int y, int m, int d) {
 	return res;
 }
 
-QString* Qhijri::isToString(int y, int m, int d){
+QString* Qhijri::isToString(int y, int m, int d, int diff){
 	QString months[] = {"Muharram","Safar","Rabi-al Awwal","Rabi-al Thani","Jumada al-Ula","Jumada al-Thani","Rajab","Sha\'ban","Ramadhan","Shawwal","Dhul Qa\'dah","Dhul Hijjah"};
 	QString monthsH[] = {"محرّم" ,"صفر" ,"ربيع الأول" ,"ربيع الثاني"  ,"جمادى الأولى" ,"جمادى الثاني" ,"رجب" ,"شعبان" ,"رمضان" ,"شوال" ,"ذو القعدة" ,"ذو الحجة"};
 	int * res = new int [3];
-	res = chrToIsl(y,m,d);
+	res = chrToIsl(y,m,d,diff);
 	QString* ress = new QString [4];
 	ress[0] = QString::number(res[0]);
 	ress[1] = months[res[1]-1];
@@ -95,10 +95,10 @@ QString* Qhijri::isToString(int y, int m, int d){
 	return ress;
 }
 
-QString* Qhijri::chrToString(int y, int m, int d){
+QString* Qhijri::chrToString(int y, int m, int d, int diff){
 	QString months[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
 	int * res = new int [3];
-	res = islToChr(y,m,d);
+	res = islToChr(y,m,d,diff);
 	QString* ress = new QString [3];
 	ress[0] = QString::number(res[0]);
 	ress[1] = months[res[1]-1];	
