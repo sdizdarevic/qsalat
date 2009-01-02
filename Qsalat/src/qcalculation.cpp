@@ -27,6 +27,7 @@ void Qcalculation::init(int flag = 0)
 	parser.readFile(file);
 	calcMethod = parser.getElement(2,0).toInt();
 	asrMethod = parser.getElement(2,2).toInt();
+	prayers->setAsrMethod(asrMethod);
 	//duhrMinutes = parser.getElement(2,1).toInt();
 	QString *times = new QString[7];
 	//QMessageBox msgBox;

@@ -7,8 +7,6 @@
 #include <QMenu>
 #include <QProcess>
 #include <QPaintEvent>
-//#include <QNetworkAddressEntry>
-//#include <QHostAddress>
 #include "ui_salat.h"
 #include "qpray.h"
 #include "qhijri.h"
@@ -27,10 +25,24 @@ class Qsalat : public QMainWindow, public Ui::Salat
 Q_OBJECT
 public:
 	Qsalat( QWidget * parent = 0, Qt::WFlags f = 0 );	
-	void getSalats();
-	void getHijri();		
+	
+private:    
+	// private members
 	Qpray *prayers;
 	Qhijri *hijri;
+	QAction *minimizeAction;
+    QAction *restoreAction;
+    QAction *quitAction;
+	QSystemTrayIcon *trayIcon;
+	QMenu *trayIconMenu;
+	int year;
+	int month;
+	int day;
+	double latitude;
+	double longitude;
+	double timezone;
+	QString country;
+	QString city;		
 	Qlocation location;
 	Qqibla qibla;
 	QDate date;
@@ -39,38 +51,7 @@ public:
 	Qworldtime worldtime;
 	Qmonthly monthly;
 	Qyearly yearly;
-	Qhijridate hijridate;
-	
-protected:
-	int year;
-	int month;
-	int day;
-	double latitude;
-	double longitude;
-	double timezone;
-	QString country;
-	QString city;
-	void closeEvent(QCloseEvent *);
-	void adjustWindow();
-	
-private:    
-    QAction *minimizeAction;
-    QAction *restoreAction;
-    QAction *quitAction;
-    //QAction *action_Close;
-    //QAction *action_Hide;
-	QSystemTrayIcon *trayIcon;
-	QMenu *trayIconMenu;
-	void createActions();
-	void createTrayIcon();
-	void setVisible(bool);	
-	void timerEvent(QTimerEvent *e);
-	void init();	
-	void initTimer();	
-	bool Gfirst; 
-	bool locationFirst;
-	//int screenx;
-	//int screeny;
+	Qhijridate hijridate; 
 	DomParser parser;
 	QString file;	
 	int timer;	
@@ -84,7 +65,18 @@ private:
 	int asrMethod;
 	int duhrMinutes;
 	int hijriDays;
-	QString path;
+	QString path;	
+	// private methods
+	void init();	
+	void initTimer();	 
+	void adjustWindow();	
+	void getSalats();
+	void getHijri();
+	void createTrayIcon();
+	void setVisible(bool);	
+	void closeEvent(QCloseEvent *);
+	void createActions();
+	void timerEvent(QTimerEvent *e);
 	
 private slots:
 	void iconActivated(QSystemTrayIcon::ActivationReason);

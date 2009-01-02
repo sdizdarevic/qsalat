@@ -1,4 +1,5 @@
 /****************************************************************************
+** qsalat.cpp
 **
 ** Copyright (C) 2008 Skander Jabouzi (Skander Software Solutions).
 ** Contact: skander@skanderjabouzi.com or jabouzi@gmail.com
@@ -33,9 +34,7 @@ Qsalat::Qsalat( QWidget * parent, Qt::WFlags f)
 	trayIcon = new QSystemTrayIcon(this);
 	trayIconMenu = new QMenu(this);		
 	createActions();	
-	setVisible(true);
-	Gfirst = true;
-	locationFirst = true;	 
+	setVisible(true);	 
 	init();  	
 	getSalats();
 	getHijri();
@@ -43,9 +42,11 @@ Qsalat::Qsalat( QWidget * parent, Qt::WFlags f)
 	createTrayIcon();
 }
 
+/**	
+ * initialization function : this function is used to initialize and reinitialize the qsalat object 
+ */
 void Qsalat::init()
 {
-	//QMessageBox::warning(this, tr("My Application"),path,QMessageBox::Ok);
 	date = QDate::currentDate();	
 	year = date.year();;
 	month = date.month();
@@ -71,6 +72,9 @@ void Qsalat::init()
     worldtime.setImage(worldtime.getImage(strTime.toInt(),timezone));    
 }
 
+/**	
+ * timer initialization : this function is used to initialize the timer 
+ */
 void Qsalat::initTimer()
 {
 	timer = startTimer(1000);
@@ -78,27 +82,29 @@ void Qsalat::initTimer()
 	QCoreApplication::postEvent(this,e);	
 }
 
+/**	
+ * window position function : this function is used to adjust the main window to the center of the screen
+ */
 void Qsalat::adjustWindow(){
 	QDesktopWidget *desktop = QApplication::desktop();
 	int screenWidth, width; 
 	int screenHeight, height;
 	int x, y;
 	QSize windowSize;	 
-	screenWidth = desktop->width(); // get width of screen
-	screenHeight = desktop->height(); // get height of screen	 
-	windowSize = size(); // size of our application window
+	screenWidth = desktop->width();
+	screenHeight = desktop->height();  
+	windowSize = size(); 
 	width = windowSize.width(); 
-	height = windowSize.height();	 
-	// little computations
+	height = windowSize.height();
 	x = (screenWidth - width) / 2;
 	y = (screenHeight - height) / 2;
 	y -= 50;	 
-	// move window to desired coordinates
 	move ( x, y );	
-	//screenx = x;
-	//screeny = y;
 }
 
+/**	
+ * salat function : calculate the salats times for the current day
+ */
 void Qsalat::getSalats(){			
 	QString *times = new QString[7];
 	prayers->setCalcMethod(calcMethod);
@@ -110,10 +116,12 @@ void Qsalat::getSalats(){
 	label_asr->setText(times[3]);
 	label_maghreb->setText(times[5]);
 	label_isha->setText(times[6]);
-	//QMessageBox::warning(this, tr("My Application"),times[2],QMessageBox::Ok);
 	label_location->setText(city+", "+country);	
 }
 
+/**	
+ * hijri function : calculate the hijri date for the current day
+ */
 void Qsalat::getHijri(){
 	QString *dates = new QString[4];
 	dates = hijri->isToString(year, month, day,hijriDays);
@@ -124,6 +132,9 @@ void Qsalat::getHijri(){
 	label_hijri_2->setText(text);
 }
 
+/**	
+ * tray icon function : set the tray icon for this application
+ */
 void Qsalat::createTrayIcon()
 {
 	setWindowIcon(QIcon(path+"images/mecque.png"));
@@ -145,33 +156,23 @@ void Qsalat::createTrayIcon()
 	trayIcon->show();	
 }
 
-void Qsalat::iconActivated(QSystemTrayIcon::ActivationReason reason)
-{
-	switch (reason) {
-	case QSystemTrayIcon::Trigger:    
-	case QSystemTrayIcon::MiddleClick:
-		showNormal();
-		break;
-	default:
-		;
-	}
-}
 
+
+/**	
+ * tray icon menu function : set the tray icon menu
+ */
 void Qsalat::setVisible(bool visible)
 {
     minimizeAction->setEnabled(visible);
-    //maximizeAction->setEnabled(!isMaximized());
     restoreAction->setEnabled(!visible);
     QMainWindow::setVisible(visible);
 }
 
+/**	
+ * custom close function : make the main window and all other open windows hide on close event
+ */
 void Qsalat::closeEvent(QCloseEvent *event)
 {
-	//QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(1);
-	//if (Gfirst == true){
-		//trayIcon->showMessage("Information about this application", "Qsalat application is still runing", icon,10000);
-		//Gfirst = false;
-	//}		
 	hide();
 	event->ignore();
 	qibla.hide();
@@ -184,6 +185,9 @@ void Qsalat::closeEvent(QCloseEvent *event)
 	hijridate.hide();
 }
 
+/**	
+ * actions function : set all menu and buttons actions
+ */
 void Qsalat::createActions()
 {
 	connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason))); 
@@ -209,133 +213,9 @@ void Qsalat::createActions()
     connect(actionAbout_Qsalat, SIGNAL(triggered()), this, SLOT(_about()));    
 }
 
-// Private Slots
-
-void Qsalat::showLocation(){
-	if (location.isHidden()){
-		location.show();	
-	}
-	else{		
-		location.activateWindow();
-		location.raise();		
-	}
-	
-}
-
-void Qsalat::showQibla(){	
-	if (qibla.isHidden()){		
-		qibla.show();		
-	}	
-	else{
-		//QMessageBox msgBox;
- 		//msgBox.setText("YES");
- 		//msgBox.exec();
- 		qibla.activateWindow();
- 		qibla.raise();	
-	}	
-}
-
-void Qsalat::showAudio(){	
-	if (audio.isHidden()){		
-		audio.show();	
-	}	
-	else{		
-		audio.activateWindow();
-		audio.raise();		
-	}	
-}
-
-void Qsalat::showCalculation(){		
-	if (calculation.isHidden()){		
-		calculation.show();
-	}	
-	else{		
-		calculation.activateWindow();
-		calculation.raise();		
-	}	
-}
-
-void Qsalat::showWorldtime(){	
-	if (worldtime.isHidden()){		
-		worldtime.show();
-	}	
-	else{		
-		worldtime.activateWindow();
-		worldtime.raise();		
-	}	
-}
-
-void Qsalat::showMonthly(){	
-	if (monthly.isHidden()){		
-		monthly.show();
-	}	
-	else{		
-		monthly.activateWindow();
-		monthly.raise();		
-	}	
-}
-
-void Qsalat::showYearly(){	
-	if (yearly.isHidden()){		
-		yearly.show();
-	}	
-	else{		
-		yearly.activateWindow();
-		yearly.raise();		
-	}	
-}
-
-void Qsalat::showHijridate(){	
-	if (hijridate.isHidden()){		
-		hijridate.show();
-	}	
-	else{		
-		hijridate.activateWindow();
-		hijridate.raise();		
-	}	
-}
-
-void Qsalat::_about()
-{
-    QMessageBox::about(this, tr("About Qsalat"),
-             tr("<b> Qsalat V0.1</b> Copyright (c) 2008 Skander Jabouzi skander@skanderjabouzi.com<br>"             
-             	" This is a free software distributed under the terms of the GNU General Public License version 3\n(http://www.gnu.org/licenses/gpl-3.0.html)"));     
-} 
-
-void::Qsalat::_hide()
-{
-	hide();	
-	if (!qibla.isHidden()){		
-		qibla.hide();
-	}
-	if (!location.isHidden()){		
-		location.hide();
-	}
-	if (!audio.isHidden()){		
-		audio.hide();
-	}	
-	if (!calculation.isHidden()){		
-		calculation.hide();
-	}	
-	if (!worldtime.isHidden()){		
-		worldtime.hide();
-	}	
-	if (!monthly.isHidden()){		
-		monthly.hide();
-	}	
-	if (!yearly.isHidden()){		
-		yearly.hide();
-	}	
-	if (!hijridate.isHidden()){		
-		hijridate.hide();
-	}	
-}
-
-void Qsalat::_showNormal()
-{
-	showNormal();
-}
-
+/**	
+ * timer function : check and play the athan and the config changes
+ */
 void Qsalat::timerEvent(QTimerEvent *e)
 {
 	if (!e) return;
@@ -431,52 +311,210 @@ void Qsalat::timerEvent(QTimerEvent *e)
 			worldtime.setImage(worldtime.getImage(23,timezone));
    		}
    		if (playAthan == "1"){
-		   	if (label_fajr->text()+":00" == strTime){
-		   		audioList << fajraAudio << QString::fromUtf8("Fajr prayer صلاة الفجر");
+		   	if (label_fajr->text() == strTime){
+		   		QString salatTitle = "Fajr prayer";
+		   		QString salatTitle2 = "صلاة الفجر";
+		   		audioList << fajraAudio << "Fajr prayer" << QString::fromUtf8("صلاة الفجر");
 		   		QProcess::execute (path+"Player.exe", audioList );
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << QString::fromUtf8("Fajr prayer صلاة الفجر");
+			   		audioList << duaAudio << "Fajr prayer" << QString::fromUtf8("صلاة الفجر");
 			   		QProcess::execute (path+"Player.exe", audioList );
 		   		}
 		  	}
    			else if (label_duhr->text()+":00" == strTime){
-		  		audioList <<  prayerAudio << QString::fromUtf8("Duhr prayer صلاة الظهر");
+		  		audioList << duaAudio << "Duhr prayer" << QString::fromUtf8("صلاة الظهر");
 		   		QProcess::execute (path+"Player.exe", audioList );	
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << QString::fromUtf8("Duhr prayer صلاة الظهر");
+			   		audioList << duaAudio << "Duhr prayer" << QString::fromUtf8("صلاة الظهر");
 			   		QProcess::execute (path+"Player.exe", audioList );
 		   		}	   			
 		  	}
    			else if (label_asr->text()+":00" == strTime){
-		   		audioList << prayerAudio << QString::fromUtf8("Asr prayer صلاة العصر");
+		   		audioList << prayerAudio << "Asr prayer" << QString::fromUtf8("صلاة العصر");
 		   		QProcess::execute (path+"Player.exe", audioList );	
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << QString::fromUtf8("Asr prayer صلاة العصر");
+			   		audioList << duaAudio << "Asr prayer" << QString::fromUtf8("صلاة العصر");
 			   		QProcess::execute (path+"player/Player.exe", audioList );
 		   		}
 		  	}
 	  		else if (label_maghreb->text()+":00" == strTime){
-	  			audioList << prayerAudio << QString::fromUtf8("Maghreb prayer صلاة المغرب");
+	  			audioList << prayerAudio << "Maghreb prayer" << QString::fromUtf8("صلاة المغرب");
 		   		QProcess::execute (path+"Player.exe", audioList );
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << QString::fromUtf8("Maghreb prayer صلاة المغرب");
+			   		audioList << duaAudio << "Maghreb prayer" << QString::fromUtf8("صلاة المغرب");
 			   		QProcess::execute (path+"Player.exe", audioList );
 		   		}		   			
 	  		}
 	  		else if (label_isha->text()+":00" == strTime){
-	  			audioList << prayerAudio << QString::fromUtf8("Isha prayer صلاة العشاء");
+	  			audioList << prayerAudio << "Isha prayer" << QString::fromUtf8("صلاة العشاء");
 		   		QProcess::execute (path+"Player.exe", audioList );
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << QString::fromUtf8("Isha prayer صلاة العشاء");
+			   		audioList << duaAudio << "Isha prayer" << QString::fromUtf8("صلاة العشاء");
 			   		QProcess::execute (path+"Player.exe", audioList );
 		   		}		   			
 	  		}
   		}    		
  	}	
 }
+
+// Private Slots
+
+/**	
+ * tray icon click function : set the action when you click on the tray icon
+ */
+void Qsalat::iconActivated(QSystemTrayIcon::ActivationReason reason)
+{
+	switch (reason) {
+	case QSystemTrayIcon::Trigger:    
+	case QSystemTrayIcon::MiddleClick:
+		showNormal();
+		break;
+	default:
+		;
+	}
+}
+
+/**	
+ * show location window function : show the location window to set the city parameters
+ */
+void Qsalat::showLocation(){
+	if (location.isHidden()){
+		location.show();	
+	}
+	else{		
+		location.activateWindow();
+		location.raise();		
+	}
+	
+}
+
+/**	
+ * show qibla window function : show the qibla window and the salat direction
+ */
+void Qsalat::showQibla(){	
+	if (qibla.isHidden()){		
+		qibla.show();		
+	}	
+	else{
+ 		qibla.activateWindow();
+ 		qibla.raise();	
+	}	
+}
+
+/**	
+ * show audio window function : show the audio window to set the athan audio files
+ */
+void Qsalat::showAudio(){	
+	if (audio.isHidden()){		
+		audio.show();	
+	}	
+	else{		
+		audio.activateWindow();
+		audio.raise();		
+	}	
+}
+
+/**	
+ * show calculation window function : show the salat calculation parameters window
+ */
+void Qsalat::showCalculation(){		
+	if (calculation.isHidden()){		
+		calculation.show();
+	}	
+	else{		
+		calculation.activateWindow();
+		calculation.raise();		
+	}	
+}
+
+/**	
+ * show calculation window function : show the salat calculation parameters window
+ */
+void Qsalat::showWorldtime(){	
+	if (worldtime.isHidden()){		
+		worldtime.show();
+	}	
+	else{		
+		worldtime.activateWindow();
+		worldtime.raise();		
+	}	
+}
+
+void Qsalat::showMonthly(){	
+	if (monthly.isHidden()){		
+		monthly.show();
+	}	
+	else{		
+		monthly.activateWindow();
+		monthly.raise();		
+	}	
+}
+
+void Qsalat::showYearly(){	
+	if (yearly.isHidden()){		
+		yearly.show();
+	}	
+	else{		
+		yearly.activateWindow();
+		yearly.raise();		
+	}	
+}
+
+void Qsalat::showHijridate(){	
+	if (hijridate.isHidden()){		
+		hijridate.show();
+	}	
+	else{		
+		hijridate.activateWindow();
+		hijridate.raise();		
+	}	
+}
+
+void Qsalat::_about()
+{
+    QMessageBox::about(this, tr("About Qsalat"),
+             tr("<b> Qsalat V0.1</b> Copyright (c) 2008 Skander Jabouzi skander@skanderjabouzi.com<br>"             
+             	" This is a free software distributed under the terms of the GNU General Public License version 3\n(http://www.gnu.org/licenses/gpl-3.0.html)"));     
+} 
+
+void::Qsalat::_hide()
+{
+	hide();	
+	if (!qibla.isHidden()){		
+		qibla.hide();
+	}
+	if (!location.isHidden()){		
+		location.hide();
+	}
+	if (!audio.isHidden()){		
+		audio.hide();
+	}	
+	if (!calculation.isHidden()){		
+		calculation.hide();
+	}	
+	if (!worldtime.isHidden()){		
+		worldtime.hide();
+	}	
+	if (!monthly.isHidden()){		
+		monthly.hide();
+	}	
+	if (!yearly.isHidden()){		
+		yearly.hide();
+	}	
+	if (!hijridate.isHidden()){		
+		hijridate.hide();
+	}	
+}
+
+void Qsalat::_showNormal()
+{
+	showNormal();
+}
+
+
 //
