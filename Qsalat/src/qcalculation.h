@@ -13,6 +13,10 @@ Q_OBJECT
 public:
 	Qcalculation( QWidget * parent = 0, Qt::WFlags f = 0 );	
 	void init(int);
+	void apply_();
+
+//signals:
+//	void apply_();
 	
 protected:
 	void closeEvent(QCloseEvent *);
@@ -31,12 +35,15 @@ private:
 	 QString path;
 	 Qpray *prayers;
 	 QDate date;
+	 QString *times;
 	 int calcMethod;
 	 int asrMethod;
 	 int duhrMinutes;
 	 int calcTime(QString,QString);
 	 int getDuhrMinutes();
 	 int setDuhrMinutes();
+	 int getAsrDiff(int,QString,QString);
+	 int asrMinutes;
 };
 
 #endif // __CALCULATION_H__

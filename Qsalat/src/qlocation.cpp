@@ -129,14 +129,14 @@ void Qlocation::apply()
 			//parser.changeElement(latLineEdit->text(),i,j);
 		//}
 	//}
-	QMessageBox::warning(this, tr("My Application"),parser.getElement(2,1),QMessageBox::Ok);
+	//QMessageBox::warning(this, tr("My Application"),parser.getElement(2,1),QMessageBox::Ok);
 	parser.changeElement(latLineEdit->text(),0,0);
 	parser.changeElement(lngLineEdit->text(),0,1);
 	parser.changeElement(cityLineEdit->text(),0,2);
 	parser.changeElement(countryLineEdit->text(),0,3);	
 	parser.changeElement(timezoneLineEdit->text(),0,4);
 	parser.saveData(file);
-	DomParser::changed = true; 
+	DomParser::changed = true; 	
 }
 
 void Qlocation::save()
@@ -148,6 +148,7 @@ void Qlocation::save()
 	else if (countryLineEdit->text().length() == 0) QMessageBox::warning(this, tr("My Application"),"The country is empty",QMessageBox::Ok);
 	else if (timezoneLineEdit->text().length() == 0) QMessageBox::warning(this, tr("My Application"),"The timezone is empty",QMessageBox::Ok);
 	else apply();
+	//calculation.apply_();
 	//close();
 }
 

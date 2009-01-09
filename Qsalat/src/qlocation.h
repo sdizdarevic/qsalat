@@ -13,6 +13,7 @@
 #include <QHttp>
 #include "ui_location.h"
 #include "domparser.h"
+#include "qcalculation.h"
 //
 class Qlocation : public QDialog, public Ui::Location
 {
@@ -51,6 +52,7 @@ private:
 	int pendingRequests;	
 	void setActions();
 	void setUI();	
+	Qcalculation calculation;
 	
 	QString path;
 };

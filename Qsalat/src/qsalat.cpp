@@ -222,8 +222,9 @@ void Qsalat::timerEvent(QTimerEvent *e)
   	if (e->timerId() == timer){
   		if (DomParser::changed) {
   			init();  
+			location.init(1);
   			calculation.init(1);	
-  			location.init(1);
+			//calculation.apply_();
   			audio.init(1);
   			hijridate.init();
 			getSalats();
@@ -311,6 +312,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
 			worldtime.setImage(worldtime.getImage(23,timezone));
    		}
    		if (playAthan == "1"){
+			audioList.clear();
 		   	if (label_fajr->text() == strTime){
 		   		QString salatTitle = "Fajr prayer";
 		   		QString salatTitle2 = "صلاة الفجر";
@@ -323,7 +325,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
 		   		}
 		  	}
    			else if (label_duhr->text()+":00" == strTime){
-		  		audioList << duaAudio << "Duhr prayer" << QString::fromUtf8("صلاة الظهر");
+		  		audioList << prayerAudio << "Duhr prayer" << QString::fromUtf8("صلاة الظهر");
 		   		QProcess::execute (path+"Player.exe", audioList );	
 		   		audioList.clear();
 		   		if (playDua == "1"){

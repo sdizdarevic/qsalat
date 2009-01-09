@@ -43,9 +43,9 @@
     <widget class="QLabel" name="label_fajr" >
      <property name="geometry" >
       <rect>
-       <x>120</x>
+       <x>110</x>
        <y>100</y>
-       <width>75</width>
+       <width>101</width>
        <height>41</height>
       </rect>
      </property>
@@ -72,9 +72,9 @@ background-image: url(:/images/slider3.png);</string>
     <widget class="QLabel" name="label_asr" >
      <property name="geometry" >
       <rect>
-       <x>120</x>
+       <x>110</x>
        <y>190</y>
-       <width>75</width>
+       <width>101</width>
        <height>41</height>
       </rect>
      </property>
@@ -101,9 +101,9 @@ background-image: url(:/images/slider3.png);</string>
     <widget class="QLabel" name="label_isha" >
      <property name="geometry" >
       <rect>
-       <x>120</x>
+       <x>110</x>
        <y>280</y>
-       <width>75</width>
+       <width>101</width>
        <height>41</height>
       </rect>
      </property>
@@ -130,9 +130,9 @@ background-image: url(:/images/slider3.png);</string>
     <widget class="QLabel" name="label_duhr" >
      <property name="geometry" >
       <rect>
-       <x>120</x>
+       <x>110</x>
        <y>145</y>
-       <width>75</width>
+       <width>101</width>
        <height>41</height>
       </rect>
      </property>
@@ -159,9 +159,9 @@ background-image: url(:/images/slider3.png);</string>
     <widget class="QLabel" name="label_maghreb" >
      <property name="geometry" >
       <rect>
-       <x>120</x>
+       <x>110</x>
        <y>235</y>
-       <width>75</width>
+       <width>101</width>
        <height>41</height>
       </rect>
      </property>
@@ -356,7 +356,7 @@ color:white;
      <x>0</x>
      <y>0</y>
      <width>300</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile" >
