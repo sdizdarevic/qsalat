@@ -59,7 +59,7 @@ void Qsalat::init()
 	city = parser.getElement(0,3);
 	timezone = parser.getElement(0,4).toDouble();
 	prayerAudio = parser.getElement(1,0);
-	fajraAudio = parser.getElement(1,1);
+	fajrAudio = parser.getElement(1,1);
 	duaAudio = parser.getElement(1,2);	
 	playAthan = parser.getElement(1,3);
 	playDua = parser.getElement(1,4);
@@ -313,51 +313,48 @@ void Qsalat::timerEvent(QTimerEvent *e)
    		}
    		if (playAthan == "1"){
 			audioList.clear();
-		   	if (label_fajr->text() == strTime){
-		   		QString salatTitle = "Fajr prayer";
-		   		QString salatTitle2 = "صلاة الفجر";
-		   		audioList << fajraAudio << "Fajr prayer" << QString::fromUtf8("صلاة الفجر");
-		   		QProcess::execute (path+"Player.exe", audioList );
+		   	if (label_fajr->text()+":00" == strTime){
+		   		QString salatTitle = "Fajr prayer "+ QString::fromUtf8(" صلاة الفجر");		   		
+		   		setPlayer(fajrAudio, salatTitle);
 		   		audioList.clear();
-		   		if (playDua == "1"){
-			   		audioList << duaAudio << "Fajr prayer" << QString::fromUtf8("صلاة الفجر");
-			   		QProcess::execute (path+"Player.exe", audioList );
+		   		if (playDua == "1"){			   		
+			   		setPlayer(duaAudio, salatTitle);
 		   		}
 		  	}
    			else if (label_duhr->text()+":00" == strTime){
-		  		audioList << prayerAudio << "Duhr prayer" << QString::fromUtf8("صلاة الظهر");
-		   		QProcess::execute (path+"Player.exe", audioList );	
+		  		QString salatTitle = "Duhr prayer " + QString::fromUtf8(" صلاة الظهر");
+		   		setPlayer(prayerAudio, salatTitle);
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << "Duhr prayer" << QString::fromUtf8("صلاة الظهر");
-			   		QProcess::execute (path+"Player.exe", audioList );
+			   		QString salatTitle = "Duhr prayer " + QString::fromUtf8(" صلاة الظهر");
+			   		setPlayer(duaAudio, salatTitle);
 		   		}	   			
 		  	}
    			else if (label_asr->text()+":00" == strTime){
-		   		audioList << prayerAudio << "Asr prayer" << QString::fromUtf8("صلاة العصر");
-		   		QProcess::execute (path+"Player.exe", audioList );	
+		   		QString salatTitle = "Asr prayer " + QString::fromUtf8(" صلاة العصر");
+		   		setPlayer(prayerAudio, salatTitle);
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << "Asr prayer" << QString::fromUtf8("صلاة العصر");
-			   		QProcess::execute (path+"player/Player.exe", audioList );
+			   		QString salatTitle = "Asr prayer " + QString::fromUtf8(" صلاة العصر");
+			   		setPlayer(duaAudio, salatTitle);
 		   		}
 		  	}
 	  		else if (label_maghreb->text()+":00" == strTime){
-	  			audioList << prayerAudio << "Maghreb prayer" << QString::fromUtf8("صلاة المغرب");
-		   		QProcess::execute (path+"Player.exe", audioList );
+	  			QString salatTitle = "Maghreb prayer " + QString::fromUtf8(" صلاة المغرب");
+		   		setPlayer(prayerAudio, salatTitle);
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << "Maghreb prayer" << QString::fromUtf8("صلاة المغرب");
-			   		QProcess::execute (path+"Player.exe", audioList );
+			   		QString salatTitle = "Maghreb prayer " + QString::fromUtf8(" صلاة المغرب");
+			   		setPlayer(duaAudio, salatTitle);
 		   		}		   			
 	  		}
 	  		else if (label_isha->text()+":00" == strTime){
-	  			audioList << prayerAudio << "Isha prayer" << QString::fromUtf8("صلاة العشاء");
-		   		QProcess::execute (path+"Player.exe", audioList );
+	  			QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
+		   		setPlayer(prayerAudio, salatTitle);
 		   		audioList.clear();
 		   		if (playDua == "1"){
-			   		audioList << duaAudio << "Isha prayer" << QString::fromUtf8("صلاة العشاء");
-			   		QProcess::execute (path+"Player.exe", audioList );
+			   		QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
+			   		setPlayer(duaAudio, salatTitle);
 		   		}		   			
 	  		}
   		}    		
@@ -516,6 +513,14 @@ void::Qsalat::_hide()
 void Qsalat::_showNormal()
 {
 	showNormal();
+}
+
+void Qsalat::setPlayer(QString file, QString label)
+{
+	player.show();
+	player.setLabel(label);
+	player.setAudio(file);
+	player.play();
 }
 
 

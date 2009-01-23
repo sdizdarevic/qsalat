@@ -19,6 +19,7 @@
 #include "qyearly.h"
 #include "qhijridate.h"
 #include "domparser.h"
+#include "playerimpl.h"
 //
 class Qsalat : public QMainWindow, public Ui::Salat
 {
@@ -53,11 +54,12 @@ private:
 	Qyearly yearly;
 	Qhijridate hijridate; 
 	DomParser parser;
+	PlayerImpl player;
 	QString file;	
 	int timer;	
 	QStringList audioList;
 	QString prayerAudio;
-	QString fajraAudio;
+	QString fajrAudio;
 	QString duaAudio;
 	QString playAthan;
 	QString playDua;
@@ -77,6 +79,7 @@ private:
 	void closeEvent(QCloseEvent *);
 	void createActions();
 	void timerEvent(QTimerEvent *e);
+	void setPlayer(QString,QString);
 	
 private slots:
 	void iconActivated(QSystemTrayIcon::ActivationReason);

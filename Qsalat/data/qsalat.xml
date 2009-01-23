@@ -12,12 +12,12 @@
 		<fajrPrayer>/home/skander/Developpement/Qsalat/audio/athanFajr.mp3</fajrPrayer>
 		<dua>/home/skander/Developpement/Qsalat/audio/dua.mp3</dua>
 		<playAthan>1</playAthan>
-		<playDua>1</playDua>
+		<playDua>0</playDua>
 	</audio>
 	<calculation>
 		<method>3</method>	
-		<duhr>120</duhr>
-		<asr>0</asr>
+		<duhr>130</duhr>
+		<asr>1</asr>
 		<hijri>0</hijri>
 		<higherLat>0</higherLat>
 	</calculation>
