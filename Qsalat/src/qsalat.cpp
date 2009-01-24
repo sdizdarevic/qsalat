@@ -55,8 +55,8 @@ void Qsalat::init()
 	parser.readFile(file);
 	latitude = parser.getElement(0,0).toDouble();
 	longitude = parser.getElement(0,1).toDouble();	
-	country = parser.getElement(0,2);
-	city = parser.getElement(0,3);
+	city = parser.getElement(0,2);
+	country = parser.getElement(0,3);
 	timezone = parser.getElement(0,4).toDouble();
 	prayerAudio = parser.getElement(1,0);
 	fajrAudio = parser.getElement(1,1);
