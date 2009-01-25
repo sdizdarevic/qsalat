@@ -240,19 +240,6 @@
    <property name="title" >
     <string>Higher Latitudes option</string>
    </property>
-   <widget class="QCheckBox" name="highLatBox" >
-    <property name="geometry" >
-     <rect>
-      <x>20</x>
-      <y>60</y>
-      <width>141</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text" >
-     <string>Higher Latitudes</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_10" >
     <property name="geometry" >
      <rect>
@@ -269,6 +256,16 @@
     </property>
     <property name="text" >
      <string>Set high Latitudes option</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="highList" >
+    <property name="geometry" >
+     <rect>
+      <x>8</x>
+      <y>60</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
     </property>
    </widget>
   </widget>

@@ -31,7 +31,8 @@ private:
 	 void setActions();
 	 DomParser parser;
 	 QString file;
-	 QStringList list;		
+	 QStringList list;	
+	 QStringList hList;
 	 QString path;
 	 Qpray *prayers;
 	 QDate date;

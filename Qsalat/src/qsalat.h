@@ -67,6 +67,7 @@ private:
 	int asrMethod;
 	int duhrMinutes;
 	int hijriDays;
+	int highlatitude;
 	QString path;	
 	// private methods
 	void init();	

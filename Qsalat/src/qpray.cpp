@@ -12,7 +12,8 @@ Qpray::Qpray()
 		MWL        = 3;    // Muslim World League (MWL)
 		Makkah     = 4;    // Umm al-Qura, Makkah
 		Egypt      = 5;    // Egyptian General Authority of Survey
-		Custom     = 6;    // Custom Setting
+		Tehran     = 6;    // Institute of Geophysics, University of Tehran
+		Custom     = 7;    // Custom Setting
 
 		// Juristic Methods
 		Shafii     = 0;    // Shafii (standard)
@@ -109,6 +110,11 @@ Qpray::Qpray()
 		methodParams[6][3] = 0.0;
 		methodParams[6][4] = 17.0;
 
+		methodParams[7][0] = 17.7;
+		methodParams[7][1] = 0.0;
+		methodParams[7][2] = 4.5;
+		methodParams[7][3] = 0.0;
+		methodParams[7][4] = 15.0;		
 }
 
 Qpray::~Qpray()
@@ -210,10 +216,14 @@ void Qpray::setTimeFormat(int timeFormat)
 // convert float hours to 24h format
 QString Qpray::floatToTime24(double time)
 {
-	time = fixhour(time+ 0.5/ 60);  // add 0.5 minutes to round
-	double hours = floor(time);
-	double minutes = floor((time- hours)* 60);
-	return twoDigitsFormat(hours)+':'+ twoDigitsFormat(minutes);
+	if (isNaN(time))
+		return InvalidTime;
+	else{
+		time = fixhour(time+ 0.5/ 60);  // add 0.5 minutes to round
+		double hours = floor(time);
+		double minutes = floor((time- hours)* 60);
+		return twoDigitsFormat(hours)+':'+ twoDigitsFormat(minutes);
+	}
 }
 
 // convert float hours to 12h format
@@ -221,12 +231,14 @@ QString Qpray::floatToTime12(double time)
 {
 	if (isNaN(time))
 		return InvalidTime;
-	time = fixhour(time+ 0.5/ 60);  // add 0.5 minutes to round
-	int hours = ((int)time);
-	int minutes = (((int)time- hours)* 60);
-	QString suffix = hours >= 12.0 ? " pm" : " am";
-	hours = (hours + 12 - 1) % 12 + 1;
-	return QString::number(hours)+':'+ twoDigitsFormat(minutes)+ suffix;
+	else{
+		time = fixhour(time+ 0.5/ 60);  // add 0.5 minutes to round
+		int hours = ((int)time);
+		int minutes = (((int)time- hours)* 60);
+		QString suffix = hours >= 12.0 ? " pm" : " am";
+		hours = (hours + 12 - 1) % 12 + 1;
+		return QString::number(hours)+':'+ twoDigitsFormat(minutes)+ suffix;
+	}
 }
 
 
@@ -352,9 +364,10 @@ double* Qpray::adjustTimes(double* times)
 		times[5] = times[4]+ methodParams[calcMethod][2]/ 60.0;
 	if (methodParams[calcMethod][3] == 1) // Isha
 		times[6] = times[5]+ methodParams[calcMethod][4]/ 60.0;
+	
+	if (adjustHighLats != None)	
+		times = adjustHighLatTimes(times);
 
-	//if (adjustHighLats != None)
-		//times = adjustHighLatTimes(times);
 	return times;
 }
 
@@ -442,16 +455,34 @@ QString Qpray::twoDigitsFormat(int num)
 	return (num <10) ? '0'+ QString::number(num) : QString::number(num);
 }
 
-bool Qpray::isNaN(int var){
-    return (typeid(var).name() == "i");
+/*bool Qpray::isNaN(int var){
+	//return (typeid(var).name() == "i");
+	//cout << (_isnan((double)var) == 0);
+	return (_isnan((double)var) == 0); 
 }
 
 bool Qpray::isNaN(float var){
-    return (typeid(var).name() == "f");
-}
+    //return (typeid(var).name() == "f");
+	//cout << (_isnan((double)var) == 0);
+	return (_isnan((double)var) == 0);
+}*/
 
 bool Qpray::isNaN(double var){
-    return (typeid(var).name() == "d");
+    //return (typeid(var).name() == "d");
+	//cout << (_isnan(var) == 0);
+	/*QString ok = "";
+	if (_isnan(var) == 0) ok = "0";
+	else ok = "non";*/
+	/*QMessageBox msgBox;
+ 	msgBox.setText(ok);
+ 	msgBox.exec();*/
+	//cout << ;
+	#ifdef Q_WS_WIN
+	return (_isnan(var) != 0);
+	#endif
+	#ifdef Q_WS_X11
+	return (isnan(var) != 0);
+	#endif
 }
 
 

@@ -67,6 +67,7 @@ void Qsalat::init()
 	duhrMinutes = parser.getElement(2,1).toInt();
 	asrMethod = parser.getElement(2,2).toInt();	
 	hijriDays = parser.getElement(2,3).toInt();
+	highlatitude = parser.getElement(2,4).toInt();
 	QTime time = QTime::currentTime();   		
     QString strTime = time.toString("HH");    
     worldtime.setImage(worldtime.getImage(strTime.toInt(),timezone));    
@@ -110,6 +111,7 @@ void Qsalat::getSalats(){
 	prayers->setCalcMethod(calcMethod);
 	prayers->setAsrMethod(asrMethod);
 	prayers->setDhuhrMinutes(duhrMinutes);
+	prayers->setHighLatsMethod(highlatitude);
 	times = prayers->getDatePrayerTimes(year,month,day,latitude,longitude,timezone);
 	label_fajr->setText(times[0]);
 	label_duhr->setText(times[2]);
@@ -316,7 +318,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
 		   	if (label_fajr->text()+":00" == strTime){
 		   		QString salatTitle = "Fajr prayer "+ QString::fromUtf8(" صلاة الفجر");		   		
 		   		setPlayer(fajrAudio, salatTitle);
-		   		audioList.clear();
+		   		//audioList.clear();
 		   		if (playDua == "1"){			   		
 			   		setPlayer(duaAudio, salatTitle);
 		   		}
@@ -324,7 +326,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
    			else if (label_duhr->text()+":00" == strTime){
 		  		QString salatTitle = "Duhr prayer " + QString::fromUtf8(" صلاة الظهر");
 		   		setPlayer(prayerAudio, salatTitle);
-		   		audioList.clear();
+		   		//audioList.clear();
 		   		if (playDua == "1"){
 			   		QString salatTitle = "Duhr prayer " + QString::fromUtf8(" صلاة الظهر");
 			   		setPlayer(duaAudio, salatTitle);
@@ -333,7 +335,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
    			else if (label_asr->text()+":00" == strTime){
 		   		QString salatTitle = "Asr prayer " + QString::fromUtf8(" صلاة العصر");
 		   		setPlayer(prayerAudio, salatTitle);
-		   		audioList.clear();
+		   		//audioList.clear();
 		   		if (playDua == "1"){
 			   		QString salatTitle = "Asr prayer " + QString::fromUtf8(" صلاة العصر");
 			   		setPlayer(duaAudio, salatTitle);
@@ -342,7 +344,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
 	  		else if (label_maghreb->text()+":00" == strTime){
 	  			QString salatTitle = "Maghreb prayer " + QString::fromUtf8(" صلاة المغرب");
 		   		setPlayer(prayerAudio, salatTitle);
-		   		audioList.clear();
+		   		//audioList.clear();
 		   		if (playDua == "1"){
 			   		QString salatTitle = "Maghreb prayer " + QString::fromUtf8(" صلاة المغرب");
 			   		setPlayer(duaAudio, salatTitle);
@@ -351,7 +353,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
 	  		else if (label_isha->text()+":00" == strTime){
 	  			QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
 		   		setPlayer(prayerAudio, salatTitle);
-		   		audioList.clear();
+		   		//audioList.clear();
 		   		if (playDua == "1"){
 			   		QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
 			   		setPlayer(duaAudio, salatTitle);

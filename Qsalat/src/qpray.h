@@ -4,9 +4,13 @@
 //#include <QtGui/QMainWindow>
 #include <QString>
 #include <QDate>
+#include <QtGui>
 #include <cmath>
 #include <typeinfo>
 #include <iostream>
+#ifdef Q_WS_WIN
+#include <float.h>
+#endif
 
 using namespace::std;
 //#include "ui_qpray.h"
@@ -155,10 +159,10 @@ public:
     QString twoDigitsFormat(int);
 
 
-    bool isNaN(int);
+    //bool isNaN(int);
 
 
-    bool isNaN(float);
+    //bool isNaN(float);
 
 
     bool isNaN(double);
@@ -254,6 +258,7 @@ public:
     	int MWL;    // Muslim World League (MWL)
     	int Makkah;    // Umm al-Qura, Makkah
     	int Egypt;    // Egyptian General Authority of Survey
+		int Tehran;    // Institute of Geophysics, University of Tehran
     	int Custom;    // Custom Setting
 
     	// Juristic Methods
@@ -305,7 +310,7 @@ public:
 
     //------------------- Calc Method Parameters --------------------
 
-    	double methodParams[7][5];
+    	double methodParams[8][5];
 
 
     	/*  methodParams[methodNum] = new Array(fa, ms, mv, is, iv);

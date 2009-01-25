@@ -22,7 +22,7 @@
    </size>
   </property>
   <property name="windowTitle" >
-   <string>Player</string>
+   <string>Qsalat - player</string>
   </property>
   <widget class="QFrame" name="playerFrame" >
    <property name="geometry" >

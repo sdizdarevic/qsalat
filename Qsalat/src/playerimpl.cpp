@@ -15,7 +15,7 @@ PlayerImpl::PlayerImpl( QWidget * parent, Qt::WFlags f)
 	setWindowFlags(Qt::WindowStaysOnTopHint);
 	rect = this->geometry();	
 	region = QRegion::QRegion(rect);
-	this->setGeometry(screenWidth,screenHeight,screenWidth - width - 15, screenHeight - height - 50);	
+	this->setGeometry(screenWidth - width - 10,screenHeight - height - 10,screenWidth, screenHeight);	
 }
 
 void PlayerImpl::adjustWindow(){
