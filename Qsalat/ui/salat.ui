@@ -421,6 +421,14 @@ color:white;
    <attribute name="toolBarBreak" >
     <bool>false</bool>
    </attribute>
+   <addaction name="actionQibla_direction" />
+   <addaction name="actionLocation" />
+   <addaction name="actionAudio" />
+   <addaction name="actionCalculation_options" />
+   <addaction name="actionWorldtime" />
+   <addaction name="actionGenerate_monthly_prayer_times" />
+   <addaction name="actionGenerate_yearly_prayer_times" />
+   <addaction name="actionHijri_date" />
   </widget>
   <action name="actionHide" >
    <property name="icon" >
