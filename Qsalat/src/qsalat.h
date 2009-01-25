@@ -57,7 +57,6 @@ private:
 	PlayerImpl player;
 	QString file;	
 	int timer;	
-	QStringList audioList;
 	QString prayerAudio;
 	QString fajrAudio;
 	QString duaAudio;

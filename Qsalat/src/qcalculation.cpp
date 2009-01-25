@@ -16,7 +16,7 @@ Qcalculation::Qcalculation( QWidget * parent, Qt::WFlags f)
 }
 
 void Qcalculation::apply_(){
-	saveButton->animateClick(100);
+	apply();
 }
 
 void Qcalculation::closeEvent(QCloseEvent *event)
@@ -68,8 +68,7 @@ void Qcalculation::setUI()
 
 void Qcalculation::setActions(){   
     connect(saveButton,SIGNAL(clicked()),this,SLOT(apply()));
-	//connect(saveButton,SIGNAL(clicked()),this,SLOT(apply()));
-    connect(okButton,SIGNAL(clicked()),this,SLOT(save()));
+	connect(okButton,SIGNAL(clicked()),this,SLOT(save()));
     connect(cancelButton,SIGNAL(clicked()),this,SLOT(cancel()));   
 }
 
@@ -77,17 +76,22 @@ void Qcalculation::apply()
 {
 	int asrChecked = 0;
 	//int highChecked = 0;
-	parser.changeElement(QString::number(calcList->currentIndex()),2,0);	
-	if (hanafiButton->isChecked()) asrChecked = 1;	
+	parser.changeElement(QString::number(calcList->currentIndex()),2,0);
+	if (hanafiButton->isChecked()) asrChecked = 1;
 	parser.changeElement(QString::number(asrChecked),2,2);
 	parser.changeElement(QString::number(hijriBox->value()),2,3);
+<<<<<<< .mine
+	if (highLatBox->isChecked()) highChecked = 1;
+	parser.changeElement(QString::number(highChecked),2,4);
+=======
 	//if (highLatBox->isChecked()) highChecked = 1;		
 	parser.changeElement(QString::number(highList->currentIndex()),2,4);
-	if (asrMethod != asrChecked){		
+>>>>>>> .r76
+	if (asrMethod != asrChecked){
 		prayers->setAsrMethod(asrChecked);
 		QString *times_ = new QString[7];
 		times_ = prayers->getDatePrayerTimes(date.year(),date.month(),date.day(),parser.getElement(0,0).toDouble(),parser.getElement(0,1).toDouble(),parser.getElement(0,4).toDouble());	
-		asrMinutes = calcTime(times[3],times_[3]);		
+		asrMinutes = calcTime(times[3],times_[3]);
 		/*QMessageBox msgBox;
  		msgBox.setText(QString::number(asrMinutes)+" "+QString::number(asrChecked)+" "+QString::number(asrMethod));
  		msgBox.exec();*/
@@ -95,10 +99,10 @@ void Qcalculation::apply()
 	else{
 		asrMinutes = 0;
 	}
-	int temp = setDuhrMinutes() + asrMinutes;	
+	int temp = setDuhrMinutes() + asrMinutes;
 	parser.changeElement(QString::number(temp),2,1);
 	parser.saveData(file);
-	DomParser::changed = true; 
+	DomParser::changed = true;
 }
 
 
