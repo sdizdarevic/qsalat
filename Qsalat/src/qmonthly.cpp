@@ -1,5 +1,29 @@
+/****************************************************************************
+** Qsalat project V1.0
+** qmonthly.cpp
+**
+** Copyright (C) 2008 Skander Jabouzi (Skander Software Solutions).
+** Contact: skander@skanderjabouzi.com or jabouzi@gmail.com
+**
+** This file is part of the Qsalat open source software.
+**
+** GNU General Public License Usage
+** This file may be used under the terms of the GNU
+** General Public License versions 2.0 or 3.0 as published by the Free
+** Software Foundation and appearing in the file LICENSE.GPL included in
+** the packaging of this file.  Please review the following information
+** to ensure GNU General Public Licensing requirements will be met:
+** http://www.fsf.org/licensing/licenses/info/GPLv2.html and
+** http://www.gnu.org/copyleft/gpl.html.  In addition, as a special
+** exception, Nokia gives you certain additional rights. These rights
+** are described in the Nokia Qt GPL Exception version 1.3, included in
+** the file GPL_EXCEPTION.txt in this package.
+**
+***************************************************************************/
+
 #include "qmonthly.h"
 
+//
 Qmonthly::Qmonthly( QWidget * parent, Qt::WFlags f) 
 	: QDialog(parent, f)
 {
@@ -16,12 +40,14 @@ Qmonthly::Qmonthly( QWidget * parent, Qt::WFlags f)
 	setActions();
 }
 
+//
 void Qmonthly::closeEvent(QCloseEvent *event)
 {
 	hide();
 	event->ignore();
 }
 
+//
 void Qmonthly::init()
 {
 	yearBox->setValue(date.year());
@@ -30,12 +56,14 @@ void Qmonthly::init()
 	duhrMinutes = parser.getElement(2,1).toInt();
 }
 
+//
 void Qmonthly::setActions()
 {
 	connect(selectButton, SIGNAL(clicked()), this, SLOT(load()));
 	connect(generateButton, SIGNAL(clicked()), this, SLOT(generate()));
 }
 
+//
 void Qmonthly::setUI()
 {
 	setWindowIcon(QIcon(path+"images/mecque.png"));
@@ -43,6 +71,7 @@ void Qmonthly::setUI()
 	generateButton->setIcon(style()->standardIcon(QStyle::SP_DialogApplyButton));
 }
 
+//
 void Qmonthly::setMethods()
 {
 	QStringList list;	
@@ -51,11 +80,13 @@ void Qmonthly::setMethods()
 	monthBox->addItems(list);	
 }
 
+//load loaction to save html file
 void Qmonthly::load()
 {
 	pathEdit->setText(QFileDialog::getExistingDirectory(this, tr("Select Directory"),"/home",QFileDialog::ShowDirsOnly| QFileDialog::DontResolveSymlinks));
 }
 
+//generate monthly prayer times
 void Qmonthly::generate()
 {
 	if (pathEdit->text().length() == 0) QMessageBox::warning(this, tr("My Application"),"No folder selected",QMessageBox::Ok);
@@ -85,11 +116,9 @@ void Qmonthly::generate()
 		text += "</tbody></table></body></html>";
 		QString slash = "";
 		if (pathEdit->text().data()[pathEdit->text().size() - 1] != '/') slash = "/";		
-	 		//utils.saveFile(pathEdit->text()+"monthly.html", text);
 		utils.saveFile(pathEdit->text()+slash+"monthly.html", text);
 	 	QUrl url;
 	 	url.setUrl(pathEdit->text()+slash+"monthly.html");
 		QDesktopServices::openUrl(url);
 	}
 }
-

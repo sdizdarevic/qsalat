@@ -28,7 +28,6 @@ HEADERS = src/qsalat.h \
  src/qaudio.h \
  src/qmonthly.h \
  src/qyearly.h \
- src/qabout.h \
  src/qworldTime.h \
  src/qcalculation.h \
  src/qhijridate.h \
@@ -45,7 +44,6 @@ SOURCES = src/qsalat.cpp \
  src/qaudio.cpp \
  src/qmonthly.cpp \
  src/qyearly.cpp \
- src/qabout.cpp \
  src/qcalculation.cpp \
  src/qworldTime.cpp \
  src/qhijridate.cpp \

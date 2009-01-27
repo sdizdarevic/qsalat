@@ -1,4 +1,5 @@
 /****************************************************************************
+** Qsalat project V1.0
 ** qsalat.cpp
 **
 ** Copyright (C) 2008 Skander Jabouzi (Skander Software Solutions).
@@ -28,6 +29,7 @@ Qsalat::Qsalat( QWidget * parent, Qt::WFlags f)
 	path = QCoreApplication::applicationDirPath ();
 	if (path.data()[path.size() - 1] != '/') path += "/";
 	setupUi(this);
+	setWindowFlags(Qt::WindowMinimizeButtonHint);
 	adjustWindow();
 	prayers = new Qpray();
 	hijri = new Qhijri();
@@ -314,25 +316,15 @@ void Qsalat::timerEvent(QTimerEvent *e)
    		}
    		if (playAthan == "1"){		
 		   	if (label_fajr->text()+":00" == strTime){
-		   		QString salatTitle = "Fajr prayer "+ QString::fromUtf8(" صلاة الفجر");		   		
-<<<<<<< .mine
-		   		setPlayer(fajrAudio, salatTitle);		   		
-=======
+		   		QString salatTitle = "Fajr prayer "+ QString::fromUtf8(" صلاة الفجر");	
 		   		setPlayer(fajrAudio, salatTitle);
-		   		//audioList.clear();
->>>>>>> .r76
 		   		if (playDua == "1"){			   		
 			   		setPlayer(duaAudio, salatTitle);
 		   		}
 		  	}
    			else if (label_duhr->text()+":00" == strTime){
 		  		QString salatTitle = "Duhr prayer " + QString::fromUtf8(" صلاة الظهر");
-<<<<<<< .mine
-		   		setPlayer(prayerAudio, salatTitle);		   	
-=======
 		   		setPlayer(prayerAudio, salatTitle);
-		   		//audioList.clear();
->>>>>>> .r76
 		   		if (playDua == "1"){
 			   		QString salatTitle = "Duhr prayer " + QString::fromUtf8(" صلاة الظهر");
 			   		setPlayer(duaAudio, salatTitle);
@@ -340,12 +332,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
 		  	}
    			else if (label_asr->text()+":00" == strTime){
 		   		QString salatTitle = "Asr prayer " + QString::fromUtf8(" صلاة العصر");
-<<<<<<< .mine
-		   		setPlayer(prayerAudio, salatTitle);		   		
-=======
 		   		setPlayer(prayerAudio, salatTitle);
-		   		//audioList.clear();
->>>>>>> .r76
 		   		if (playDua == "1"){
 			   		QString salatTitle = "Asr prayer " + QString::fromUtf8(" صلاة العصر");
 			   		setPlayer(duaAudio, salatTitle);
@@ -353,25 +340,15 @@ void Qsalat::timerEvent(QTimerEvent *e)
 		  	}
 	  		else if (label_maghreb->text()+":00" == strTime){
 	  			QString salatTitle = "Maghreb prayer " + QString::fromUtf8(" صلاة المغرب");
-<<<<<<< .mine
-		   		setPlayer(prayerAudio, salatTitle);		   		
-=======
 		   		setPlayer(prayerAudio, salatTitle);
-		   		//audioList.clear();
->>>>>>> .r76
 		   		if (playDua == "1"){
 			   		QString salatTitle = "Maghreb prayer " + QString::fromUtf8(" صلاة المغرب");
 			   		setPlayer(duaAudio, salatTitle);
 		   		}		   			
 	  		}
-	  		else if (label_isha->text()+":00" == strTime){
+	  		else if ("19:11:00" == strTime){
 	  			QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
-<<<<<<< .mine
-		   		setPlayer(prayerAudio, salatTitle);		   		
-=======
-		   		setPlayer(prayerAudio, salatTitle);
-		   		//audioList.clear();
->>>>>>> .r76
+		   		setPlayer(prayerAudio, salatTitle);	
 		   		if (playDua == "1"){
 			   		QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
 			   		setPlayer(duaAudio, salatTitle);
@@ -464,6 +441,9 @@ void Qsalat::showWorldtime(){
 	}	
 }
 
+/**	
+ * show monthly prayer window function : show the salat time for one month
+ */
 void Qsalat::showMonthly(){	
 	if (monthly.isHidden()){		
 		monthly.show();
@@ -474,6 +454,9 @@ void Qsalat::showMonthly(){
 	}	
 }
 
+/**	
+ * show yearly prayer window function : show the salat time for one year
+ */
 void Qsalat::showYearly(){	
 	if (yearly.isHidden()){		
 		yearly.show();
@@ -484,6 +467,9 @@ void Qsalat::showYearly(){
 	}	
 }
 
+/**	
+ * show hijri date window function : show the hijri date conversion
+ */
 void Qsalat::showHijridate(){	
 	if (hijridate.isHidden()){		
 		hijridate.show();
@@ -494,6 +480,9 @@ void Qsalat::showHijridate(){
 	}	
 }
 
+/**	
+ * Application about window
+ */
 void Qsalat::_about()
 {
     QMessageBox::about(this, tr("About Qsalat"),
@@ -501,6 +490,9 @@ void Qsalat::_about()
              	" This is a free software distributed under the terms of the GNU General Public License version 3\n(http://www.gnu.org/licenses/gpl-3.0.html)"));     
 } 
 
+/**	
+ * close all windows when the main window is closed 
+ */
 void::Qsalat::_hide()
 {
 	hide();	
@@ -530,11 +522,17 @@ void::Qsalat::_hide()
 	}	
 }
 
+/**	
+ * restore the main window
+ */
 void Qsalat::_showNormal()
 {
 	showNormal();
 }
 
+/**	
+ * play the athan audio
+ */
 void Qsalat::setPlayer(QString file, QString label)
 {
 	player.show();
@@ -542,6 +540,4 @@ void Qsalat::setPlayer(QString file, QString label)
 	player.setAudio(file);
 	player.play();
 }
-
-
 //

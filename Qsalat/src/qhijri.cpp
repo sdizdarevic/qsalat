@@ -1,3 +1,26 @@
+/****************************************************************************
+** Qsalat project V1.0
+** qhijri.cpp
+**
+** Copyright (C) 2008 Skander Jabouzi (Skander Software Solutions).
+** Contact: skander@skanderjabouzi.com or jabouzi@gmail.com
+**
+** This file is part of the Qsalat open source software.
+**
+** GNU General Public License Usage
+** This file may be used under the terms of the GNU
+** General Public License versions 2.0 or 3.0 as published by the Free
+** Software Foundation and appearing in the file LICENSE.GPL included in
+** the packaging of this file.  Please review the following information
+** to ensure GNU General Public Licensing requirements will be met:
+** http://www.fsf.org/licensing/licenses/info/GPLv2.html and
+** http://www.gnu.org/copyleft/gpl.html.  In addition, as a special
+** exception, Nokia gives you certain additional rights. These rights
+** are described in the Nokia Qt GPL Exception version 1.3, included in
+** the file GPL_EXCEPTION.txt in this package.
+**
+***************************************************************************/
+
 #include "qhijri.h"
 
 Qhijri::Qhijri(){	
@@ -8,6 +31,7 @@ Qhijri::~Qhijri(){
 	
 }
 
+//utility function
 int Qhijri::intPart(int floatNum){
 	if (float(floatNum) < -0.0000001){
 	 return ceil(floatNum-0.0000001);
@@ -15,7 +39,7 @@ int Qhijri::intPart(int floatNum){
 return int(floor(floatNum +0.0000001));	
 }
 
-
+//christian to islamic calendar
 int* Qhijri::chrToIsl(int y, int m, int d, int diff = 0) {
 	
 	int jd = 0;
@@ -45,6 +69,7 @@ int* Qhijri::chrToIsl(int y, int m, int d, int diff = 0) {
 	return res;
 }
 
+//islamic to christian calendar
 int* Qhijri::islToChr(int y, int m, int d, int diff = 0) {
 	
 	int jd=intPart((11*y+3)/30)+354*y+30*m-intPart((m-1)/2)+d+1948440-385-diff;	
@@ -82,6 +107,7 @@ int* Qhijri::islToChr(int y, int m, int d, int diff = 0) {
 	return res;
 }
 
+//islamic calendar to string
 QString* Qhijri::isToString(int y, int m, int d, int diff){
 	QString months[] = {"Muharram","Safar","Rabi-al Awwal","Rabi-al Thani","Jumada al-Ula","Jumada al-Thani","Rajab","Sha\'ban","Ramadhan","Shawwal","Dhul Qa\'dah","Dhul Hijjah"};
 	QString monthsH[] = {"محرّم" ,"صفر" ,"ربيع الأول" ,"ربيع الثاني"  ,"جمادى الأولى" ,"جمادى الثاني" ,"رجب" ,"شعبان" ,"رمضان" ,"شوال" ,"ذو القعدة" ,"ذو الحجة"};
@@ -95,6 +121,7 @@ QString* Qhijri::isToString(int y, int m, int d, int diff){
 	return ress;
 }
 
+//christian calendar to string
 QString* Qhijri::chrToString(int y, int m, int d, int diff){
 	QString months[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
 	int * res = new int [3];
@@ -105,5 +132,3 @@ QString* Qhijri::chrToString(int y, int m, int d, int diff){
 	ress[2] = QString::number(res[2]);
 	return ress;
 }
-
-

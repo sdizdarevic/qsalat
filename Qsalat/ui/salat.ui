@@ -6,19 +6,19 @@
     <x>0</x>
     <y>0</y>
     <width>300</width>
-    <height>461</height>
+    <height>487</height>
    </rect>
   </property>
   <property name="minimumSize" >
    <size>
     <width>300</width>
-    <height>461</height>
+    <height>487</height>
    </size>
   </property>
   <property name="maximumSize" >
    <size>
     <width>300</width>
-    <height>461</height>
+    <height>487</height>
    </size>
   </property>
   <property name="windowTitle" >
@@ -356,7 +356,7 @@ color:white;
      <x>0</x>
      <y>0</y>
      <width>300</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile" >
@@ -421,14 +421,14 @@ color:white;
    <attribute name="toolBarBreak" >
     <bool>false</bool>
    </attribute>
-   <addaction name="actionQibla_direction" />
    <addaction name="actionLocation" />
-   <addaction name="actionAudio" />
    <addaction name="actionCalculation_options" />
-   <addaction name="actionWorldtime" />
+   <addaction name="actionQibla_direction" />
+   <addaction name="actionAudio" />
+   <addaction name="actionHijri_date" />
    <addaction name="actionGenerate_monthly_prayer_times" />
    <addaction name="actionGenerate_yearly_prayer_times" />
-   <addaction name="actionHijri_date" />
+   <addaction name="actionWorldtime" />
   </widget>
   <action name="actionHide" >
    <property name="icon" >
