@@ -129,11 +129,12 @@ void Qsalat::getSalats(){
 void Qsalat::getHijri(){
 	QString *dates = new QString[4];
 	dates = hijri->isToString(year, month, day,hijriDays);
-	QString text = dates[0]+" "+dates[1]+" "+dates[3];	
 	label_hijri->setText(QString::fromUtf8(dates[2].toLatin1().data()));
 	label_hijri_3->setText(dates[3]);
 	label_hijri_4->setText(dates[0]);
-	label_hijri_2->setText(text);
+	label_hijri_2->setText(dates[1]);
+	label_hijri_5->setText(dates[3]);
+	label_hijri_6->setText(dates[0]);
 }
 
 /**	

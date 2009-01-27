@@ -214,7 +214,7 @@ color:white;</string>
      <property name="geometry" >
       <rect>
        <x>170</x>
-       <y>20</y>
+       <y>40</y>
        <width>81</width>
        <height>31</height>
       </rect>
@@ -246,48 +246,18 @@ color:white;
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_hijri_2" >
+    <widget class="QLabel" name="label_hijri_3" >
      <property name="geometry" >
       <rect>
-       <x>120</x>
-       <y>50</y>
-       <width>171</width>
+       <x>140</x>
+       <y>40</y>
+       <width>31</width>
        <height>31</height>
       </rect>
      </property>
      <property name="font" >
       <font>
        <family>Arial</family>
-       <pointsize>10</pointsize>
-       <weight>75</weight>
-       <italic>false</italic>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet" >
-      <string notr="true" >background-image: url(:/images/slider3.png);
-color:white;
-</string>
-     </property>
-     <property name="text" >
-      <string>00 Jumada al-Thani 0000</string>
-     </property>
-     <property name="alignment" >
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_hijri_3" >
-     <property name="geometry" >
-      <rect>
-       <x>130</x>
-       <y>20</y>
-       <width>41</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font" >
-      <font>
-       <family>Arab</family>
        <pointsize>10</pointsize>
        <weight>75</weight>
        <italic>false</italic>
@@ -316,7 +286,73 @@ color:white;
      <property name="geometry" >
       <rect>
        <x>250</x>
-       <y>20</y>
+       <y>40</y>
+       <width>21</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font" >
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection" >
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet" >
+      <string notr="true" >background-image: url(:/images/slider3.png);
+color:white;
+</string>
+     </property>
+     <property name="locale" >
+      <locale country="UnitedStates" language="English" />
+     </property>
+     <property name="text" >
+      <string>00</string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_hijri_2" >
+     <property name="geometry" >
+      <rect>
+       <x>140</x>
+       <y>10</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font" >
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet" >
+      <string notr="true" >background-image: url(:/images/slider3.png);
+color:white;
+</string>
+     </property>
+     <property name="text" >
+      <string>Jumada al-Thani </string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_hijri_5" >
+     <property name="geometry" >
+      <rect>
+       <x>250</x>
+       <y>10</y>
        <width>31</width>
        <height>31</height>
       </rect>
@@ -324,7 +360,43 @@ color:white;
      <property name="font" >
       <font>
        <family>Arial</family>
-       <pointsize>11</pointsize>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection" >
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet" >
+      <string notr="true" >background-image: url(:/images/slider3.png);
+color:white;
+</string>
+     </property>
+     <property name="locale" >
+      <locale country="UnitedStates" language="English" />
+     </property>
+     <property name="text" >
+      <string>0000</string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_hijri_6" >
+     <property name="geometry" >
+      <rect>
+       <x>120</x>
+       <y>10</y>
+       <width>21</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font" >
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
        <weight>75</weight>
        <italic>false</italic>
        <bold>true</bold>
