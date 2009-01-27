@@ -213,9 +213,9 @@ color:white;</string>
     <widget class="QLabel" name="label_hijri" >
      <property name="geometry" >
       <rect>
-       <x>180</x>
+       <x>170</x>
        <y>20</y>
-       <width>71</width>
+       <width>81</width>
        <height>31</height>
       </rect>
      </property>
@@ -249,16 +249,16 @@ color:white;
     <widget class="QLabel" name="label_hijri_2" >
      <property name="geometry" >
       <rect>
-       <x>130</x>
+       <x>120</x>
        <y>50</y>
-       <width>161</width>
+       <width>171</width>
        <height>31</height>
       </rect>
      </property>
      <property name="font" >
       <font>
-       <family>Arab</family>
-       <pointsize>11</pointsize>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
        <weight>75</weight>
        <italic>false</italic>
        <bold>true</bold>
@@ -279,7 +279,7 @@ color:white;
     <widget class="QLabel" name="label_hijri_3" >
      <property name="geometry" >
       <rect>
-       <x>140</x>
+       <x>130</x>
        <y>20</y>
        <width>41</width>
        <height>31</height>
@@ -288,7 +288,7 @@ color:white;
      <property name="font" >
       <font>
        <family>Arab</family>
-       <pointsize>11</pointsize>
+       <pointsize>10</pointsize>
        <weight>75</weight>
        <italic>false</italic>
        <bold>true</bold>
@@ -323,7 +323,7 @@ color:white;
      </property>
      <property name="font" >
       <font>
-       <family>Arab</family>
+       <family>Arial</family>
        <pointsize>11</pointsize>
        <weight>75</weight>
        <italic>false</italic>
@@ -356,7 +356,7 @@ color:white;
      <x>0</x>
      <y>0</y>
      <width>300</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile" >
