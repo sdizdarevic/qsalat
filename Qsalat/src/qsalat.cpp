@@ -347,7 +347,7 @@ void Qsalat::timerEvent(QTimerEvent *e)
 			   		setPlayer(duaAudio, salatTitle);
 		   		}		   			
 	  		}
-	  		else if ("19:11:00" == strTime){
+	  		else if (label_isha->text()+":00" == strTime){
 	  			QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
 		   		setPlayer(prayerAudio, salatTitle);	
 		   		if (playDua == "1"){
