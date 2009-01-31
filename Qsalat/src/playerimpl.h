@@ -46,6 +46,9 @@ public slots:
 	void autoPlay();
 	void updateTime();
 	void changeSign();
+
+protected:
+	void closeEvent(QCloseEvent *);
 	
 private:
 	QIcon playIcon;
@@ -72,7 +75,6 @@ private:
 	int screenHeight;
 	int width; 
 	int height;
-	void closeEvent(QCloseEvent *);
 	QString path;
 	bool eventFilter(QObject *, QEvent *);
 	bool timeLeft;
