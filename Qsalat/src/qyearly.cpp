@@ -109,8 +109,6 @@ void Qyearly::generate()
 		QString slash = "";
 		if (pathEdit->text().data()[pathEdit->text().size() - 1] != '/') slash = "/";
 	 	utils.saveFile(pathEdit->text()+slash+"yearly.html", text);
-	 	QUrl url;
-	 	url.setUrl(pathEdit->text()+slash+"yearly.html");
-		QDesktopServices::openUrl(url);
+	 	QDesktopServices::openUrl(QUrl::fromLocalFile(pathEdit->text()+slash+"yearly.html"));
 	}
 }

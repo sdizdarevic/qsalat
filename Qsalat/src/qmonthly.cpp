@@ -117,8 +117,6 @@ void Qmonthly::generate()
 		QString slash = "";
 		if (pathEdit->text().data()[pathEdit->text().size() - 1] != '/') slash = "/";		
 		utils.saveFile(pathEdit->text()+slash+"monthly.html", text);
-	 	QUrl url;
-	 	url.setUrl(pathEdit->text()+slash+"monthly.html");
-		QDesktopServices::openUrl(url);
+	 	QDesktopServices::openUrl(QUrl::fromLocalFile(pathEdit->text()+slash+"monthly.html"));
 	}
 }

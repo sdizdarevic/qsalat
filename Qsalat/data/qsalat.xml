@@ -8,9 +8,9 @@
 		<timezone>-5</timezone>
 	</location>
 	<audio>
-		<prayer>/home/skander/Developpement/Qsalat/audio/athan.mp3</prayer>
-		<fajrPrayer>/home/skander/Developpement/Qsalat/audio/athanFajr.mp3</fajrPrayer>
-		<dua>/home/skander/Developpement/Qsalat/audio/dua.mp3</dua>
+		<prayer>C:/Documents and Settings/Nour/My Documents/Visual Studio 2008/Projects/Qsalat/Qsalat/audio/athan.mp3</prayer>
+		<fajrPrayer>C:/Documents and Settings/Nour/My Documents/Visual Studio 2008/Projects/Qsalat/Qsalat/audio/athanFajr.mp3</fajrPrayer>
+		<dua>C:/Documents and Settings/Nour/My Documents/Visual Studio 2008/Projects/Qsalat/Qsalat/audio/dua.mp3</dua>
 		<playAthan>1</playAthan>
 		<playDua>0</playDua>
 	</audio>
