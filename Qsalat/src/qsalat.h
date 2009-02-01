@@ -91,6 +91,7 @@ private:
 	int hijriDays;
 	int highlatitude;
 	QString path;	
+	QStringList audioList;
 	// private methods
 	void init();	
 	void initTimer();	 
@@ -102,7 +103,7 @@ private:
 	void closeEvent(QCloseEvent *);
 	void createActions();
 	void timerEvent(QTimerEvent *e);
-	void setPlayer(QString,QString);
+	void setPlayer(QStringList,QString);
 	
 private slots:
 	void iconActivated(QSystemTrayIcon::ActivationReason);

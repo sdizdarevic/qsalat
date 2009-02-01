@@ -155,7 +155,7 @@ void Qsalat::createTrayIcon()
     trayIconMenu->addAction(quitAction);    
     trayIcon->setContextMenu(trayIconMenu);
     trayIcon->setIcon(QIcon(path+"images/mecque.png"));
-	QString ttmessage = "Prayer times for : "+city+", "+country+"\nFajr :"+label_fajr->text()+"\nDuhr : "	+label_duhr->text()+"\nAsr : "+label_asr->text()+"\nMaghreb : "+label_maghreb->text()+"\nIsha : "+label_isha->text();
+	QString ttmessage = "Prayer times for : "+city+", "+country+"\nFajr : \t"+label_fajr->text()+ QString::fromUtf8("\t :  فجر")+"\nDuhr : \t"	+label_duhr->text()+QString::fromUtf8("\t :  ظهر")+"\nAsr : \t"+label_asr->text()+QString::fromUtf8("\t :  عصر")+"\nMaghreb : \t"+label_maghreb->text()+QString::fromUtf8("\t :  مغرب")+"\nIsha : \t"+label_isha->text()+QString::fromUtf8("\t :  عشاء");
     trayIcon->setToolTip("Qsalat Islamic cross-platform prayers time V0.1");
     trayIcon->setToolTip(ttmessage);
 	trayIcon->show();	
@@ -317,43 +317,29 @@ void Qsalat::timerEvent(QTimerEvent *e)
    		}
    		if (playAthan == "1"){		
 		   	if (label_fajr->text()+":00" == strTime){
+		   		audioList << fajrAudio << duaAudio;
 		   		QString salatTitle = "Fajr prayer "+ QString::fromUtf8(" صلاة الفجر");	
-		   		setPlayer(fajrAudio, salatTitle);
-		   		if (playDua == "1"){			   		
-			   		setPlayer(duaAudio, salatTitle);
-		   		}
+		   		setPlayer(audioList, salatTitle);		   		
 		  	}
    			else if (label_duhr->text()+":00" == strTime){
+   				audioList << prayerAudio << duaAudio;
 		  		QString salatTitle = "Duhr prayer " + QString::fromUtf8(" صلاة الظهر");
-		   		setPlayer(prayerAudio, salatTitle);
-		   		if (playDua == "1"){
-			   		QString salatTitle = "Duhr prayer " + QString::fromUtf8(" صلاة الظهر");
-			   		setPlayer(duaAudio, salatTitle);
-		   		}	   			
+		   		setPlayer(audioList, salatTitle);		   		 			
 		  	}
    			else if (label_asr->text()+":00" == strTime){
+   				audioList << prayerAudio << duaAudio;
 		   		QString salatTitle = "Asr prayer " + QString::fromUtf8(" صلاة العصر");
-		   		setPlayer(prayerAudio, salatTitle);
-		   		if (playDua == "1"){
-			   		QString salatTitle = "Asr prayer " + QString::fromUtf8(" صلاة العصر");
-			   		setPlayer(duaAudio, salatTitle);
-		   		}
+		   		setPlayer(audioList, salatTitle);		   		
 		  	}
 	  		else if (label_maghreb->text()+":00" == strTime){
+	  			audioList << prayerAudio << duaAudio;
 	  			QString salatTitle = "Maghreb prayer " + QString::fromUtf8(" صلاة المغرب");
-		   		setPlayer(prayerAudio, salatTitle);
-		   		if (playDua == "1"){
-			   		QString salatTitle = "Maghreb prayer " + QString::fromUtf8(" صلاة المغرب");
-			   		setPlayer(duaAudio, salatTitle);
-		   		}		   			
+		   		setPlayer(audioList, salatTitle);		   		  			
 	  		}
 	  		else if (label_isha->text()+":00" == strTime){
+	  			audioList << prayerAudio << duaAudio;
 	  			QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
-		   		setPlayer(prayerAudio, salatTitle);	
-		   		if (playDua == "1"){
-			   		QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
-			   		setPlayer(duaAudio, salatTitle);
-		   		}		   			
+		   		setPlayer(audioList, salatTitle);		   		   			
 	  		}
   		}    		
  	}	
@@ -534,11 +520,12 @@ void Qsalat::_showNormal()
 /**	
  * play the athan audio
  */
-void Qsalat::setPlayer(QString file, QString label)
+void Qsalat::setPlayer(QStringList files, QString label)
 {
 	player.show();
 	player.setLabel(label);
-	player.setAudio(file);
-	player.play();
+	player.setAudio(files);
+	player.setPlay2((playDua == "1"));
+	player.play();	
 }
 //

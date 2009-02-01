@@ -39,13 +39,13 @@ public:
 public slots:
 	void play();
 	void stop();
-	void setAudio(QString);
+	void setAudio(QStringList);
 	QString getAudio();
-	void setLabel(QString);
-	QString getLabel();
+	void setLabel(QString);	
 	void autoPlay();
 	void updateTime();
 	void changeSign();
+	void setPlay2(bool);
 
 protected:
 	void closeEvent(QCloseEvent *);
@@ -63,9 +63,8 @@ private:
     Phonon::AudioOutput *audioOutput;
     void setActions();
     void setUI();
-    QString audioSource;
+    QStringList audioSource;
     QString audioLabel;
-    QString audioLabel_2;
     void adjustWindow();
     int screenx;
 	int screeny;
@@ -78,6 +77,8 @@ private:
 	QString path;
 	bool eventFilter(QObject *, QEvent *);
 	bool timeLeft;
+	int index;
+	bool play2;
 
 private slots:
 	void setVolume();

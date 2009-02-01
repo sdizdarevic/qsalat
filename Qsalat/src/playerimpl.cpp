@@ -44,6 +44,8 @@ PlayerImpl::PlayerImpl( QWidget * parent, Qt::WFlags f)
 	this->setGeometry(screenWidth - width - 10,screenHeight - height - 10,screenWidth, screenHeight);	
 	timeLabel->installEventFilter(this);
 	timeLeft = false;
+	index = 0;
+	//play2 = false;
 }
 
 //
@@ -61,21 +63,15 @@ void PlayerImpl::adjustWindow(){
 }
 
 //
-void PlayerImpl::setAudio(QString file)
+void PlayerImpl::setAudio(QStringList files)
 {
-	audioSource = file;
+	audioSource = files;
 }
 
 //
 void PlayerImpl::setLabel(QString label_)
 {
 	label->setText(label_);
-}
-
-//
-QString PlayerImpl::getLabel()
-{
-	return audioLabel;	
 }
 
 //
@@ -87,7 +83,7 @@ void PlayerImpl::autoPlay()
 //
 QString PlayerImpl::getAudio()
 {
-	return audioSource;
+	return audioSource.at(index++);;
 }
 
 //
@@ -166,8 +162,10 @@ void PlayerImpl::setVolume()
 //
 void PlayerImpl::finished()
 {
-	stop();
-	hide();
+	stop();	
+	if (play2 && index < audioSource.size())
+		autoPlay();	
+	else hide();
 }
 
 //
@@ -230,5 +228,10 @@ bool PlayerImpl::eventFilter(QObject *o, QEvent *e)
     }
 
     return QWidget::eventFilter(o, e);
+}
+
+void PlayerImpl::setPlay2(bool play2_)
+{
+	play2 = play2_;
 }
 //
