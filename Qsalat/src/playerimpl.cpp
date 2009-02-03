@@ -49,6 +49,14 @@ PlayerImpl::PlayerImpl( QWidget * parent, Qt::WFlags f)
 }
 
 //
+void PlayerImpl::closeEvent(QCloseEvent *event)
+{
+	stop();
+	hide();	
+	event->ignore();
+}
+
+//
 void PlayerImpl::adjustWindow(){
 	QDesktopWidget *desktop = QApplication::desktop();
 	int x, y;
@@ -166,13 +174,6 @@ void PlayerImpl::finished()
 	if (play2 && index < audioSource.size())
 		autoPlay();	
 	else hide();
-}
-
-//
-void PlayerImpl::closeEvent(QCloseEvent *event)
-{
-	stop();
-	hide();	
 }
 
 // show playing time (left or elapsed just click on the label to switch)
