@@ -153,13 +153,13 @@
     <property name="geometry" >
      <rect>
       <x>40</x>
-      <y>60</y>
+      <y>50</y>
       <width>61</width>
       <height>28</height>
      </rect>
     </property>
     <property name="minimum" >
-     <number>5</number>
+     <number>0</number>
     </property>
     <property name="maximum" >
      <number>60</number>
@@ -187,7 +187,7 @@
     <property name="geometry" >
      <rect>
       <x>10</x>
-      <y>59</y>
+      <y>49</y>
       <width>41</width>
       <height>31</height>
      </rect>
@@ -200,7 +200,7 @@
     <property name="geometry" >
      <rect>
       <x>110</x>
-      <y>60</y>
+      <y>50</y>
       <width>51</width>
       <height>31</height>
      </rect>
@@ -209,22 +209,23 @@
      <string>minutes</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_11" >
+   <widget class="QLabel" name="label_12" >
     <property name="geometry" >
      <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>141</width>
-      <height>18</height>
+      <x>3</x>
+      <y>90</y>
+      <width>161</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="font" >
      <font>
+      <pointsize>8</pointsize>
       <italic>true</italic>
      </font>
     </property>
     <property name="text" >
-     <string>before asr</string>
+     <string/>
     </property>
    </widget>
   </widget>
@@ -405,6 +406,17 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>saveButton</tabstop>
+  <tabstop>okButton</tabstop>
+  <tabstop>duhrBox</tabstop>
+  <tabstop>highList</tabstop>
+  <tabstop>hijriBox</tabstop>
+  <tabstop>calcList</tabstop>
+  <tabstop>shafiiButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+  <tabstop>hanafiButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

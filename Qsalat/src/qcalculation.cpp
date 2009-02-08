@@ -57,6 +57,7 @@ void Qcalculation::init(int flag = 0)
 	prayers->setAsrMethod(asrMethod);		
 	times = prayers->getDatePrayerTimes(date.year(),date.month(),date.day(),parser.getElement(0,0).toDouble(),parser.getElement(0,1).toDouble(),parser.getElement(0,4).toDouble());	
 	duhrBox->setMaximum(calcTime(times[2],times[3]));	
+	label_12->setText(" Max "+QString::number(duhrBox->maximum())+" min (5 min before asr)");
 
 	if (0 == flag){
 		list << "Ithna Ashari"<<"University of Islamic Sciences, Karachi"<<"Islamic Society of North America (ISNA)"
@@ -67,10 +68,13 @@ void Qcalculation::init(int flag = 0)
 		hList << "No adjustment"<<"middle of night"<<"1/7th of night"<<"angle/60th of night";
 		highList->addItems(hList);
 		highList->setCurrentIndex(parser.getElement(2,4).toInt());
-		duhrBox->setValue(getDuhrMinutes());
+		duhrBox->setValue(parser.getElement(2,1).toInt());
 		if (parser.getElement(2,2).toInt() == 0) shafiiButton->setChecked(true);
 		else hanafiButton->setChecked(true);
 		hijriBox->setValue(parser.getElement(2,3).toInt());			
+	}
+	else{
+		apply();
 	}
 }
 
@@ -108,8 +112,8 @@ void Qcalculation::apply()
 	else{
 		asrMinutes = 0;
 	}
-	int temp = setDuhrMinutes() + asrMinutes;
-	parser.changeElement(QString::number(temp),2,1);
+	//int temp = setDuhrMinutes() + asrMinutes;
+	parser.changeElement(QString::number(duhrBox->value()),2,1);
 	parser.saveData(file);
 	DomParser::changed = true;
 }
@@ -133,7 +137,7 @@ int Qcalculation::calcTime(QString time1,QString time2){
 	QStringList list2 = time2.split(":");
 	int hours = list2[0].toInt() - list1[0].toInt();
 	int minutes = list2[1].toInt() - list1[1].toInt();
-	return (hours * 60) + minutes;
+	return (hours * 60) + minutes - 5;
 }
 
 //

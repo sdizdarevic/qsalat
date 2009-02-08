@@ -74,8 +74,7 @@ private:
 	int pendingRequests;	
 	void setActions();
 	void setUI();	
-	Qcalculation calculation;
-	
+	Qcalculation calculation;	
 	QString path;
 };
 #endif

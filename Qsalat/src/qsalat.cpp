@@ -129,12 +129,12 @@ void Qsalat::getSalats(){
 void Qsalat::getHijri(){
 	QString *dates = new QString[4];
 	dates = hijri->isToString(year, month, day,hijriDays);
-	label_hijri->setText(QString::fromUtf8(dates[2].toLatin1().data()));
-	label_hijri_3->setText(dates[3]);
-	label_hijri_4->setText(dates[0]);
-	label_hijri_2->setText(dates[1]);
-	label_hijri_5->setText(dates[3]);
-	label_hijri_6->setText(dates[0]);
+	label_hijri->setText(QString::fromUtf8((dates[0]+" "+dates[2]+" "+dates[3]).toLatin1().data()));
+	//label_hijri_3->setText(QString::fromUtf8(dates[3].toLatin1().data()));
+	//label_hijri_4->setText(dates[0]);
+	label_hijri_2->setText(dates[0]+" "+dates[1]+" "+dates[3]);
+	//label_hijri_5->setText(dates[3]);
+	//label_hijri_6->setText(dates[0]);
 }
 
 /**	
@@ -155,7 +155,7 @@ void Qsalat::createTrayIcon()
     trayIconMenu->addAction(quitAction);    
     trayIcon->setContextMenu(trayIconMenu);
     trayIcon->setIcon(QIcon(path+"images/mecque.png"));
-	QString ttmessage = "Prayer times for : "+city+", "+country+"\nFajr : \t"+label_fajr->text()+ QString::fromUtf8("\t :  فجر")+"\nDuhr : \t"	+label_duhr->text()+QString::fromUtf8("\t :  ظهر")+"\nAsr : \t"+label_asr->text()+QString::fromUtf8("\t :  عصر")+"\nMaghreb : \t"+label_maghreb->text()+QString::fromUtf8("\t :  مغرب")+"\nIsha : \t"+label_isha->text()+QString::fromUtf8("\t :  عشاء");
+	QString ttmessage = "Fajr : "+label_fajr->text()+ QString::fromUtf8(" : فجر")+"\nDuhr : "	+label_duhr->text()+QString::fromUtf8(" : ظهر")+"\nAsr : "+label_asr->text()+QString::fromUtf8(" : عصر")+"\nMaghreb : "+label_maghreb->text()+QString::fromUtf8(" : مغرب")+"\nIsha : "+label_isha->text()+QString::fromUtf8(" : عشاء");
     trayIcon->setToolTip("Qsalat Islamic cross-platform prayers time V0.1");
     trayIcon->setToolTip(ttmessage);
 	trayIcon->show();	
@@ -226,9 +226,9 @@ void Qsalat::timerEvent(QTimerEvent *e)
 	if (!e) return;
   	if (e->timerId() == timer){
   		if (DomParser::changed) {
-  			init();
-			location.init(1);
+  			location.init(1);
   			calculation.init(1);
+  			init();			
   			audio.init(1);
   			hijridate.init();
 			getSalats();
