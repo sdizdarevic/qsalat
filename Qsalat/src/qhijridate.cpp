@@ -27,7 +27,11 @@
 Qhijridate::Qhijridate( QWidget * parent, Qt::WFlags f) 
 	: QDialog(parent, f)
 {
+#ifdef Q_WS_WIN
 	path = QCoreApplication::applicationDirPath ();
+#else 
+	path = "/usr/share/qsalat/";
+#endif
 	if (path.data()[path.size() - 1] != '/') path += "/";
 	setupUi(this);	
 	setUI();
@@ -45,7 +49,11 @@ void Qhijridate::closeEvent(QCloseEvent *event)
 
 //
 void Qhijridate::init(){
+#ifdef Q_WS_WIN
 	file = path+"data/qsalat.xml";
+#else 
+	file = QDir::homePath ()+"/.qsalat/config/qsalat.xml";
+#endif	
 	parser.readFile(file);	
 	QDate date = QDate::currentDate(); 
 	QString *dates = new QString[4];

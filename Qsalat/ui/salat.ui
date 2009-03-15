@@ -38,7 +38,7 @@
      </rect>
     </property>
     <property name="styleSheet" >
-     <string notr="true" >background-image: url(:/images/qsalat.png);</string>
+     <string notr="true" >background-image: url(/usr/share/qsalat/images/qsalat.png);</string>
     </property>
     <widget class="QLabel" name="label_fajr" >
      <property name="geometry" >
@@ -361,7 +361,7 @@ color:white;
   <action name="actionHide" >
    <property name="icon" >
     <iconset resource="../salat.qrc" >
-     <normaloff>:/images/hide.png</normaloff>:/images/hide.png</iconset>
+     <normaloff>:/usr/share/qsalat/images/hide.png</normaloff>:/usr/share/qsalat/images/hide.png</iconset>
    </property>
    <property name="text" >
     <string>Hide</string>
@@ -370,7 +370,7 @@ color:white;
   <action name="actionQuit" >
    <property name="icon" >
     <iconset resource="../salat.qrc" >
-     <normaloff>:/images/exit.png</normaloff>:/images/exit.png</iconset>
+     <normaloff>:/usr/share/qsalat/images/exit.png</normaloff>:/usr/share/qsalat/images/exit.png</iconset>
    </property>
    <property name="text" >
     <string>Quit</string>
@@ -379,7 +379,7 @@ color:white;
   <action name="actionHijri_date" >
    <property name="icon" >
     <iconset resource="../salat.qrc" >
-     <normaloff>:/images/calendar.png</normaloff>:/images/calendar.png</iconset>
+     <normaloff>:/usr/share/qsalat/images/hijri.png</normaloff>:/usr/share/qsalat/images/hijri.png</iconset>
    </property>
    <property name="text" >
     <string>Hijri date conversion</string>
@@ -388,7 +388,7 @@ color:white;
   <action name="actionQibla_direction" >
    <property name="icon" >
     <iconset resource="../salat.qrc" >
-     <normaloff>:/images/qibla.png</normaloff>:/images/qibla.png</iconset>
+     <normaloff>:/usr/share/qsalat/images/qibla.png</normaloff>:/usr/share/qsalat/images/qibla.png</iconset>
    </property>
    <property name="text" >
     <string>Qibla direction</string>
@@ -397,7 +397,7 @@ color:white;
   <action name="actionLocation" >
    <property name="icon" >
     <iconset resource="../salat.qrc" >
-     <normaloff>:/images/world.png</normaloff>:/images/world.png</iconset>
+     <normaloff>:/usr/share/qsalat/images/world.png</normaloff>:/usr/share/qsalat/images/world.png</iconset>
    </property>
    <property name="text" >
     <string>Location</string>
@@ -406,7 +406,7 @@ color:white;
   <action name="actionAudio" >
    <property name="icon" >
     <iconset resource="../salat.qrc" >
-     <normaloff>:/images/mp3.png</normaloff>:/images/mp3.png</iconset>
+     <normaloff>:/usr/share/qsalat/images/mp3.png</normaloff>:/usr/share/qsalat/images/mp3.png</iconset>
    </property>
    <property name="text" >
     <string>Audio</string>
@@ -425,7 +425,7 @@ color:white;
   <action name="actionAbout_Qsalat" >
    <property name="icon" >
     <iconset resource="../salat.qrc" >
-     <normaloff>:/images/mecque.png</normaloff>:/images/mecque.png</iconset>
+     <normaloff>:/usr/share/qsalat/images/mecque.png</normaloff>:/usr/share/qsalat/images/mecque.png</iconset>
    </property>
    <property name="text" >
     <string>About Qsalat</string>
@@ -434,7 +434,7 @@ color:white;
   <action name="actionAbout_QT" >
    <property name="icon" >
     <iconset resource="../salat.qrc" >
-     <normaloff>:/images/Qt.png</normaloff>:/images/Qt.png</iconset>
+     <normaloff>:/usr/share/qsalat/images/Qt.png</normaloff>:/usr/share/qsalat/images/Qt.png</iconset>
    </property>
    <property name="text" >
     <string>About QT</string>
@@ -443,7 +443,7 @@ color:white;
   <action name="actionCalculation_options" >
    <property name="icon" >
     <iconset resource="../salat.qrc" >
-     <normaloff>:/images/0396.png</normaloff>:/images/0396.png</iconset>
+     <normaloff>:/usr/share/qsalat/images/0396.png</normaloff>:/usr/share/qsalat/images/0396.png</iconset>
    </property>
    <property name="text" >
     <string>Calculation options</string>
@@ -452,7 +452,7 @@ color:white;
   <action name="actionWorldtime" >
    <property name="icon" >
     <iconset resource="../salat.qrc" >
-     <normaloff>:/images/0442.png</normaloff>:/images/0442.png</iconset>
+     <normaloff>:/usr/share/qsalat/images/0442.png</normaloff>:/usr/share/qsalat/images/0442.png</iconset>
    </property>
    <property name="text" >
     <string>World time</string>
@@ -461,7 +461,7 @@ color:white;
   <action name="actionGenerate_monthly_prayer_times" >
    <property name="icon" >
     <iconset resource="../salat.qrc" >
-     <normaloff>:/images/month.png</normaloff>:/images/month.png</iconset>
+     <normaloff>:/usr/share/qsalat/images/month.png</normaloff>:/usr/share/qsalat/images/month.png</iconset>
    </property>
    <property name="text" >
     <string>Generate monthly prayer times</string>
@@ -470,10 +470,15 @@ color:white;
   <action name="actionGenerate_yearly_prayer_times" >
    <property name="icon" >
     <iconset resource="../salat.qrc" >
-     <normaloff>:/images/year.png</normaloff>:/images/year.png</iconset>
+     <normaloff>:/usr/share/qsalat/images/year.png</normaloff>:/usr/share/qsalat/images/year.png</iconset>
    </property>
    <property name="text" >
     <string>Generate yearly prayer times</string>
+   </property>
+  </action>
+  <action name="actionPlayer" >
+   <property name="text" >
+    <string>Player</string>
    </property>
   </action>
  </widget>

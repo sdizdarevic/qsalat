@@ -28,7 +28,11 @@
 Qcalculation::Qcalculation( QWidget * parent, Qt::WFlags f) 
 	: QDialog(parent, f)
 {
+#ifdef Q_WS_WIN
 	path = QCoreApplication::applicationDirPath ();
+#else 
+	path = "/usr/share/qsalat/";
+#endif
 	if (path.data()[path.size() - 1] != '/') path += "/";
 	setupUi(this);	
 	setUI();	
@@ -50,7 +54,11 @@ void Qcalculation::closeEvent(QCloseEvent *event)
 void Qcalculation::init(int flag = 0)
 {
 	
+#ifdef Q_WS_WIN
 	file = path+"data/qsalat.xml";
+#else 
+	file = QDir::homePath ()+"/.qsalat/config/qsalat.xml";
+#endif	
 	parser.readFile(file);
 	calcMethod = parser.getElement(2,0).toInt();
 	asrMethod = parser.getElement(2,2).toInt();

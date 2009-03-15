@@ -27,6 +27,7 @@
 #include <QtGui>
 #include <QtXml>
 #include <QTextStream>
+#include <QString>
 
 class DomParser
 {

@@ -27,12 +27,20 @@
 Qmonthly::Qmonthly( QWidget * parent, Qt::WFlags f) 
 	: QDialog(parent, f)
 {
+#ifdef Q_WS_WIN
 	path = QCoreApplication::applicationDirPath ();
+#else 
+	path = "/usr/share/qsalat/";
+#endif
 	if (path.data()[path.size() - 1] != '/') path += "/";
 	setupUi(this);	
 	setUI();
 	setMethods();
+#ifdef Q_WS_WIN
 	file = path+"data/qsalat.xml";
+#else 
+	file = QDir::homePath ()+"/.qsalat/config/qsalat.xml";
+#endif	
 	parser.readFile(file);
 	date = QDate::currentDate();
 	prayers = new Qpray();

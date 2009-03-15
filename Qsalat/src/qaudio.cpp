@@ -26,7 +26,11 @@
 //
 Qaudio::Qaudio( QWidget * parent, Qt::WFlags f) : QDialog(parent, f )
 {
+#ifdef Q_WS_WIN
 	path = QCoreApplication::applicationDirPath ();
+#else 
+	path = "/usr/share/qsalat/";
+#endif
 	if (path.data()[path.size() - 1] != '/') path += "/";
 	setupUi(this);
 	audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
@@ -42,24 +46,30 @@ Qaudio::Qaudio( QWidget * parent, Qt::WFlags f) : QDialog(parent, f )
 //
 void Qaudio::init(int flag = 0)
 {
+#ifdef Q_WS_WIN
 	file = path+"data/qsalat.xml";
+#else 
+	file = QDir::homePath ()+"/.qsalat/config/qsalat.xml";
+#endif	
 	parser.readFile(file);	
 	if (0 == flag){
 		prayerLineEdit->setText(parser.getElement(1,0));
 	    fajrLineEdit->setText(parser.getElement(1,1));
 	    duaLineEdit->setText(parser.getElement(1,2));
 	    if (0 == parser.getElement(1,3).toInt()) {
-			salatCheckBox->setChecked(false); 		
+			salatCheckBox->setChecked(false); 
+			duaCheckBox->setChecked(false);
+			duaCheckBox->setEnabled(false);		
 		}
 		else{
 			salatCheckBox->setChecked(true);
-		}
-		if (0 == parser.getElement(1,4).toInt()) {
-			duaCheckBox->setChecked(false); 		
-		}
-		else{
-			duaCheckBox->setChecked(true);
-		}			
+			if (0 == parser.getElement(1,4).toInt()) {
+				duaCheckBox->setChecked(false); 		
+			}
+			else{
+				duaCheckBox->setChecked(true);
+			}	
+		}				
 	}    
 }
 
@@ -83,6 +93,7 @@ void Qaudio::setActions()
 	connect(cancelButton, SIGNAL(clicked()), this, SLOT(cancel()));
 	connect(mediaObject, SIGNAL(finished()), this, SLOT(finished()));
 	connect(audioOutput, SIGNAL(volumeChanged ( qreal )), this, SLOT(setVolume()));
+	connect(salatCheckBox,SIGNAL(stateChanged(int)), this, SLOT(stateChanged()));
 }
 
 //
@@ -212,4 +223,15 @@ void Qaudio::cancel()
 void Qaudio::finished()
 {
 	stop();
+}
+
+void Qaudio::stateChanged()
+{
+	if (salatCheckBox->isChecked() == false){
+		duaCheckBox->setChecked(false);
+		duaCheckBox->setEnabled(false);
+	}
+	else{
+		duaCheckBox->setEnabled(true);
+	}
 }

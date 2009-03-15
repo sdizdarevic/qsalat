@@ -25,7 +25,7 @@
    <string>Qsalat - qibla direction</string>
   </property>
   <property name="styleSheet" >
-   <string notr="true" >background-image: url(:/images/boussole.png);
+   <string notr="true" >background-image: url(/usr/share/qsalat/images/boussole.png);
 </string>
   </property>
   <widget class="QLabel" name="label" >

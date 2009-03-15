@@ -27,7 +27,11 @@
 Qlocation::Qlocation( QWidget * parent, Qt::WFlags f) 
 	: QDialog(parent, f)
 {
+#ifdef Q_WS_WIN
 	path = QCoreApplication::applicationDirPath ();
+#else 
+	path = "/usr/share/qsalat/";
+#endif
 	if (path.data()[path.size() - 1] != '/') path += "/";
 	setupUi(this);
 	setUI();
@@ -39,7 +43,11 @@ Qlocation::Qlocation( QWidget * parent, Qt::WFlags f)
 //
 void Qlocation::init(int flag = 0)
 {
+#ifdef Q_WS_WIN
 	file = path+"data/qsalat.xml";
+#else 
+	file = QDir::homePath ()+"/.qsalat/config/qsalat.xml";
+#endif	
 	parser.readFile(file);	
 	if (0 == flag){
 		latitude = parser.getElement(0,0).toFloat();
@@ -154,8 +162,8 @@ void Qlocation::apply()
 {
 	parser.changeElement(latLineEdit->text(),0,0);
 	parser.changeElement(lngLineEdit->text(),0,1);
-	parser.changeElement(cityLineEdit->text(),0,2);
-	parser.changeElement(countryLineEdit->text(),0,3);	
+	parser.changeElement(countryLineEdit->text(),0,2);	
+	parser.changeElement(cityLineEdit->text(),0,3);
 	parser.changeElement(timezoneLineEdit->text(),0,4);
 	parser.saveData(file);
 	DomParser::changed = true; 	

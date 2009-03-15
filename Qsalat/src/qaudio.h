@@ -72,6 +72,7 @@ private slots:
 	void cancel();
 	void finished();
 	void apply();
+	void stateChanged();
 };
 
 #endif // __QAUDIO_H__

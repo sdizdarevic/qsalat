@@ -77,7 +77,7 @@ private:
 	Qyearly yearly;
 	Qhijridate hijridate; 
 	DomParser parser;
-	PlayerImpl player;
+	PlayerImpl * player;
 	QString file;	
 	int timer;	
 	QString prayerAudio;
@@ -115,6 +115,7 @@ private slots:
 	void showMonthly();
 	void showYearly();
 	void showHijridate();
+	void showPlayer();
 	void _about();
 	void _hide();
 	void _showNormal();

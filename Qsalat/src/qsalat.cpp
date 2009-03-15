@@ -26,7 +26,11 @@
 Qsalat::Qsalat( QWidget * parent, Qt::WFlags f) 
 	: QMainWindow(parent, f)
 {
+#ifdef Q_WS_WIN
 	path = QCoreApplication::applicationDirPath ();
+#else 
+	path = "/usr/share/qsalat/";
+#endif
 	if (path.data()[path.size() - 1] != '/') path += "/";
 	setupUi(this);
 	setWindowFlags(Qt::WindowMinimizeButtonHint);
@@ -53,7 +57,11 @@ void Qsalat::init()
 	year = date.year();;
 	month = date.month();
 	day = date.day();		
+#ifdef Q_WS_WIN
 	file = path+"data/qsalat.xml";
+#else 
+	file = QDir::homePath ()+"/.qsalat/config/qsalat.xml";
+#endif	
 	parser.readFile(file);
 	latitude = parser.getElement(0,0).toDouble();
 	longitude = parser.getElement(0,1).toDouble();	
@@ -215,7 +223,8 @@ void Qsalat::createActions()
     connect(actionAbout_QT, SIGNAL(triggered()), qApp, SLOT(aboutQt()));     
     actionHide->setShortcut(tr("Ctrl+H"));
     connect(actionHide, SIGNAL(triggered()), this, SLOT(hide()));    
-    connect(actionAbout_Qsalat, SIGNAL(triggered()), this, SLOT(_about()));    
+    connect(actionAbout_Qsalat, SIGNAL(triggered()), this, SLOT(_about()));  
+    //connect(actionPlayer, SIGNAL(triggered()), this, SLOT(showPlayer()));    
 }
 
 /**	
@@ -315,32 +324,57 @@ void Qsalat::timerEvent(QTimerEvent *e)
    		else if ("23:00:00" == strTime){    		
 			worldtime.setImage(worldtime.getImage(23,timezone));
    		}
-   		if (playAthan == "1"){		
+   		if (playAthan == "1"){	   	
+   			audioList.clear();			
 		   	if (label_fajr->text()+":00" == strTime){
-		   		audioList << fajrAudio << duaAudio;
+		   		audioList.clear();
+		   		audioList << fajrAudio;
+		   		if (playDua == "1") audioList << duaAudio;
 		   		QString salatTitle = "Fajr prayer "+ QString::fromUtf8(" صلاة الفجر");	
 		   		setPlayer(audioList, salatTitle);		   		
 		  	}
    			else if (label_duhr->text()+":00" == strTime){
-   				audioList << prayerAudio << duaAudio;
+   				audioList.clear();
+   				audioList << prayerAudio;
+		   		if (playDua == "1") audioList << duaAudio;
 		  		QString salatTitle = "Duhr prayer " + QString::fromUtf8(" صلاة الظهر");
 		   		setPlayer(audioList, salatTitle);		   		 			
 		  	}
    			else if (label_asr->text()+":00" == strTime){
-   				audioList << prayerAudio << duaAudio;
+   				audioList.clear();
+   				audioList << prayerAudio;
+		   		if (playDua == "1") audioList << duaAudio;
 		   		QString salatTitle = "Asr prayer " + QString::fromUtf8(" صلاة العصر");
 		   		setPlayer(audioList, salatTitle);		   		
 		  	}
 	  		else if (label_maghreb->text()+":00" == strTime){
-	  			audioList << prayerAudio << duaAudio;
+	  			audioList.clear();
+	  			audioList << prayerAudio;
+		   		if (playDua == "1") audioList << duaAudio;
 	  			QString salatTitle = "Maghreb prayer " + QString::fromUtf8(" صلاة المغرب");
 		   		setPlayer(audioList, salatTitle);		   		  			
 	  		}
 	  		else if (label_isha->text()+":00" == strTime){
-	  			audioList << prayerAudio << duaAudio;
+	  			audioList.clear();
+	  			audioList << prayerAudio;
+		   		if (playDua == "1") audioList << duaAudio;
 	  			QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
 		   		setPlayer(audioList, salatTitle);		   		   			
-	  		}
+	  		}	  		
+	  		else if ("23:18:00" == strTime){
+	  			audioList.clear();
+	  			audioList << fajrAudio;
+		   		if (playDua == "1") audioList << duaAudio;
+	  			QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
+		   		setPlayer(audioList, salatTitle);		   		   			
+	  		}	  		
+	  		else if ("23:18:20" == strTime){
+	  			audioList.clear();
+	  			audioList << prayerAudio;
+		   		if (playDua == "1") audioList << duaAudio;
+	  			QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
+		   		setPlayer(audioList, salatTitle);		   		   			
+	  		}	  		
   		}    		
  	}	
 }
@@ -522,10 +556,18 @@ void Qsalat::_showNormal()
  */
 void Qsalat::setPlayer(QStringList files, QString label)
 {
-	player.show();
-	player.setLabel(label);
-	player.setAudio(files);
-	player.setPlay2((playDua == "1"));
-	player.play();	
+	player = new PlayerImpl();
+	player->show();
+	player->setLabel(label + QString::number(audioList.size()));
+	player->setAudio(files);
+	player->setPlay2((playDua == "1"));
+	player->play();	
+}
+
+void Qsalat::showPlayer()
+{	
+	QStringList list;
+	list << prayerAudio << duaAudio;
+	setPlayer(list,"test");
 }
 //

@@ -27,7 +27,11 @@
 PlayerImpl::PlayerImpl( QWidget * parent, Qt::WFlags f) 
 	: QDialog(parent, f)
 {
+#ifdef Q_WS_WIN
 	path = QCoreApplication::applicationDirPath ();
+#else 
+	path = "/usr/share/qsalat/";
+#endif
 	if (path.data()[path.size() - 1] != '/') path += "/";
 	setupUi(this);
 	audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
