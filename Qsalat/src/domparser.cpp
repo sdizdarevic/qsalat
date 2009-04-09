@@ -29,6 +29,12 @@ using namespace std;
 
 DomParser::DomParser()
 {    
+	QDir dir;
+#ifdef Q_WS_X11
+	if (!dir.exists(QDir::homePath ()+"/.qsalat/")) dir.mkdir(QDir::homePath ()+"/.qsalat/");
+	if (!dir.exists(QDir::homePath ()+"/.qsalat/config/")) dir.mkdir(QDir::homePath ()+"/.qsalat/config/");	
+#endif	
+	
 }
 
 bool DomParser::changed = false; 
@@ -37,10 +43,7 @@ bool DomParser::readFile(const QString &fileName)
 {
     QFile file(fileName);
     if (!file.open(QFile::ReadOnly | QFile::Text)) {
-        std::cerr << "Error: Cannot read file " << qPrintable(fileName)
-                  << ": " << qPrintable(file.errorString())
-                  << std::endl;
-        return false;
+        saveDefault();
     }
 
     QString errorStr;
@@ -58,7 +61,7 @@ bool DomParser::readFile(const QString &fileName)
 
     QDomElement root = doc.documentElement();
     if (root.tagName() != "qsalat") {
-        std::cerr << "Error: Not a bookindex file" << std::endl;
+        std::cerr << "Error: Not a qsalat file" << std::endl;
         return false;
     }
 
@@ -178,6 +181,48 @@ void DomParser::saveData(QString file){
 			<< "		<asr>" << Qt::escape(params[2][2]) << "</asr>\n"
 			<< "		<hijri>" << Qt::escape(params[2][3]) << "</hijri>\n"
 			<< "		<higherLat>" << Qt::escape(params[2][4]) << "</higherLat>\n"
+			<< "	</calculation>\n"
+			<< "</qsalat>\n";
+	 }
+ }
+	 
+void DomParser::saveDefault(){
+	QString file;
+	QString path;	
+#ifdef Q_WS_WIN	
+	path = QCoreApplication::applicationDirPath ();
+	file = path+"data/qsalat.xml";
+#else 
+	path = "/usr/share/qsalat/";
+	file = QDir::homePath ()+"/.qsalat/config/qsalat.xml";	
+#endif	
+	if (path.data()[path.size() - 1] != '/') path += "/";
+	QFile data(file);
+	 if (data.open(QFile::WriteOnly | QFile::Truncate)) {
+		 QTextStream out(&data);
+		 out.setCodec("UTF-8");
+		 out << "<?xml version=\"1.0\" ?>\n"
+			<< "<qsalat>\n"
+			<< "	<location>\n"
+			<< "		<latitude>45.545447</latitude>\n"
+			<< "		<longitude>-73.639076</longitude>\n"
+			<< "		<country>Canada</country>\n"
+		    << "		<city>Montreal</city>\n"
+			<< "		<timezone>-5</timezone>\n"
+			<< "	</location>\n"
+			<< "	<audio>\n"
+			<< "		<prayer>" << path+"audio/athan.mp3" << "</prayer>\n"
+			<< "		<fajrPrayer>" << path+"audio/athanFajr.mp3" << "</fajrPrayer>\n"
+			<< "		<dua>" << path+"audio/dua.mp3" << "</dua>\n"
+			<< "		<playAthan>1</playAthan>\n"
+			<< "		<playDua>1</playDua>\n"
+			<< "	</audio>\n"
+			<< "	<calculation>\n"
+			<< "		<method>3</method>	\n"	
+			<< "		<duhr>0</duhr>\n"
+			<< "		<asr>0</asr>\n"
+			<< "		<hijri>0</hijri>\n"
+			<< "		<higherLat>0</higherLat>\n"
 			<< "	</calculation>\n"
 			<< "</qsalat>\n";
 	 }

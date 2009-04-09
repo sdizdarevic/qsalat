@@ -43,7 +43,8 @@ private:
     void parseindexElement(const QDomElement &element);
     void parseEntryElement(const QDomElement &element);
     QString parsePageElement(const QDomElement &element);
-    QString params[4][5];   	  
+    QString params[4][5];   
+    void saveDefault();	  
 };
 
 #endif
