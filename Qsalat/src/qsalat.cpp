@@ -164,7 +164,7 @@ void Qsalat::createTrayIcon()
     trayIcon->setContextMenu(trayIconMenu);
     trayIcon->setIcon(QIcon(path+"images/mecque.png"));
 	QString ttmessage = "Fajr : "+label_fajr->text()+ QString::fromUtf8(" : فجر")+"\nDuhr : "	+label_duhr->text()+QString::fromUtf8(" : ظهر")+"\nAsr : "+label_asr->text()+QString::fromUtf8(" : عصر")+"\nMaghreb : "+label_maghreb->text()+QString::fromUtf8(" : مغرب")+"\nIsha : "+label_isha->text()+QString::fromUtf8(" : عشاء");
-    trayIcon->setToolTip("Qsalat Islamic cross-platform prayers time V0.1");
+    trayIcon->setToolTip("Qsalat Islamic cross-platform prayers time V0.9.3");
     trayIcon->setToolTip(ttmessage);
 	trayIcon->show();	
 }
