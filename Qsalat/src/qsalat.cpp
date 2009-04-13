@@ -505,9 +505,10 @@ void Qsalat::showHijridate(){
  * Application about window
  */
 void Qsalat::_about()
-{
+{	
+	QString cp = "©";
     QMessageBox::about(this, tr("About Qsalat"),
-             tr("<b> Qsalat V0.1</b> Copyright (c) 2008 Skander Jabouzi skander@skanderjabouzi.com<br>"             
+             tr("<b> Qsalat V0.9.3</b> Copyright ") +  QString::fromUtf8(cp.toLatin1().data()) + tr(" 2008-2009 Skander Jabouzi skander@skanderjabouzi.com<br>"             
              	" This is a free software distributed under the terms of the GNU General Public License version 3\n(http://www.gnu.org/licenses/gpl-3.0.html)"));     
 } 
 
