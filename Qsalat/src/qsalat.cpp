@@ -33,7 +33,7 @@ Qsalat::Qsalat( QWidget * parent, Qt::WFlags f)
 #endif
 	if (path.data()[path.size() - 1] != '/') path += "/";
 	setupUi(this);
-	setWindowFlags(Qt::WindowMinimizeButtonHint);
+	//setWindowFlags(Qt::WindowMinimizeButtonHint);
 	adjustWindow();
 	prayers = new Qpray();
 	hijri = new Qhijri();
@@ -224,7 +224,7 @@ void Qsalat::createActions()
     actionHide->setShortcut(tr("Ctrl+H"));
     connect(actionHide, SIGNAL(triggered()), this, SLOT(hide()));    
     connect(actionAbout_Qsalat, SIGNAL(triggered()), this, SLOT(_about()));  
-    //connect(actionPlayer, SIGNAL(triggered()), this, SLOT(showPlayer()));    
+    //connect(actionPlayer_2, SIGNAL(triggered()), this, SLOT(showPlayer()));    
 }
 
 /**	
@@ -361,19 +361,19 @@ void Qsalat::timerEvent(QTimerEvent *e)
 	  			QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
 		   		setPlayer(audioList, salatTitle);		   		   			
 	  		}	  		
-	  		//else if ("01:15:00" == strTime){
+	  		//else if ("21:18:00" == strTime){
 	  			//audioList.clear();
 	  			//audioList << fajrAudio;
 		   		//if (playDua == "1") audioList << duaAudio;
 	  			//QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
 		   		//setPlayer(audioList, salatTitle);		   		   			
 	  		//}	  		
-	  		//else if ("01:15:20" == strTime){
+	  		//else if ("21:18:30" == strTime){
 	  			//audioList.clear();
 	  			//audioList << prayerAudio;
 		   		//if (playDua == "1") audioList << duaAudio;
 	  			//QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
-		   		//setPlayer(audioList, salatTitle);		   		   			
+		   		//setPlayer(audioList, salatTitle);				   		   			
 	  		//}	  		
   		}    		
  	}	
@@ -557,11 +557,11 @@ void Qsalat::_showNormal()
  */
 void Qsalat::setPlayer(QStringList files, QString label)
 {
-	player = new PlayerImpl();
+	player = new Player();
 	player->show();
 	player->setLabel(label);
 	player->setAudio(files);
-	player->setPlay2((playDua == "1"));
+	//player->setPlay2((playDua == "1"));
 	player->play();	
 }
 

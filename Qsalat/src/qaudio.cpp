@@ -121,6 +121,8 @@ void Qaudio::setUI()
     playerFrame->setLayout(seekerLayout);    
     
     volumeSlider = new Phonon::VolumeSlider(this);
+    QSize *size = new QSize(0,0);
+    volumeSlider->setIconSize(*size);   
     volumeSlider->setAudioOutput(audioOutput);
     volumeSlider->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);    
     QHBoxLayout *volumeLayout = new QHBoxLayout;

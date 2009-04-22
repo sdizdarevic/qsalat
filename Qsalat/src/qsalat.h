@@ -42,7 +42,7 @@
 #include "qyearly.h"
 #include "qhijridate.h"
 #include "domparser.h"
-#include "playerimpl.h"
+#include "player.h"
 //
 class Qsalat : public QMainWindow, public Ui::Salat
 {
@@ -77,7 +77,7 @@ private:
 	Qyearly yearly;
 	Qhijridate hijridate; 
 	DomParser parser;
-	PlayerImpl * player;
+	Player * player;
 	QString file;	
 	int timer;	
 	QString prayerAudio;

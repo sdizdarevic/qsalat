@@ -1,11 +1,11 @@
 /****************************************************************************
 ** Qsalat project V1.0
-** playerimpl.h
+** player.h
 **
 ** Copyright (C) 2008 Skander Jabouzi (Skander Software Solutions).
 ** Contact: skander@skanderjabouzi.com or jabouzi@gmail.com
 **
-** This file is part of the Qsalat open source software.
+** This file is part of the Player open source software.
 **
 ** GNU General Public License Usage
 ** This file may be used under the terms of the GNU
@@ -21,8 +21,8 @@
 **
 ***************************************************************************/
 
-#ifndef PLAYERIMPL_H
-#define PLAYERIMPL_H
+#ifndef PLAYER_H
+#define PLAYER_H
 //
 #include <QDialog>
 #include <QtGui>
@@ -30,59 +30,65 @@
 #include <phonon>
 #include "ui_player.h"
 //
-class PlayerImpl : public QDialog, public Ui::Player
+class Player : public QDialog, public Ui::Player
 {
 Q_OBJECT
 public:
-	PlayerImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
+	Player( QWidget * parent = 0, Qt::WFlags f = 0 );
+	void setLabel(QString);
+	void setAudio(QStringList);
 	
 public slots:
 	void play();
-	void stop();
-	void setAudio(QStringList);
-	QString getAudio();
-	void setLabel(QString);	
-	void autoPlay();
-	void updateTime();
-	void changeSign();
-	void setPlay2(bool);
-
-protected:
-	void closeEvent(QCloseEvent *);
 	
 private:
 	QIcon playIcon;
     QIcon pauseIcon;
     QIcon stopIcon;
+    QIcon nextIcon;
+    QIcon prevIcon;
     QPixmap volumeIcon;
     QPixmap mutedIcon;
     Phonon::SeekSlider *seekSlider;
     Phonon::MediaObject *mediaObject;
-    Phonon::MediaObject *metaInformationResolver;
     Phonon::VolumeSlider *volumeSlider;
     Phonon::AudioOutput *audioOutput;
+    Phonon::VideoWidget *videoWidget;
+    QList<Phonon::MediaSource> sources;
     void setActions();
     void setUI();
+    bool isplay;
     QStringList audioSource;
     QString audioLabel;
     void adjustWindow();
     int screenx;
 	int screeny;
+	bool eventFilter(QObject *, QEvent *);
+	bool timeLeft;
+	QString path;
+	int index;
+	bool stopped;
+	int playing;
+	bool newLoad;
+	void init();
+	void closeEvent(QCloseEvent *);	
+	Phonon::MediaSource getAudio();	
 	QRect rect;
 	QRegion region;
 	int screenWidth; 
 	int screenHeight;
 	int width; 
 	int height;
-	QString path;
-	bool eventFilter(QObject *, QEvent *);
-	bool timeLeft;
-	int index;
-	bool play2;
 
 private slots:
 	void setVolume();
 	void finished();
+	void next();
+	void load();
+	void stop();
+	void updateTime();
+	void changeSign();
+	void stateChanged ( Phonon::State, Phonon::State );
 };
 #endif
 
