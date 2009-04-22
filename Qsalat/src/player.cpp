@@ -26,7 +26,11 @@
 Player::Player( QWidget * parent, Qt::WFlags f) 
 	: QDialog(parent, f)
 {
+#ifdef Q_WS_WIN
 	path = QCoreApplication::applicationDirPath ();
+#else 
+	path = "/usr/share/qsalat/";
+#endif
 	if (path.data()[path.size() - 1] != '/') path += "/";
 	setupUi(this);
 	audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
@@ -123,7 +127,7 @@ void Player::setUI(){
 	QFont *f = new QFont ( "sans", 10, -1, false );	
 	QToolTip::setFont ( *f );
 	QToolTip::setPalette(*p);	
-	setWindowIcon(QIcon(path+"images/audio.png"));
+	setWindowIcon(QIcon(path+"images/mecque.png"));
     playButton->setIcon(QIcon(path+"images/play.png"));
     playButton->setToolTip("Play");
     stopButton->setIcon(QIcon(path+"images/stop.png"));

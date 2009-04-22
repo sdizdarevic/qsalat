@@ -138,11 +138,7 @@ void Qsalat::getHijri(){
 	QString *dates = new QString[4];
 	dates = hijri->isToString(year, month, day,hijriDays);
 	label_hijri->setText(QString::fromUtf8((dates[0]+" "+dates[2]+" "+dates[3]).toLatin1().data()));
-	//label_hijri_3->setText(QString::fromUtf8(dates[3].toLatin1().data()));
-	//label_hijri_4->setText(dates[0]);
 	label_hijri_2->setText(dates[0]+" "+dates[1]+" "+dates[3]);
-	//label_hijri_5->setText(dates[3]);
-	//label_hijri_6->setText(dates[0]);
 }
 
 /**	
