@@ -76,7 +76,8 @@ void Player::adjustWindow()
 void Player::closeEvent(QCloseEvent *event)
 {
 	stop();
-	close();
+	hide();
+    event->ignore();
 }
 
 // set player label text
@@ -211,6 +212,7 @@ void Player::finished(){
 	stop();
 	if (index < sources.size() - 1)
 		next();
+    else hide();
 }
 
 // switch between time left or elapsed one
