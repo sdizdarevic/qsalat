@@ -1,0 +1,28 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/">
+	<file>/usr/share/qsalat/images/worldtime/img0.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img1.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img2.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img3.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img4.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img5.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img6.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img7.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img8.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img9.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img10.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img11.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img12.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img13.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img14.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img15.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img16.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img17.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img18.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img19.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img20.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img21.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img22.jpg</file>
+	<file>/usr/share/qsalat/images/worldtime/img23.jpg</file>  
+</qresource>
+</RCC>
