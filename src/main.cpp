@@ -7,6 +7,7 @@ int main(int argc, char ** argv)
 	//QString path = QCoreApplication::applicationDirPath ();
 	//if (path.data()[path.size() - 1] != '/') path += "/";
 	QApplication app( argc, argv );
+	app.setApplicationName( "Qsalat" );
 	DSingleApplication instance( "Qsalat" );
   
 	  if ( instance.isRunning() ) {
