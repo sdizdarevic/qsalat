@@ -5,14 +5,6 @@ QT = gui \
  webkit \
  phonon \
  xml
-LIBS = lib/libphonon.so \
-	   lib/libQtCore.so \
-	   lib/libQtGui.so \
-       lib/libQtNetwork.so \
-       lib/libQtWebKit.so \
-       lib/libQtXml.so  
-QTPLUGIN = plugins/imageformats \
-	       plugins/phonon_backend
 CONFIG += qt warn_on release
 OBJECTS_DIR = build
 MOC_DIR = build
