@@ -1,0 +1,387 @@
+<ui version="4.0" >
+ <class>Audio</class>
+ <widget class="QDialog" name="Audio" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>484</width>
+    <height>461</height>
+   </rect>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>484</width>
+    <height>461</height>
+   </size>
+  </property>
+  <property name="maximumSize" >
+   <size>
+    <width>484</width>
+    <height>461</height>
+   </size>
+  </property>
+  <property name="windowTitle" >
+   <string>Qsalat - audio</string>
+  </property>
+  <widget class="QGroupBox" name="groupBox" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>461</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="title" >
+    <string>Audio option</string>
+   </property>
+   <widget class="QPushButton" name="prayerButton" >
+    <property name="geometry" >
+     <rect>
+      <x>360</x>
+      <y>20</y>
+      <width>91</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Select</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="fajrButton" >
+    <property name="geometry" >
+     <rect>
+      <x>360</x>
+      <y>60</y>
+      <width>91</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Select</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="prayerLineEdit" >
+    <property name="geometry" >
+     <rect>
+      <x>120</x>
+      <y>20</y>
+      <width>231</width>
+      <height>28</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="fajrLineEdit" >
+    <property name="geometry" >
+     <rect>
+      <x>120</x>
+      <y>60</y>
+      <width>231</width>
+      <height>28</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="prayerLabel" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>17</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Regular prayer</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="fajrLabel" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Fajr prayer</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="duaButton" >
+    <property name="geometry" >
+     <rect>
+      <x>360</x>
+      <y>100</y>
+      <width>91</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Select</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="duaLineEdit" >
+    <property name="geometry" >
+     <rect>
+      <x>120</x>
+      <y>100</y>
+      <width>231</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="duaLabel" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>97</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Dua</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>180</y>
+     <width>461</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="title" >
+    <string>Play options</string>
+   </property>
+   <widget class="QCheckBox" name="salatCheckBox" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>191</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Play athan audio</string>
+    </property>
+    <property name="checked" >
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="duaCheckBox" >
+    <property name="geometry" >
+     <rect>
+      <x>280</x>
+      <y>30</y>
+      <width>171</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Play dua audio</string>
+    </property>
+    <property name="checked" >
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>250</y>
+     <width>461</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="title" >
+    <string>Player</string>
+   </property>
+   <widget class="QPushButton" name="playButton" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>100</y>
+      <width>41</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stopButton" >
+    <property name="geometry" >
+     <rect>
+      <x>70</x>
+      <y>100</y>
+      <width>41</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="volumeLabel" >
+    <property name="geometry" >
+     <rect>
+      <x>330</x>
+      <y>105</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string/>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="regularRadioButton" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>131</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Play regular athan</string>
+    </property>
+    <property name="checked" >
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="fajrRadioButton" >
+    <property name="geometry" >
+     <rect>
+      <x>170</x>
+      <y>30</y>
+      <width>111</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Play Fajr athan</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="duaRadioButton" >
+    <property name="geometry" >
+     <rect>
+      <x>300</x>
+      <y>30</y>
+      <width>91</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Play dua</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="playerFrame" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>441</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="frameShape" >
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow" >
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QFrame" name="volumeFrame" >
+    <property name="geometry" >
+     <rect>
+      <x>330</x>
+      <y>100</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="frameShape" >
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow" >
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="cancelButton" >
+   <property name="geometry" >
+    <rect>
+     <x>390</x>
+     <y>420</y>
+     <width>80</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="saveButton" >
+   <property name="geometry" >
+    <rect>
+     <x>300</x>
+     <y>420</y>
+     <width>80</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>Apply</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="okButton" >
+   <property name="geometry" >
+    <rect>
+     <x>210</x>
+     <y>420</y>
+     <width>80</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>OK</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>461</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font" >
+    <font>
+     <pointsize>11</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text" >
+    <string>Set audio files and audio options</string>
+   </property>
+   <property name="alignment" >
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
