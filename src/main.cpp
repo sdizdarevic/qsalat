@@ -8,12 +8,12 @@ int main(int argc, char ** argv)
 	//if (path.data()[path.size() - 1] != '/') path += "/";
 	QApplication app( argc, argv );
 	app.setApplicationName( "Qsalat" );
-	DSingleApplication instance( "Qsalat" );
+	//DSingleApplication instance( "Qsalat" );
   
-	  if ( instance.isRunning() ) {
-	    instance.sendMessage( "Hey, i'm the other instance" );
-	    return 0;
-	  }
+	  //if ( instance.isRunning() ) {
+	    //instance.sendMessage( "Hey, i'm the other instance" );
+	    //return 0;
+	  //}
 	//QPixmap pixmap(":/images/splash.png");
 	//QPixmap pixmap(path+"images/splash.png");
 	//QSplashScreen splash(pixmap);

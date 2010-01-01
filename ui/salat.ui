@@ -39,7 +39,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(/usr/share/qsalat/images/qsalat.png);</string>
+     <string notr="true">background-image: url(:/usr/share/qsalat/images/qsalat.png);</string>
     </property>
     <widget class="QLabel" name="label_fajr">
      <property name="geometry">
@@ -277,6 +277,27 @@ color:white;
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
+    <widget class="QLabel" name="label_shourouk">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>330</y>
+       <width>62</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;
+opacity:1.0;
+background-image: url(:/images/slider3.png);</string>
+     </property>
+     <property name="text">
+      <string>00:00</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -485,6 +506,11 @@ color:white;
   <action name="actionPlayer_2">
    <property name="text">
     <string>Player</string>
+   </property>
+  </action>
+  <action name="actionPlayer_3">
+   <property name="text">
+    <string>player</string>
    </property>
   </action>
  </widget>
