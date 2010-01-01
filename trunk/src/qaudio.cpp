@@ -114,7 +114,9 @@ void Qaudio::setUI()
     saveButton->setIcon(style()->standardIcon(QStyle::SP_DialogApplyButton));
     cancelButton->setIcon(style()->standardIcon(QStyle::SP_DialogCancelButton));
     
-    seekSlider = new Phonon::SeekSlider(this);   
+    seekSlider = new Phonon::SeekSlider(this);  
+    seekSlider->setMouseTracking(false);
+    seekSlider->setMouseTracking(true);
     seekSlider->setMediaObject(mediaObject);    
     QHBoxLayout *seekerLayout = new QHBoxLayout;
     seekerLayout->addWidget(seekSlider);  
@@ -133,19 +135,19 @@ void Qaudio::setUI()
 // load athan file
 void Qaudio::loadPrayer()
 {
-        prayerLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi *.rm *.ram)")));
+        prayerLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios et videos (*.mp3 *.wma *.ogg *.wave *.midi *.mp4 *.flv *.ogv *.mpeg *.mpg *.avi *.divx *.wmv *.mov)")));
 }
 
 // load fajr file
 void Qaudio::loadFajr()
 {
-        fajrLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi *.rm *.ram)")));
+        fajrLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios et videos (*.mp3 *.wma *.ogg *.wave *.midi *.mp4 *.flv *.ogv *.mpeg *.mpg *.avi *.divx *.wmv *.mov)")));
 }
 
 // load dua file
 void Qaudio::loadDua()
 {
-        duaLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi *.rm *.ram)")));
+        duaLineEdit->setText(QFileDialog::getOpenFileName(this,tr("Open File"),".",tr("audios et videos (*.mp3 *.wma *.ogg *.wave *.midi *.mp4 *.flv *.ogv *.mpeg *.mpg *.avi *.divx *.wmv *.mov)")));
 }
 
 //

@@ -128,6 +128,7 @@ void Qsalat::getSalats(){
 	label_asr->setText(times[3]);
 	label_maghreb->setText(times[5]);
 	label_isha->setText(times[6]);
+    label_shourouk->setText(times[1]);
 	label_location->setText(city+", "+country);	
 }
 
@@ -220,7 +221,7 @@ void Qsalat::createActions()
     actionHide->setShortcut(tr("Ctrl+H"));
     connect(actionHide, SIGNAL(triggered()), this, SLOT(hide()));    
     connect(actionAbout_Qsalat, SIGNAL(triggered()), this, SLOT(_about()));  
-    //connect(actionPlayer_2, SIGNAL(triggered()), this, SLOT(showPlayer()));    
+    connect(actionPlayer_3, SIGNAL(triggered()), this, SLOT(showPlayer()));    
 }
 
 /**	
@@ -553,18 +554,17 @@ void Qsalat::_showNormal()
  */
 void Qsalat::setPlayer(QStringList files, QString label)
 {
-	player = new Player();
-	player->show();
-	player->setLabel(label);
-	player->setAudio(files);
-	//player->setPlay2((playDua == "1"));
-	player->play();	
+	Jmplayer *player = new Jmplayer();        
+	player->show(); 
+    player->loadFiles(files);
+    player->playFiles();
 }
 
 void Qsalat::showPlayer()
 {	
 	QStringList list;
-	list << prayerAudio << duaAudio;
+    list.clear();
+	list << "/home/nour/Development/jmplayer/layouts.avi";
 	setPlayer(list,"test");
 }
 //

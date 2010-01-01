@@ -43,6 +43,7 @@
 #include "qhijridate.h"
 #include "domparser.h"
 #include "player.h"
+#include "jmplayer.h"
 //
 class Qsalat : public QMainWindow, public Ui::Salat
 {
