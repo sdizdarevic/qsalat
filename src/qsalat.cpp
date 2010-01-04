@@ -221,7 +221,7 @@ void Qsalat::createActions()
     actionHide->setShortcut(tr("Ctrl+H"));
     connect(actionHide, SIGNAL(triggered()), this, SLOT(hide()));    
     connect(actionAbout_Qsalat, SIGNAL(triggered()), this, SLOT(_about()));  
-    //connect(actionShow, SIGNAL(triggered()), this, SLOT(showPlayer()));    
+    connect(actionShow_2, SIGNAL(triggered()), this, SLOT(showPlayer()));    
 }
 
 /**	
@@ -554,17 +554,17 @@ void Qsalat::_showNormal()
  */
 void Qsalat::setPlayer(QStringList files, QString label)
 {
-	Player *player = new Player();        
-	player->show(); 
+	Player *player = new Player();	
     player->loadFiles(files);
     player->setTitle(label);
+    player->show(); 
 }
 
 void Qsalat::showPlayer()
 {	
 	QStringList list;
     list.clear();
-	list << "/home/nour/Development/jmplayer/layouts.avi";
+	list << prayerAudio	 << duaAudio;
 	setPlayer(list,"test");
 }
 //

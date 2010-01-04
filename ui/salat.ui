@@ -306,7 +306,7 @@ background-image: url(:/images/slider3.png);</string>
      <x>0</x>
      <y>0</y>
      <width>300</width>
-     <height>23</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -349,10 +349,17 @@ background-image: url(:/images/slider3.png);</string>
     <addaction name="actionAbout_Qsalat"/>
     <addaction name="actionAbout_QT"/>
    </widget>
+   <widget class="QMenu" name="menuShow">
+    <property name="title">
+     <string>show</string>
+    </property>
+    <addaction name="actionShow_2"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
    <addaction name="menuExtra"/>
    <addaction name="menuAbout"/>
+   <addaction name="menuShow"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -514,6 +521,11 @@ background-image: url(:/images/slider3.png);</string>
    </property>
   </action>
   <action name="actionShow">
+   <property name="text">
+    <string>show</string>
+   </property>
+  </action>
+  <action name="actionShow_2">
    <property name="text">
     <string>show</string>
    </property>

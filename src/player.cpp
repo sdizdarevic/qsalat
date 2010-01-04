@@ -24,7 +24,7 @@ void Player::loadFiles(QStringList list)
             sources.insert(i,source);            
         }    
         playButton->setEnabled(true);    
-        addButton->setEnabled(true);
+        //addButton->setEnabled(true);
         videoPlayer->mediaObject()->setCurrentSource(getAudio());
         play();
     }
@@ -127,7 +127,7 @@ void Player::setActions(){
     connect(playButton, SIGNAL(clicked()), this, SLOT(play()));
 	connect(nextButton, SIGNAL(clicked()), this, SLOT(next()));
 	connect(prevButton, SIGNAL(clicked()), this, SLOT(prev()));
-    connect(addButton, SIGNAL(clicked()), this, SLOT(load()));
+    //connect(addButton, SIGNAL(clicked()), this, SLOT(load()));
     connect(videoPlayer->mediaObject(), SIGNAL(finished()), this, SLOT(finished()));
     connect(videoPlayer->mediaObject(), SIGNAL(totalTimeChanged(qint64)), this, SLOT(updateTime()));
     connect(videoPlayer->mediaObject(), SIGNAL(tick(qint64)), this, SLOT(updateTime()));    
@@ -149,7 +149,7 @@ void Player::setUI(){
     prevButton->setIcon(style()->standardIcon(QStyle::SP_MediaSkipBackward));
     nextButton->setIcon(style()->standardIcon(QStyle::SP_MediaSkipForward));
     playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
-    addButton->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
+   // addButton->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
 }
 
 // play audio file
@@ -234,7 +234,7 @@ void Player::load()
             sources.insert(i,source);            
         }    
         playButton->setEnabled(true);    
-        addButton->setEnabled(true);
+       // addButton->setEnabled(true);
         videoPlayer->mediaObject()->setCurrentSource(getAudio());
         play();
     }
@@ -282,7 +282,8 @@ void Player::stateChanged(Phonon::State newstate, Phonon::State oldstate)
     else if (newstate == Phonon::ErrorState) {    
             //QMessageBox::warning(this, "Phonon Mediaplayer", videoPlayer->mediaObject()->errorString(), QMessageBox::Close);
             if (videoPlayer->mediaObject()->errorType() == Phonon::FatalError) {
-                init2();
+                //init2();
+                close();
             } else {
                 videoPlayer->mediaObject()->pause();
             }
