@@ -306,7 +306,7 @@ background-image: url(:/images/slider3.png);</string>
      <x>0</x>
      <y>0</y>
      <width>300</width>
-     <height>24</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -511,6 +511,11 @@ background-image: url(:/images/slider3.png);</string>
   <action name="actionPlayer_3">
    <property name="text">
     <string>player</string>
+   </property>
+  </action>
+  <action name="actionShow">
+   <property name="text">
+    <string>show</string>
    </property>
   </action>
  </widget>

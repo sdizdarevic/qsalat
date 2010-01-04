@@ -221,7 +221,7 @@ void Qsalat::createActions()
     actionHide->setShortcut(tr("Ctrl+H"));
     connect(actionHide, SIGNAL(triggered()), this, SLOT(hide()));    
     connect(actionAbout_Qsalat, SIGNAL(triggered()), this, SLOT(_about()));  
-    connect(actionPlayer_3, SIGNAL(triggered()), this, SLOT(showPlayer()));    
+    //connect(actionShow, SIGNAL(triggered()), this, SLOT(showPlayer()));    
 }
 
 /**	
@@ -554,10 +554,10 @@ void Qsalat::_showNormal()
  */
 void Qsalat::setPlayer(QStringList files, QString label)
 {
-	Jmplayer *player = new Jmplayer();        
+	Player *player = new Player();        
 	player->show(); 
     player->loadFiles(files);
-    player->playFiles();
+    player->setTitle(label);
 }
 
 void Qsalat::showPlayer()

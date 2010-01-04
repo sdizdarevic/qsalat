@@ -1,173 +1,172 @@
-/****************************************************************************
-** Qsalat project V1.0
-** player.cpp
-**
-** Copyright (C) 2008 Skander Jabouzi (Skander Software Solutions).
-** Contact: skander@skanderjabouzi.com or jabouzi@gmail.com
-**
-** This file is part of the Player open source software.
-**
-** GNU General Public License Usage
-** This file may be used under the terms of the GNU
-** General Public License versions 2.0 or 3.0 as published by the Free
-** Software Foundation and appearing in the file LICENSE.GPL included in
-** the packaging of this file.  Please review the following information
-** to ensure GNU General Public Licensing requirements will be met:
-** http://www.fsf.org/licensing/licenses/info/GPLv2.html and
-** http://www.gnu.org/copyleft/gpl.html.  In addition, as a special
-** exception, Nokia gives you certain additional rights. These rights
-** are described in the Nokia Qt GPL Exception version 1.3, included in
-** the file GPL_EXCEPTION.txt in this package.
-**
-***************************************************************************/
-
 #include "player.h"
 //
 Player::Player( QWidget * parent, Qt::WFlags f) 
-	: QDialog(parent, f)
+	: QMainWindow(parent, f)
 {
-#ifdef Q_WS_WIN
-	path = QCoreApplication::applicationDirPath ();
-#else 
-	path = "/usr/share/qsalat/";
-#endif
-	if (path.data()[path.size() - 1] != '/') path += "/";
 	setupUi(this);
-	audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
-	mediaObject = new Phonon::MediaObject(this);
-	Phonon::createPath(mediaObject, audioOutput);
-	mediaObject->setTickInterval(1000);   
-	setUI();
-	setActions();
-	timeLabel->installEventFilter(this);
-	volumeLabel->installEventFilter(this);
-	timeLeft = false;	
-	init();
-	adjustWindow();
-	setWindowFlags(Qt::WindowStaysOnTopHint);
-	this->setGeometry(screenWidth - width - 10,screenHeight - height - 10,screenWidth, screenHeight);	
+	path = QCoreApplication::applicationDirPath ();
+    if (path.data()[path.size() - 1] != '/') path += "/";
+    setupUi(this);
+    videoPlayer->mediaObject()->setTickInterval(1000);
+    setUI();
+    setActions();
+    init();
+    adjustWindow();
+}
+
+void Player::loadFiles(QStringList list)
+{
+	sources.clear();
+    if (list.size() > 0){
+        init();    
+        for (int i = 0; i < list.size(); i++){            
+            Phonon::MediaSource source(list.at(i));
+            sources.insert(i,source);            
+        }    
+        playButton->setEnabled(true);    
+        addButton->setEnabled(true);
+        videoPlayer->mediaObject()->setCurrentSource(getAudio());
+        play();
+    }
+}
+
+void Player::setTitle(QString title)
+{
+	this->setWindowTitle(title);    
 }
 
 void Player::init()
 {
-	index = 0;
-	playing = 0;
-	stopped = false;
-	playButton->setEnabled(false);
-	stopButton->setEnabled(false);
-	newLoad = true;
+    index = 0;
+    playing = 0;
+    playButton->setEnabled(false);    
+    nextButton->setEnabled(false);
+    prevButton->setEnabled(false);
+    newLoad = true;
+}
+
+void Player::init2()
+{
+    index = 0;
+    playing = 0;
+    playButton->setEnabled(true);   
+    if ( sources.size() > 1){
+        if (index == 0){
+            prevButton->setEnabled(false);
+            nextButton->setEnabled(true);            
+        } 
+    }
+    videoPlayer->mediaObject()->setCurrentSource(sources.at(0)); 
+    play();
 }
 
 // adjust window position to center of the screen
 void Player::adjustWindow()
 {
-	QDesktopWidget *desktop = QApplication::desktop();
-	int x, y;
-	QSize windowSize;	 
-	screenWidth = desktop->width(); 
-	screenHeight = desktop->height();
-	windowSize = size(); 
-	width = windowSize.width(); 
-	height = windowSize.height();	
-	x = (screenWidth - width) / 2;
-	y = (screenHeight - height) / 2;
+    QDesktopWidget *desktop = QApplication::desktop();
+    int screenWidth = desktop->width();
+    int screenHeight = desktop->height();
+    QSize windowSize = size(); 
+    int width = windowSize.width(); 
+    int height = windowSize.height();
+    int x = (screenWidth - width);
+    int y = (screenHeight - height);      
+    this->move ( x, y );
 }
 
 void Player::closeEvent(QCloseEvent *event)
 {
-	stop();
-	hide();
-    event->ignore();
+	stop(); 
+    close();
 }
 
 // set player label text
-void Player::setLabel(QString title)
+void Player::setLabel(QString track)
 {
-	label->setText(title);	
-	this->setWindowTitle(title);
+    QString filename = videoPlayer->mediaObject()->currentSource().fileName();
+    filename = filename.right(filename.length() - filename.lastIndexOf('/') - 1);
+    this->setWindowTitle(filename);    
+    lengthLabel->setText(calculateTime(videoPlayer->mediaObject()->totalTime()));
+    timeSlider->setRange(0,videoPlayer->mediaObject()->totalTime());
+    volumeSlider->setRange(0,100);
+    volumeSlider->setValue(videoPlayer->volume()*100);    
 }
 
-void Player::setAudio(QStringList list)
+// simulate the play button clicked
+void Player::autoPlay()
 {
-	init();	
-	for (int i = 0; i < list.size(); i++){			
-		Phonon::MediaSource source(list.at(i));
-		sources.insert(i,source);			
-	}	
-	playButton->setEnabled(true);	
-	stopButton->setEnabled(true);	
-	mediaObject->setCurrentSource(getAudio());
+    playButton->animateClick(10);    
 }
 
 // get the audio source file
 Phonon::MediaSource Player::getAudio()
 {
-	if (playing == 1)
-		index++;			
-	if (playing == 2)
-		index--;	
-	return sources.at(index);	
+    if (playing == 1)
+        index++;            
+    if (playing == 2)
+        index--;
+    if ( sources.size() > 1){
+        if (index == 0){
+            prevButton->setEnabled(false);
+            nextButton->setEnabled(true);            
+        } 
+        else if (index > 0 && index < sources.size() - 1){
+            prevButton->setEnabled(true);
+            nextButton->setEnabled(true);
+        }
+        else if (index == sources.size() - 1){
+            prevButton->setEnabled(true);
+            nextButton->setEnabled(false);
+        }
+    }
+    return sources.at(index);    
 }
 
 // actions
 void Player::setActions(){
-	connect(playButton, SIGNAL(clicked()), this, SLOT(play()));
-	connect(stopButton, SIGNAL(clicked()), this, SLOT(stop()));
-	connect(mediaObject, SIGNAL(finished()), this, SLOT(finished()));
-	connect(audioOutput, SIGNAL(volumeChanged ( qreal )), this, SLOT(setVolume()));
-	connect(mediaObject, SIGNAL(totalTimeChanged(qint64)), this, SLOT(updateTime()));
-	connect(mediaObject, SIGNAL(tick(qint64)), this, SLOT(updateTime()));	
-	connect(mediaObject, SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(stateChanged(Phonon::State, Phonon::State)));
+    connect(playButton, SIGNAL(clicked()), this, SLOT(play()));
+	connect(nextButton, SIGNAL(clicked()), this, SLOT(next()));
+	connect(prevButton, SIGNAL(clicked()), this, SLOT(prev()));
+    connect(addButton, SIGNAL(clicked()), this, SLOT(load()));
+    connect(videoPlayer->mediaObject(), SIGNAL(finished()), this, SLOT(finished()));
+    connect(videoPlayer->mediaObject(), SIGNAL(totalTimeChanged(qint64)), this, SLOT(updateTime()));
+    connect(videoPlayer->mediaObject(), SIGNAL(tick(qint64)), this, SLOT(updateTime()));    
+    connect(videoPlayer->mediaObject(), SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(stateChanged(Phonon::State, Phonon::State)));
+    connect(videoPlayer->mediaObject(), SIGNAL(metaDataChanged()), this, SLOT(updateInfo()));
+    connect(timeSlider, SIGNAL(sliderReleased()),this, SLOT(seekFile()));
+    connect(volumeSlider, SIGNAL(sliderReleased()),this, SLOT(changeVolume()));
 }
 
 // set the player UI : buttons icons and sliders
 void Player::setUI(){
-	QColor *c = new QColor ( 238, 238, 157, 255 );	
-	QPalette * p = new QPalette();
-	p->setColor(QPalette::ToolTipBase,*c);
-	QFont *f = new QFont ( "sans", 10, -1, false );	
-	QToolTip::setFont ( *f );
-	QToolTip::setPalette(*p);	
-	setWindowIcon(QIcon(path+"images/mecque.png"));
-    playButton->setIcon(QIcon(path+"images/play.png"));
-    playButton->setToolTip("Play");
-    stopButton->setIcon(QIcon(path+"images/stop.png"));
-    stopButton->setToolTip("Stop");
-    volumeLabel->setPixmap(QPixmap::fromImage(QImage(path+"images/volume.png")));
-    seekSlider = new Phonon::SeekSlider(this);   
-    seekSlider->setMediaObject(mediaObject);    
-    QHBoxLayout *seekerLayout = new QHBoxLayout;
-    seekerLayout->addWidget(seekSlider);  
-    playerFrame->setLayout(seekerLayout);    
-    volumeSlider = new Phonon::VolumeSlider(this);   
-    volumeSlider->setAudioOutput(audioOutput);
-    volumeSlider->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum); 
-    QSize *size = new QSize(0,0);
-    volumeSlider->setIconSize(*size);   
-    QHBoxLayout *volumeLayout = new QHBoxLayout;
-    volumeLayout->addWidget(volumeSlider);  
-    volumeFrame->setLayout(volumeLayout);
+    QColor *c = new QColor ( 238, 238, 157, 255 );    
+    QPalette * p = new QPalette();
+    p->setColor(QPalette::ToolTipBase,*c);
+    QFont *f = new QFont ( "sans", 10, -1, false );    
+    QToolTip::setFont ( *f );
+    QToolTip::setPalette(*p);    
+    setWindowIcon(QIcon(path+"images/audio.png"));
+    prevButton->setIcon(style()->standardIcon(QStyle::SP_MediaSkipBackward));
+    nextButton->setIcon(style()->standardIcon(QStyle::SP_MediaSkipForward));
+    playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
+    addButton->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
 }
 
 // play audio file
 void Player::play()
 { 
-	if (mediaObject->state() == Phonon::PlayingState)
-		mediaObject->pause();
-	else if (mediaObject->state() == Phonon::PausedState || mediaObject->state() == Phonon::LoadingState || mediaObject->state() == Phonon::StoppedState)
-		mediaObject->play();
+    if (videoPlayer->mediaObject()->state() == Phonon::PlayingState)
+        videoPlayer->pause();
+    else if (videoPlayer->mediaObject()->state() == Phonon::PausedState || videoPlayer->mediaObject()->state() == Phonon::LoadingState || videoPlayer->mediaObject()->state() == Phonon::StoppedState)
+        videoPlayer->play();
 }
 
 // show playing time (left or elapsed just click on the label to switch)
 void Player::updateTime()
 {
-	QString sign = "";
-    long len = mediaObject->totalTime();
-    long pos = mediaObject->currentTime();
-    if (timeLeft == true) {
-    	pos = len -pos;
-    	sign = "-";    	
-	}
+    long len = videoPlayer->mediaObject()->totalTime();
+    long pos = videoPlayer->mediaObject()->currentTime();
+    timeSlider->setValue(pos);
     QString timeString;    
     if (pos || len)
     {
@@ -183,119 +182,135 @@ void Player::updateTime()
         msec = len;
 
         QTime stopTime(hour%60, min%60, sec%60, msec%1000);
-        QString timeFormat = "mm:ss";
-        //if (hour > 0)
-            //timeFormat = "hh:mm:ss";        
+        QString timeFormat = "hh:mm:ss";
+        
         timeString = playTime.toString(timeFormat);
-        if (len)
-           sign += timeString;        
     }
-    timeLabel->setText(sign);
+    timeLabel->setText(timeString);
 }
 
 // stop playing
 void Player::stop()
 {
-	mediaObject->stop();	
-	updateTime();
-}
-
-// change the volume
-void Player::setVolume()
-{
-	if (audioOutput->volume () == 0.0) volumeLabel->setPixmap(QPixmap::fromImage(QImage(path+"images/mute.png")));
-	else volumeLabel->setPixmap(QPixmap::fromImage(QImage(path+"images/volume.png")));
+    videoPlayer->mediaObject()->stop();    
+    updateTime();
 }
 
 // when the audio source is finished
 void Player::finished(){
-	stop();
-	if (index < sources.size() - 1)
-		next();
-    else hide();
-}
-
-// switch between time left or elapsed one
-void Player::changeSign(){	
-	timeLeft = !timeLeft;
-}
-
-// detect click on the time label
-bool Player::eventFilter(QObject *o, QEvent *e)
-{
-    if (e->type() == QEvent::MouseButtonPress)
+    stop();
+    if (index < sources.size() - 1)
     {
-        if (o == timeLabel)
-        {
-            changeSign();
-            return TRUE;
-        }
-        if (o == volumeLabel)
-        {        	
-        	if (audioOutput->volume () == 0.0) {
-    			audioOutput->setVolume(1.0);
-    			volumeLabel->setPixmap(QPixmap::fromImage(QImage(path+"images/volume.png")));
-			}
-    		else {
-    			audioOutput->setVolume(0.0);
-    			volumeLabel->setPixmap(QPixmap::fromImage(QImage(path+"images/mute.png"))); 
-			}    		     
-       	}
-    }
-
-    return QWidget::eventFilter(o, e);
+    	next();
+   	}
 }
 
 // forward
 void Player::next()
 {
-	playing = 1;
-	mediaObject->setCurrentSource(getAudio());
-	play();
-	
+    playing = 1;
+    videoPlayer->mediaObject()->setCurrentSource(getAudio());
+    play();
+    
+}
+
+// backward
+void Player::prev()
+{
+    playing = 2;
+    videoPlayer->mediaObject()->setCurrentSource(getAudio());
+    play();
 }
 
 // load media files
 void Player::load()
-{	
-	sources.clear();
-	QStringList list = QFileDialog::getOpenFileNames(this,tr("Open one or more files"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi *.avi *.mpeg *.mpg *.wmv *.divx *.xvid *.mp4 *.flv *.ogv)"));
-	if (list.size() > 0){
-		init();	
-		for (int i = 0; i < list.size(); i++){			
-			Phonon::MediaSource source(list.at(i));
-			sources.insert(i,source);			
-		}	
-		playButton->setEnabled(true);	
-		stopButton->setEnabled(true);
-		mediaObject->setCurrentSource(getAudio());
-		play();
-	}
+{    
+    sources.clear();
+    QStringList list = QFileDialog::getOpenFileNames(this,tr("Open one or more files"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi *.avi *.mpeg *.mpg *.wmv *.divx *.xvid *.mp4 *.flv *.ogv)"));
+    if (list.size() > 0){
+        init();    
+        for (int i = 0; i < list.size(); i++){            
+            Phonon::MediaSource source(list.at(i));
+            sources.insert(i,source);            
+        }    
+        playButton->setEnabled(true);    
+        addButton->setEnabled(true);
+        videoPlayer->mediaObject()->setCurrentSource(getAudio());
+        play();
+    }
+}
+
+// add media files
+void Player::add()
+{
+    QStringList list = QFileDialog::getOpenFileNames(this,tr("Open one or more files"),".",tr("audios (*.mp3 *.wma *.ogg *.wave *.midi *.avi *.mpeg *.mpg *.wmv *.divx *.xvid *.mp4 *.flv *.ogv)"));
+    if (list.size() > 0){        
+        for (int i = 0; i < list.size(); i++){            
+            Phonon::MediaSource source(list.at(i));
+            sources.append(source);            
+        }    
+        nextButton->setEnabled(true);
+    }
+}
+
+void Player::seekFile()
+{
+	videoPlayer->seek(timeSlider->value());
+}
+
+void Player::changeVolume()
+{
+	float volume = float(volumeSlider->value())/100.0;
+	videoPlayer->setVolume(volume);
 }
 
 // detect the phonon status
 void Player::stateChanged(Phonon::State newstate, Phonon::State oldstate)
 {
-	if (oldstate == Phonon::LoadingState){	
-		playIcon = style()->standardIcon(QStyle::SP_MediaPause);
-		playButton->setIcon(QIcon(path+"images/pause.png"));
-		playButton->setToolTip("Pause");
-	}
-	if( newstate == Phonon::StoppedState || newstate == Phonon::PausedState){		
-		playButton->setIcon(QIcon(path+"images/play.png"));
-		playButton->setToolTip("Play");
-	}
-	else if (newstate == Phonon::PlayingState) {
-		playButton->setIcon(QIcon(path+"images/pause.png")); 
-		playButton->setToolTip("Pause"); 
-	}	
-	else if (newstate == Phonon::ErrorState) {	
-            QMessageBox::warning(this, "Phonon Mediaplayer", mediaObject->errorString(), QMessageBox::Close);
-            if (mediaObject->errorType() == Phonon::FatalError) {
-                init();
+    if (oldstate == Phonon::LoadingState){    
+        playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
+        playButton->setToolTip("Pause");
+    }
+    if( newstate == Phonon::StoppedState || newstate == Phonon::PausedState){        
+        playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
+        playButton->setToolTip("Play");
+    }
+    else if (newstate == Phonon::PlayingState) {
+        playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPause)); 
+        playButton->setToolTip("Pause"); 
+    }    
+    else if (newstate == Phonon::ErrorState) {    
+            //QMessageBox::warning(this, "Phonon Mediaplayer", videoPlayer->mediaObject()->errorString(), QMessageBox::Close);
+            if (videoPlayer->mediaObject()->errorType() == Phonon::FatalError) {
+                init2();
             } else {
-                mediaObject->pause();
+                videoPlayer->mediaObject()->pause();
             }
      }
+}
+
+// update file infos
+void Player::updateInfo()
+{    
+    QMap <QString, QString> metaData = videoPlayer->mediaObject()->metaData();
+    QString trackArtist = metaData.value("ARTIST");
+    QString trackTitle = metaData.value("TITLE");
+    setLabel(trackTitle);
+}
+
+QString Player::calculateTime(int time_)
+{
+	time_ = time_ /1000;
+    int hours = time_ / 3600;
+    int minutes = (time_ - (hours*3600)) / 60;
+    int seconds = (time_ - (hours*3600) - (minutes*60)) % 60;
+    QString hzero = "";
+    QString mzero = "";
+    QString szero = "";
+    if (hours < 10) hzero = "0";
+    if (minutes < 10) mzero = "0";
+    if (seconds < 10) szero = "0";
+    QString times = hzero+QString::number(hours)+":"+ mzero+QString::number(minutes)+":"+szero+QString::number(seconds);
+    return times;
 }
 //
