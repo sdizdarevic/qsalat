@@ -1,0 +1,18 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/">
+   <file>images/qsalat.png</file>  
+   <file>images/boussole.png</file>  
+   <file>images/mecque.png</file> 
+   <file>images/exit.png</file> 
+   <file>images/0396.png</file> 
+   <file>images/0442.png</file> 
+   <file>images/Qt.png</file>
+   <file>images/hide.png</file>
+   <file>images/hijri.png</file>
+   <file>images/qibla.png</file>
+   <file>images/world.png</file>
+   <file>images/mp3.png</file>
+   <file>images/month.png</file>
+   <file>images/year.png</file>
+</qresource>
+</RCC> 
