@@ -1,0 +1,272 @@
+<ui version="4.0" >
+ <class>Audio</class>
+ <widget class="QDialog" name="Audio" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>484</width>
+    <height>392</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Qsalat - audio</string>
+  </property>
+  <widget class="QGroupBox" name="groupBox" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>461</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="title" >
+    <string>Audio option</string>
+   </property>
+   <widget class="QPushButton" name="pushButton_5" >
+    <property name="geometry" >
+     <rect>
+      <x>360</x>
+      <y>20</y>
+      <width>80</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Select</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_6" >
+    <property name="geometry" >
+     <rect>
+      <x>360</x>
+      <y>60</y>
+      <width>80</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Select</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit" >
+    <property name="geometry" >
+     <rect>
+      <x>120</x>
+      <y>20</y>
+      <width>231</width>
+      <height>28</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_2" >
+    <property name="geometry" >
+     <rect>
+      <x>120</x>
+      <y>60</y>
+      <width>231</width>
+      <height>28</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>17</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Regular prayer</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Fajr prayer</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_8" >
+    <property name="geometry" >
+     <rect>
+      <x>360</x>
+      <y>100</y>
+      <width>80</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Select</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_4" >
+    <property name="geometry" >
+     <rect>
+      <x>120</x>
+      <y>100</y>
+      <width>231</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>97</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Dua</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>160</y>
+     <width>461</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="title" >
+    <string>Play options</string>
+   </property>
+   <widget class="QCheckBox" name="checkBox" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>191</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Play athan audio</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_2" >
+    <property name="geometry" >
+     <rect>
+      <x>280</x>
+      <y>20</y>
+      <width>171</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Play dua audio</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>220</y>
+     <width>461</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="title" >
+    <string>Player</string>
+   </property>
+   <widget class="QSlider" name="horizontalSlider_3" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>421</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="orientation" >
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>60</y>
+      <width>41</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton" >
+    <property name="geometry" >
+     <rect>
+      <x>80</x>
+      <y>60</y>
+      <width>41</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string/>
+    </property>
+   </widget>
+   <widget class="QSlider" name="horizontalSlider_2" >
+    <property name="geometry" >
+     <rect>
+      <x>320</x>
+      <y>70</y>
+      <width>121</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation" >
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3" >
+   <property name="geometry" >
+    <rect>
+     <x>390</x>
+     <y>350</y>
+     <width>80</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4" >
+   <property name="geometry" >
+    <rect>
+     <x>290</x>
+     <y>350</y>
+     <width>80</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>Save</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

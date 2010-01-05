@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Salat</class>
+ <widget class="QMainWindow" name="Salat">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>300</width>
+    <height>487</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>300</width>
+    <height>487</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>300</width>
+    <height>487</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Qsalat - salat times</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>300</width>
+      <height>400</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/images/qsalat.png);</string>
+    </property>
+    <widget class="QLabel" name="label_fajr">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>100</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial Black</family>
+       <pointsize>19</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;
+opacity:1.0;
+background-image: url(:/images/slider3.png);</string>
+     </property>
+     <property name="text">
+      <string>00:00</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_asr">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>190</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial Black</family>
+       <pointsize>19</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;
+opacity:1.0;
+background-image: url(:/images/slider3.png);</string>
+     </property>
+     <property name="text">
+      <string>00:00</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_isha">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>280</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial Black</family>
+       <pointsize>19</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;
+opacity:1.0;
+background-image: url(:/images/slider3.png);</string>
+     </property>
+     <property name="text">
+      <string>00:00</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_duhr">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>145</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial Black</family>
+       <pointsize>19</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;
+opacity:1.0;
+background-image: url(:/images/slider3.png);</string>
+     </property>
+     <property name="text">
+      <string>00:00</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_maghreb">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>235</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial Black</family>
+       <pointsize>19</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;
+opacity:1.0;
+background-image: url(:/images/slider3.png);</string>
+     </property>
+     <property name="text">
+      <string>00:00</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_location">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>340</y>
+       <width>261</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/images/slider3.png);
+color:white;</string>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_hijri">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>40</y>
+       <width>161</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/images/slider3.png);
+color:white;
+</string>
+     </property>
+     <property name="locale">
+      <locale language="Arabic" country="SaudiArabia"/>
+     </property>
+     <property name="text">
+      <string>00  جمادى الآخرة  0000</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_hijri_2">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>10</y>
+       <width>181</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/images/slider3.png);
+color:white;
+</string>
+     </property>
+     <property name="text">
+      <string>00 Jumada al-Thani 0000</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_shourouk">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>330</y>
+       <width>62</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;
+opacity:1.0;
+background-image: url(:/images/slider3.png);</string>
+     </property>
+     <property name="text">
+      <string>00:00</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>300</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionHide"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <widget class="QMenu" name="menuPrayer_times_options">
+     <property name="title">
+      <string>Prayer times options</string>
+     </property>
+     <addaction name="actionGenerate_monthly_prayer_times"/>
+     <addaction name="actionGenerate_yearly_prayer_times"/>
+    </widget>
+    <addaction name="separator"/>
+    <addaction name="actionHijri_date"/>
+    <addaction name="actionQibla_direction"/>
+    <addaction name="actionLocation"/>
+    <addaction name="actionAudio"/>
+    <addaction name="actionCalculation_options"/>
+    <addaction name="menuPrayer_times_options"/>
+   </widget>
+   <widget class="QMenu" name="menuExtra">
+    <property name="title">
+     <string>Extra</string>
+    </property>
+    <addaction name="actionWorldtime"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionAbout_Qsalat"/>
+    <addaction name="actionAbout_QT"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuExtra"/>
+   <addaction name="menuAbout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionLocation"/>
+   <addaction name="actionCalculation_options"/>
+   <addaction name="actionQibla_direction"/>
+   <addaction name="actionAudio"/>
+   <addaction name="actionHijri_date"/>
+   <addaction name="actionGenerate_monthly_prayer_times"/>
+   <addaction name="actionGenerate_yearly_prayer_times"/>
+   <addaction name="actionWorldtime"/>
+  </widget>
+  <action name="actionHide">
+   <property name="icon">
+    <iconset resource="../salat.qrc">
+     <normaloff>:/images/hide.png</normaloff>:/images/hide.png</iconset>
+   </property>
+   <property name="text">
+    <string>Hide</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="icon">
+    <iconset resource="../salat.qrc">
+     <normaloff>:/images/exit.png</normaloff>:/images/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionHijri_date">
+   <property name="icon">
+    <iconset resource="../salat.qrc">
+     <normaloff>:/images/hijri.png</normaloff>:/images/hijri.png</iconset>
+   </property>
+   <property name="text">
+    <string>Hijri date conversion</string>
+   </property>
+  </action>
+  <action name="actionQibla_direction">
+   <property name="icon">
+    <iconset resource="../salat.qrc">
+     <normaloff>:/images/qibla.png</normaloff>:/images/qibla.png</iconset>
+   </property>
+   <property name="text">
+    <string>Qibla direction</string>
+   </property>
+  </action>
+  <action name="actionLocation">
+   <property name="icon">
+    <iconset resource="../salat.qrc">
+     <normaloff>:/images/world.png</normaloff>:/images/world.png</iconset>
+   </property>
+   <property name="text">
+    <string>Location</string>
+   </property>
+  </action>
+  <action name="actionAudio">
+   <property name="icon">
+    <iconset resource="../salat.qrc">
+     <normaloff>:/images/mp3.png</normaloff>:/images/mp3.png</iconset>
+   </property>
+   <property name="text">
+    <string>Audio</string>
+   </property>
+  </action>
+  <action name="actionCustom_option">
+   <property name="text">
+    <string>Custom option</string>
+   </property>
+  </action>
+  <action name="actionWorld_time">
+   <property name="text">
+    <string>World time</string>
+   </property>
+  </action>
+  <action name="actionAbout_Qsalat">
+   <property name="icon">
+    <iconset resource="../salat.qrc">
+     <normaloff>:/images/mecque.png</normaloff>:/images/mecque.png</iconset>
+   </property>
+   <property name="text">
+    <string>About Qsalat</string>
+   </property>
+  </action>
+  <action name="actionAbout_QT">
+   <property name="icon">
+    <iconset resource="../salat.qrc">
+     <normaloff>:/images/Qt.png</normaloff>:/images/Qt.png</iconset>
+   </property>
+   <property name="text">
+    <string>About QT</string>
+   </property>
+  </action>
+  <action name="actionCalculation_options">
+   <property name="icon">
+    <iconset resource="../salat.qrc">
+     <normaloff>:/images/0396.png</normaloff>:/images/0396.png</iconset>
+   </property>
+   <property name="text">
+    <string>Calculation options</string>
+   </property>
+  </action>
+  <action name="actionWorldtime">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/usr/share/qsalat/images/0442.png</normaloff>:/usr/share/qsalat/images/0442.png</iconset>
+   </property>
+   <property name="text">
+    <string>World time</string>
+   </property>
+  </action>
+  <action name="actionGenerate_monthly_prayer_times">
+   <property name="icon">
+    <iconset resource="../salat.qrc">
+     <normaloff>:/images/month.png</normaloff>:/images/month.png</iconset>
+   </property>
+   <property name="text">
+    <string>Generate monthly prayer times</string>
+   </property>
+  </action>
+  <action name="actionGenerate_yearly_prayer_times">
+   <property name="icon">
+    <iconset resource="../salat.qrc">
+     <normaloff>:/images/year.png</normaloff>:/images/year.png</iconset>
+   </property>
+   <property name="text">
+    <string>Generate yearly prayer times</string>
+   </property>
+  </action>
+  <action name="actionPlayer">
+   <property name="text">
+    <string>Player</string>
+   </property>
+  </action>
+  <action name="actionPlayer_2">
+   <property name="text">
+    <string>Player</string>
+   </property>
+  </action>
+  <action name="actionPlayer_3">
+   <property name="text">
+    <string>player</string>
+   </property>
+  </action>
+  <action name="actionShow">
+   <property name="text">
+    <string>show</string>
+   </property>
+  </action>
+  <action name="actionShow_2">
+   <property name="text">
+    <string>show</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../salat.qrc"/>
+ </resources>
+ <connections/>
+</ui>
