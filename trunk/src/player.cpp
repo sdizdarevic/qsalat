@@ -77,7 +77,7 @@ void Player::adjustWindow()
 void Player::closeEvent(QCloseEvent *event)
 {
 	stop(); 
-    close();
+    this->close();
 }
 
 // set player label text
@@ -203,6 +203,10 @@ void Player::finished(){
     {
     	next();
    	}
+   	else
+   	{
+		this->close();
+	}
 }
 
 // forward
@@ -283,7 +287,7 @@ void Player::stateChanged(Phonon::State newstate, Phonon::State oldstate)
             //QMessageBox::warning(this, "Phonon Mediaplayer", videoPlayer->mediaObject()->errorString(), QMessageBox::Close);
             if (videoPlayer->mediaObject()->errorType() == Phonon::FatalError) {
                 //init2();
-                close();
+                this->close();
             } else {
                 videoPlayer->mediaObject()->pause();
             }

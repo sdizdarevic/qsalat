@@ -349,17 +349,10 @@ background-image: url(:/images/slider3.png);</string>
     <addaction name="actionAbout_Qsalat"/>
     <addaction name="actionAbout_QT"/>
    </widget>
-   <widget class="QMenu" name="menuShow">
-    <property name="title">
-     <string>show</string>
-    </property>
-    <addaction name="actionShow_2"/>
-   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
    <addaction name="menuExtra"/>
    <addaction name="menuAbout"/>
-   <addaction name="menuShow"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
