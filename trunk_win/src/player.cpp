@@ -71,7 +71,7 @@ void Player::adjustWindow()
     int height = windowSize.height();
     int x = (screenWidth - width);
     int y = (screenHeight - height);      
-    this->move ( x, y );
+    this->move ( x-20, y-70);
 }
 
 void Player::closeEvent(QCloseEvent *event)

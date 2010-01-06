@@ -3,16 +3,16 @@
 	<location>
 		<latitude>45.545447</latitude>
 		<longitude>-73.639076</longitude>
-		<country>Montreal</country>
-		<city>Canada</city>
+		<country>Canada</country>
+		<city>Montreal</city>
 		<timezone>-5</timezone>
 	</location>
 	<audio>
-		<prayer>/home/skander/Developpement/Qsalat/audio/athan.mp3</prayer>
-		<fajrPrayer>/home/skander/Developpement/Qsalat/audio/athanFajr.mp3</fajrPrayer>
-		<dua>/home/skander/Developpement/Qsalat/audio/dua.mp3</dua>
+		<prayer>C:/Users/Nour/Videos/athan1_0003.wmv</prayer>
+		<fajrPrayer>C:/Users/Nour/Videos/athan3_0002.wmv</fajrPrayer>
+		<dua>C:/Users/Nour/Videos/athan4_0001.wmv</dua>
 		<playAthan>1</playAthan>
-		<playDua>0</playDua>
+		<playDua>1</playDua>
 	</audio>
 	<calculation>
 		<method>3</method>	

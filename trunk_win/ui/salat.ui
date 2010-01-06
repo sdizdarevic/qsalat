@@ -306,7 +306,7 @@ background-image: url(:/images/slider3.png);</string>
      <x>0</x>
      <y>0</y>
      <width>300</width>
-     <height>18</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -496,31 +496,6 @@ background-image: url(:/images/slider3.png);</string>
    </property>
    <property name="text">
     <string>Generate yearly prayer times</string>
-   </property>
-  </action>
-  <action name="actionPlayer">
-   <property name="text">
-    <string>Player</string>
-   </property>
-  </action>
-  <action name="actionPlayer_2">
-   <property name="text">
-    <string>Player</string>
-   </property>
-  </action>
-  <action name="actionPlayer_3">
-   <property name="text">
-    <string>player</string>
-   </property>
-  </action>
-  <action name="actionShow">
-   <property name="text">
-    <string>show</string>
-   </property>
-  </action>
-  <action name="actionShow_2">
-   <property name="text">
-    <string>show</string>
    </property>
   </action>
  </widget>

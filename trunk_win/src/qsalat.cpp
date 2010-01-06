@@ -221,7 +221,7 @@ void Qsalat::createActions()
     actionHide->setShortcut(tr("Ctrl+H"));
     connect(actionHide, SIGNAL(triggered()), this, SLOT(hide()));    
     connect(actionAbout_Qsalat, SIGNAL(triggered()), this, SLOT(_about()));  
-    //connect(actionShow_2, SIGNAL(triggered()), this, SLOT(showPlayer()));
+    //connect(actionShow, SIGNAL(triggered()), this, SLOT(showPlayer()));
 }
 
 /**	
@@ -357,21 +357,8 @@ void Qsalat::timerEvent(QTimerEvent *e)
 		   		if (playDua == "1") audioList << duaAudio;
 	  			QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
 		   		setPlayer(audioList, salatTitle);		   		   			
-	  		}	  		
-	  		//else if ("21:18:00" == strTime){
-	  			//audioList.clear();
-	  			//audioList << fajrAudio;
-		   		//if (playDua == "1") audioList << duaAudio;
-	  			//QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
-		   		//setPlayer(audioList, salatTitle);		   		   			
-	  		//}	  		
-	  		//else if ("21:18:30" == strTime){
-	  			//audioList.clear();
-	  			//audioList << prayerAudio;
-		   		//if (playDua == "1") audioList << duaAudio;
-	  			//QString salatTitle = "Isha prayer " + QString::fromUtf8(" صلاة العشاء");
-		   		//setPlayer(audioList, salatTitle);				   		   			
-	  		//}	  		
+                        }
+
   		}    		
  	}	
 }
@@ -554,7 +541,7 @@ void Qsalat::_showNormal()
  */
 void Qsalat::setPlayer(QStringList files, QString label)
 {
-	Player *player = new Player();	
+    Player *player = new Player();
     player->loadFiles(files);
     player->setTitle(label);
     player->show(); 
@@ -564,7 +551,7 @@ void Qsalat::showPlayer()
 {	
 	QStringList list;
     list.clear();
-        list << prayerAudio;
+        list << prayerAudio << duaAudio;
 	setPlayer(list,"test");
 }
 //
