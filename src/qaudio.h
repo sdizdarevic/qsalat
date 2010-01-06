@@ -49,11 +49,6 @@ private:
     QIcon stopIcon;
     QPixmap volumeIcon;
     QPixmap mutedIcon;
-    Phonon::SeekSlider *seekSlider;
-    Phonon::MediaObject *mediaObject;
-    Phonon::MediaObject *metaInformationResolver;
-    Phonon::VolumeSlider *volumeSlider;
-    Phonon::AudioOutput *audioOutput;
     void setActions();
     void setUI();
     bool isplay;    
@@ -67,12 +62,14 @@ private slots:
 	void loadDua();
 	void play();
 	void stop();
-	void setVolume();
 	void save();
 	void cancel();
 	void finished();
 	void apply();
 	void stateChanged();
+	void seekFile();
+	void changeVolume();
+	void updateTime();
 };
 
 #endif // __QAUDIO_H__

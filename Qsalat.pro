@@ -4,8 +4,7 @@ QT = gui \
  network \
  webkit \
  phonon \
- xml \
- opengl
+ xml
 CONFIG += qt warn_on release
 OBJECTS_DIR = build
 MOC_DIR = build
@@ -19,7 +18,7 @@ FORMS = ui/salat.ui \
  ui/calculation.ui \
  ui/monthly.ui \
  ui/yearly.ui \
- ui/player.ui 
+ ui/player.ui
 HEADERS = src/qsalat.h \
  src/utils.h \
  src/qpray.h \
@@ -34,7 +33,7 @@ HEADERS = src/qsalat.h \
  src/qhijridate.h \
  src/dsingleapplication.h \
  src/domparser.h \
- src/player.h 
+ src/player.h
 SOURCES = src/qsalat.cpp \
  src/utils.cpp \
  src/main.cpp \
@@ -50,7 +49,7 @@ SOURCES = src/qsalat.cpp \
  src/qhijridate.cpp \
  src/dsingleapplication.cpp \
  src/domparser.cpp \
- src/player.cpp  
+ src/player.cpp
 RESOURCES += salat.qrc qibla.qrc worldtime.qrc
 TRANSLATIONS = qsalat_en.ts qsalat_fr.ts
 CODECFORTR = UTF-8

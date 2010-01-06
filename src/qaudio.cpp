@@ -33,13 +33,8 @@ Qaudio::Qaudio( QWidget * parent, Qt::WFlags f) : QDialog(parent, f )
 #endif
 	if (path.data()[path.size() - 1] != '/') path += "/";
 	setupUi(this);
-	audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
-	mediaObject = new Phonon::MediaObject(this);
-	metaInformationResolver = new Phonon::MediaObject(this);
-	mediaObject->setTickInterval(1000);   
 	setUI();
 	setActions();
-	Phonon::createPath(mediaObject, audioOutput);
 	init(0);
 }
 
@@ -91,9 +86,13 @@ void Qaudio::setActions()
 	connect(saveButton, SIGNAL(clicked()), this, SLOT(apply()));
 	connect(okButton, SIGNAL(clicked()), this, SLOT(save()));
 	connect(cancelButton, SIGNAL(clicked()), this, SLOT(cancel()));
-	connect(mediaObject, SIGNAL(finished()), this, SLOT(finished()));
-	connect(audioOutput, SIGNAL(volumeChanged ( qreal )), this, SLOT(setVolume()));
-	connect(salatCheckBox,SIGNAL(stateChanged(int)), this, SLOT(stateChanged()));
+	connect(videoPlayer->mediaObject(), SIGNAL(finished()), this, SLOT(finished()));
+	connect(timeSlider, SIGNAL(sliderReleased()),this, SLOT(seekFile()));
+    connect(volumeSlider, SIGNAL(sliderReleased()),this, SLOT(changeVolume()));
+    connect(videoPlayer->mediaObject(), SIGNAL(tick(qint64)), this, SLOT(updateTime())); 
+    connect(videoPlayer->mediaObject(), SIGNAL(totalTimeChanged(qint64)), this, SLOT(updateTime()));
+	//connect(audioOutput, SIGNAL(volumeChanged ( qreal )), this, SLOT(setVolume()));
+	//connect(salatCheckBox,SIGNAL(stateChanged(int)), this, SLOT(stateChanged()));
 }
 
 //
@@ -104,32 +103,12 @@ void Qaudio::setUI()
     playButton->setIcon(playIcon);
     stopIcon = style()->standardIcon(QStyle::SP_MediaStop);
     stopButton->setIcon(stopIcon);
-    volumeIcon = style()->standardPixmap(QStyle::SP_MediaVolume);
-    mutedIcon = style()->standardPixmap(QStyle::SP_MediaVolumeMuted);
-    volumeLabel->setPixmap(volumeIcon);
     prayerButton->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
     fajrButton->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
     duaButton->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
     okButton->setIcon(style()->standardIcon(QStyle::SP_DialogOkButton));
     saveButton->setIcon(style()->standardIcon(QStyle::SP_DialogApplyButton));
-    cancelButton->setIcon(style()->standardIcon(QStyle::SP_DialogCancelButton));
-    
-    seekSlider = new Phonon::SeekSlider(this);  
-    seekSlider->setMouseTracking(false);
-    seekSlider->setMouseTracking(true);
-    seekSlider->setMediaObject(mediaObject);    
-    QHBoxLayout *seekerLayout = new QHBoxLayout;
-    seekerLayout->addWidget(seekSlider);  
-    playerFrame->setLayout(seekerLayout);    
-    
-    volumeSlider = new Phonon::VolumeSlider(this);
-    QSize *size = new QSize(0,0);
-    volumeSlider->setIconSize(*size);   
-    volumeSlider->setAudioOutput(audioOutput);
-    volumeSlider->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);    
-    QHBoxLayout *volumeLayout = new QHBoxLayout;
-    volumeLayout->addWidget(volumeSlider);  
-    volumeFrame->setLayout(volumeLayout);
+    cancelButton->setIcon(style()->standardIcon(QStyle::SP_DialogCancelButton));   
 }
 
 // load athan file
@@ -153,43 +132,46 @@ void Qaudio::loadDua()
 //
 void Qaudio::play()
 {       
+	    videoPlayer->mediaObject()->setTickInterval(1000);
 		QString audioFile = "";		
 		if (regularRadioButton->isChecked()) audioFile = prayerLineEdit->text();
 		else if (fajrRadioButton->isChecked()) audioFile = fajrLineEdit->text(); 
 		else audioFile = duaLineEdit->text();   
-        if (mediaObject->state() == Phonon::LoadingState || mediaObject->state() == Phonon::StoppedState){      
-                Phonon::MediaSource source(audioFile);
-                mediaObject->setCurrentSource(source);
-                metaInformationResolver->setCurrentSource(source);
-                mediaObject->play();
+		Phonon::MediaSource source(audioFile);
+		videoPlayer->mediaObject()->setCurrentSource(source);   
+		volumeSlider->setRange(0,100);
+   		volumeSlider->setValue(videoPlayer->volume()*100);  
+   		timeSlider->setRange(0,videoPlayer->mediaObject()->totalTime());
+        qDebug(QString::number(videoPlayer->mediaObject()->totalTime()).toLatin1().data());
+        qDebug(videoPlayer->mediaObject()->currentSource().fileName().toLatin1().data());
+		if (videoPlayer->mediaObject()->state() == Phonon::LoadingState || videoPlayer->mediaObject()->state() == Phonon::StoppedState){      
+                videoPlayer->play();                
                 playIcon = style()->standardIcon(QStyle::SP_MediaPause);
                 playButton->setIcon(playIcon);
         }
-        else if (mediaObject->state() == Phonon::PlayingState) {
-                mediaObject->pause();           
+        else if (videoPlayer->mediaObject()->state() == Phonon::PlayingState) {
+                videoPlayer->pause();           
                 playIcon = style()->standardIcon(QStyle::SP_MediaPlay);
                 playButton->setIcon(playIcon);       
         }
-        else if (mediaObject->state() == Phonon::PausedState) {
-                mediaObject->play();
+        else if (videoPlayer->mediaObject()->state() == Phonon::PausedState) {
+                videoPlayer->play();
                 playIcon = style()->standardIcon(QStyle::SP_MediaPause);
                 playButton->setIcon(playIcon);
         }
+}
+
+void Qaudio::seekFile()
+{
+	videoPlayer->seek(timeSlider->value());
 }
 
 //
 void Qaudio::stop()
 {
-        mediaObject->stop();
+        videoPlayer->mediaObject()->stop();
         playIcon = style()->standardIcon(QStyle::SP_MediaPlay);
         playButton->setIcon(playIcon);
-}
-
-//
-void Qaudio::setVolume()
-{
-    if (audioOutput->volume () == 0.0) volumeLabel->setPixmap(mutedIcon);
-    else volumeLabel->setPixmap(volumeIcon);       
 }
 
 //
@@ -219,7 +201,7 @@ void Qaudio::save()
 //
 void Qaudio::cancel()
 {
-		mediaObject->stop();
+		videoPlayer->mediaObject()->stop();
         close();
 }
 
@@ -238,4 +220,16 @@ void Qaudio::stateChanged()
 	else{
 		duaCheckBox->setEnabled(true);
 	}
+}
+
+void Qaudio::updateTime()
+{
+    long pos = videoPlayer->mediaObject()->currentTime();
+    timeSlider->setValue(pos);
+}
+
+void Qaudio::changeVolume()
+{
+	float volume = float(volumeSlider->value())/100.0;
+	videoPlayer->setVolume(volume);
 }

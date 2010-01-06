@@ -7,6 +7,7 @@ Player::Player( QWidget * parent, Qt::WFlags f)
 	path = QCoreApplication::applicationDirPath ();
     if (path.data()[path.size() - 1] != '/') path += "/";
     setupUi(this);
+    setWindowIcon(QIcon(path+"images/mecque.png"));
     videoPlayer->mediaObject()->setTickInterval(1000);
     setUI();
     setActions();
