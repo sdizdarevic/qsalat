@@ -221,7 +221,7 @@ void Qsalat::createActions()
     actionHide->setShortcut(tr("Ctrl+H"));
     connect(actionHide, SIGNAL(triggered()), this, SLOT(hide()));    
     connect(actionAbout_Qsalat, SIGNAL(triggered()), this, SLOT(_about()));  
-    connect(actionShow_2, SIGNAL(triggered()), this, SLOT(showPlayer()));    
+    //connect(actionShow, SIGNAL(triggered()), this, SLOT(showPlayer()));    
 }
 
 /**	
