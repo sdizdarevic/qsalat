@@ -77,16 +77,17 @@ void Player::adjustWindow()
 
 void Player::closeEvent(QCloseEvent *event)
 {
-	stop(); 
-    this->close();
+	stop();
+    hide();
+    event->ignore();
 }
 
 // set player label text
-void Player::setLabel(QString track)
+void Player::setLabel(QString title)
 {
     QString filename = videoPlayer->mediaObject()->currentSource().fileName();
     filename = filename.right(filename.length() - filename.lastIndexOf('/') - 1);
-    this->setWindowTitle(filename);    
+    this->setWindowTitle(title);    
     lengthLabel->setText(calculateTime(videoPlayer->mediaObject()->totalTime()));
     timeSlider->setRange(0,videoPlayer->mediaObject()->totalTime());
     volumeSlider->setRange(0,100);
