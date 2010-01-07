@@ -48,13 +48,16 @@ private:
     QIcon pauseIcon;
     QIcon stopIcon;
     QPixmap volumeIcon;
-    QPixmap mutedIcon;
-    void setActions();
-    void setUI();
+    QPixmap mutedIcon;    
     bool isplay;    
     DomParser parser;
 	QString file;	
 	QString path;
+	QList<Phonon::MediaSource> sources;
+	
+	void setActions();
+    void setUI();
+	void load();
 
 private slots:
 	void loadPrayer();
@@ -66,10 +69,15 @@ private slots:
 	void cancel();
 	void finished();
 	void apply();
-	void stateChanged();
+	void checkChanged();
 	void seekFile();
 	void changeVolume();
 	void updateTime();
+	void stateChanged(Phonon::State newstate, Phonon::State oldstate);
+	void changeSourceAthan();	
+	void changeSourceFajr();
+	void changeSourceDua();
+	
 };
 
 #endif // __QAUDIO_H__
