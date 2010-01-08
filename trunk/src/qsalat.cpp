@@ -554,10 +554,15 @@ void Qsalat::_showNormal()
  */
 void Qsalat::setPlayer(QStringList files, QString label)
 {
-	Player *player = new Player();	
+	/*Player *player = new Player();	
     player->loadFiles(files);
     player->setTitle(label);
-    player->show(); 
+    player->show(); */
+    files << label;
+    QString program = "salatPlayer";
+    QProcess *myProcess = new QProcess(this);
+    myProcess->start(program, files);
+    
 }
 
 void Qsalat::showPlayer()
