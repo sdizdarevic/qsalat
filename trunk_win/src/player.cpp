@@ -7,6 +7,7 @@ Player::Player( QWidget * parent, Qt::WFlags f)
 	path = QCoreApplication::applicationDirPath ();
     if (path.data()[path.size() - 1] != '/') path += "/";
     setupUi(this);
+    setWindowIcon(QIcon(path+"images/mecque.png"));
     videoPlayer->mediaObject()->setTickInterval(1000);
     setUI();
     setActions();
@@ -71,22 +72,22 @@ void Player::adjustWindow()
     int height = windowSize.height();
     int x = (screenWidth - width);
     int y = (screenHeight - height);      
-    this->move ( x-20, y-70);
+    this->move ( x, y );
 }
 
 void Player::closeEvent(QCloseEvent *event)
 {
-	stop(); 
-        this->close();
-        //event->ignore();
+	stop();
+    hide();
+    event->ignore();
 }
 
 // set player label text
-void Player::setLabel(QString track)
+void Player::setLabel(QString title)
 {
     QString filename = videoPlayer->mediaObject()->currentSource().fileName();
     filename = filename.right(filename.length() - filename.lastIndexOf('/') - 1);
-    this->setWindowTitle(filename);    
+    this->setWindowTitle(title);    
     lengthLabel->setText(calculateTime(videoPlayer->mediaObject()->totalTime()));
     timeSlider->setRange(0,videoPlayer->mediaObject()->totalTime());
     volumeSlider->setRange(0,100);
@@ -203,13 +204,11 @@ void Player::finished(){
     if (index < sources.size() - 1)
     {
     	next();
-    }
-    else
-    {
-        this->close();
-    }
-
-
+   	}
+   	else
+   	{
+		this->close();
+	}
 }
 
 // forward

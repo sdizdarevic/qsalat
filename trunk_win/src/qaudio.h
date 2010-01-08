@@ -26,6 +26,7 @@
 
 #include <QtGui>
 #include <phonon>
+#include <QProcess>
 #include "ui_audio.h"
 #include "domparser.h"
 
@@ -44,35 +45,24 @@ protected:
 signals:
 
 private:
-	QIcon playIcon;
-    QIcon pauseIcon;
-    QIcon stopIcon;
-    QPixmap volumeIcon;
-    QPixmap mutedIcon;
-    Phonon::SeekSlider *seekSlider;
-    Phonon::MediaObject *mediaObject;
-    Phonon::MediaObject *metaInformationResolver;
-    Phonon::VolumeSlider *volumeSlider;
-    Phonon::AudioOutput *audioOutput;
-    void setActions();
-    void setUI();
-    bool isplay;    
     DomParser parser;
 	QString file;	
 	QString path;
+		
+	void setActions();
+    void setUI();
+
 
 private slots:
 	void loadPrayer();
 	void loadFajr();
 	void loadDua();
-	void play();
-	void stop();
-	void setVolume();
 	void save();
 	void cancel();
-	void finished();
 	void apply();
-	void stateChanged();
+	void checkChanged();
+	void preview();	
+	
 };
 
 #endif // __QAUDIO_H__
