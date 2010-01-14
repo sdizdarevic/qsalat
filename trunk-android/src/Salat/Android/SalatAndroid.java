@@ -25,7 +25,7 @@ public class SalatAndroid extends Activity {
 	static int day;
 	private static final String TAG = "SomeApp "; 
 	protected Toast mToast; 
-	static String nextSalat;
+	public static String nextSalat;
 	PendingIntent sender;
 	Boolean firstTime = true;
     /** Called when the activity is first created. */
@@ -42,9 +42,10 @@ public class SalatAndroid extends Activity {
         printAsrTime();
         printMaghribTime();
         printIshaTime();
-        printShouroukTime(); 
-        
-        setAlarm();        
+        printShouroukTime();         
+
+        long ms = getNextSalat();
+        startTimer(ms);
     }
     
     public boolean onCreateOptionsMenu(Menu menu) {
