@@ -6,10 +6,15 @@
     <application android:icon="@drawable/mecque" android:label="@string/app_name" android:debuggable="true" android:process="@string/app_name">
         <activity android:name="SalatAndroid"
                   android:label="@string/app_name"
-                  android:screenOrientation="nosensor">
-            <intent-filter>
+                  android:screenOrientation="nosensor"
+                  android:launchMode="singleTop">
+            <intent-filter>            	
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+				<category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+             <intent-filter>            	
+            	<action android:name="android.intent.category.START_THE_MUSIC" />                
             </intent-filter>
         </activity>
 	<receiver android:name="AReceiver" android:process=":remote" />
