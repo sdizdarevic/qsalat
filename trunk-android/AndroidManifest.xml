@@ -13,9 +13,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
 				<category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-             <intent-filter>            	
-            	<action android:name="android.intent.category.START_THE_MUSIC" />                
-            </intent-filter>
+             
         </activity>
 	<receiver android:name="AReceiver" android:process=":remote" />
     </application>
