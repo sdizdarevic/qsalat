@@ -18,7 +18,7 @@ public class AReceiver extends BroadcastReceiver {
 		    //i.putExtra("message","Wake up.");
 		    //i.setClass(con, SalatAndroid.class);
 		    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		    //i.setAction("android.intent.category.START_ATHAN");
+		    i.setAction("android.intent.category.START_ATHAN");
 		    con.startActivity(i);
 		    return;
 			//Intent startActivity = new Intent(con, SalatAndroid.class);

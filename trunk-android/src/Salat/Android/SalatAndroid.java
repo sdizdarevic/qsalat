@@ -1,5 +1,6 @@
 package Salat.Android;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import android.app.Activity;
@@ -92,7 +93,8 @@ public class SalatAndroid extends Activity {
     
     public void onNewIntent(Intent intent) 
     {
-    	
+    	String action = intent.getAction();
+        Toast.makeText(SalatAndroid.this, " action  : "+action , Toast.LENGTH_LONG).show();
     	//TextView date1Text =	(TextView)  findViewById(R.id.date1Text);
     	//date1Text.setText("1 " +  " Muharrem " + "1432"); 
     	Calendar cal = Calendar.getInstance();
@@ -100,29 +102,31 @@ public class SalatAndroid extends Activity {
         month = cal.get(java.util.Calendar.MONTH);
         day = cal.get(java.util.Calendar.DAY_OF_MONTH);
         //Toast.makeText(SalatAndroid.this, "OK" , Toast.LENGTH_LONG).show();
-        if (isSalat) 
+        if (action.equals("android.intent.category.START_ATHAN"))
         {
-        	Toast.makeText(SalatAndroid.this, "It's Salat " + nextSalat + "time ", Toast.LENGTH_LONG).show();
-        	//startTimer(getNextSalat());
-        	long ms = getNextSalat();
-        	startTimer(ms); 
-        	
-        }
-        else
-        {
-        	Toast.makeText(SalatAndroid.this, "It's not Salat time ", Toast.LENGTH_LONG).show();
-        	setHijriDate(); 
-            setSalatTimes();
-            printFajrTime();
-            printDuhrTime();
-            printAsrTime();
-            printMaghribTime();
-            printIshaTime();
-            printShouroukTime();
-            long ms = getNextSalat();
-        	startTimer(ms); 
-        }
-        
+	        if (isSalat) 
+	        {
+	        	Toast.makeText(SalatAndroid.this, "It's Salat " + nextSalat + "time ", Toast.LENGTH_LONG).show();
+	        	//startTimer(getNextSalat());
+	        	long ms = getNextSalat();
+	        	startTimer(ms); 
+	        	
+	        }
+	        else
+	        {
+	        	Toast.makeText(SalatAndroid.this, "It's not Salat time ", Toast.LENGTH_LONG).show();
+	        	setHijriDate(); 
+	            setSalatTimes();
+	            printFajrTime();
+	            printDuhrTime();
+	            printAsrTime();
+	            printMaghribTime();
+	            printIshaTime();
+	            printShouroukTime();
+	            long ms = getNextSalat();
+	        	startTimer(ms); 
+	        }
+        }        
     }
     
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -165,7 +169,6 @@ public class SalatAndroid extends Activity {
     
     public void setHijriDate()
     {
-    	//Toast.makeText(SalatAndroid.this, Integer.toString(day) , Toast.LENGTH_LONG).show();
     	Hijri hijri = new Hijri();		
 		dates = hijri.isToString(year,month+1,day,0);
 		TextView date1Text =	(TextView)  findViewById(R.id.date1Text);
@@ -212,7 +215,8 @@ public class SalatAndroid extends Activity {
     {
         long milliseconds1 = calendar1.getTimeInMillis();
         long milliseconds2 = calendar2.getTimeInMillis();
-        long diff = milliseconds2 - milliseconds1;
+        long diff = milliseconds2 - milliseconds1;      
+        
         return diff;
         
     }
@@ -264,8 +268,11 @@ public class SalatAndroid extends Activity {
     	Calendar cal = Calendar.getInstance();
     	String[] times_ = times[0].split(":");
     	Calendar time_ = Calendar.getInstance();
-    	time_.set(year, month, day, Integer.parseInt(times_[0]), Integer.parseInt(times_[1]));
-		return timeDiff(cal,time_);
+    	time_.set(year, month, day, Integer.parseInt(times_[0]), Integer.parseInt(times_[1]),0);
+    	long diff = timeDiff(cal,time_);
+    	long diff_ = getTimeInMS(6,02) - getCurrentTimeInMS();        
+        Toast.makeText(SalatAndroid.this, Long.toString(diff_) + " / " + Long.toString(diff) , Toast.LENGTH_LONG).show();
+    	return diff_;
     }
     
     private long getDuhr()
@@ -273,8 +280,11 @@ public class SalatAndroid extends Activity {
     	Calendar cal = Calendar.getInstance();
     	String[] times_ = times[2].split(":");
     	Calendar time_ = Calendar.getInstance();
-    	time_.set(year, month, day, Integer.parseInt(times_[0]), Integer.parseInt(times_[1]));
-    	return timeDiff(cal,time_);
+    	time_.set(year, month, day, Integer.parseInt(times_[0]), Integer.parseInt(times_[1]),0);
+    	long diff = timeDiff(cal,time_);
+    	long diff_ = getTimeInMS(12,05) - getCurrentTimeInMS();        
+        Toast.makeText(SalatAndroid.this, Long.toString(diff_) + " / " + Long.toString(diff) , Toast.LENGTH_LONG).show();
+    	return diff_;
     }
     
     private long getAsr()
@@ -282,8 +292,11 @@ public class SalatAndroid extends Activity {
     	Calendar cal = Calendar.getInstance();
     	String[] times_ = times[3].split(":");
     	Calendar time_ = Calendar.getInstance();
-    	time_.set(year, month, day, Integer.parseInt(times_[0]), Integer.parseInt(times_[1]));
-    	return timeDiff(cal,time_);
+    	time_.set(year, month, day, Integer.parseInt(times_[0]), Integer.parseInt(times_[1]),0);
+    	long diff = timeDiff(cal,time_);
+    	long diff_ = getTimeInMS(14,21) - getCurrentTimeInMS();        
+        Toast.makeText(SalatAndroid.this, Long.toString(diff_) + " / " + Long.toString(diff) , Toast.LENGTH_LONG).show();
+    	return diff_;
     }
     
     private long getMaghrib()
@@ -291,8 +304,11 @@ public class SalatAndroid extends Activity {
     	Calendar cal = Calendar.getInstance();
     	String[] times_ = times[5].split(":");
     	Calendar time_ = Calendar.getInstance();
-    	time_.set(year, month, day, Integer.parseInt(times_[0]), Integer.parseInt(times_[1]));
-    	return timeDiff(cal,time_);
+    	time_.set(year, month, day, Integer.parseInt(times_[0]), Integer.parseInt(times_[1]),0);
+    	long diff = timeDiff(cal,time_);
+    	long diff_ = getTimeInMS(16,41) - getCurrentTimeInMS();      
+    	Toast.makeText(SalatAndroid.this, Long.toString(diff_) + " / " + Long.toString(diff) , Toast.LENGTH_LONG).show();        
+    	return diff_;
     }
     
     private long getIsha()
@@ -300,8 +316,11 @@ public class SalatAndroid extends Activity {
     	Calendar cal = Calendar.getInstance();
     	String[] times_ = times[6].split(":");
     	Calendar time_ = Calendar.getInstance();
-    	time_.set(year, month, day, Integer.parseInt(times_[0]), Integer.parseInt(times_[1]));
-    	return timeDiff(cal,time_);
+    	time_.set(year, month, day, Integer.parseInt(times_[0]), Integer.parseInt(times_[1]),0);
+    	long diff = timeDiff(cal,time_);
+    	long diff_ = getTimeInMS(18,9) - getCurrentTimeInMS();        
+        Toast.makeText(SalatAndroid.this, Long.toString(diff_) + " / " + Long.toString(diff) , Toast.LENGTH_LONG).show();        
+    	return diff_;
     }
     
     private long getMidNight()
@@ -309,21 +328,43 @@ public class SalatAndroid extends Activity {
     	Calendar cal = Calendar.getInstance();
     	Calendar time_ = Calendar.getInstance();
     	time_.set(year, month, day, 24, 00);
-    	return timeDiff(cal,time_);
+    	long diff = timeDiff(cal,time_);
+    	long diff_ = getTimeInMS(24,0) - getCurrentTimeInMS();        
+        Toast.makeText(SalatAndroid.this, Long.toString(diff_) + " / " + Long.toString(diff) , Toast.LENGTH_LONG).show();        
+    	return diff_;
     }
     
     private void startTimer(long timeLeft)
-    {
-    	         
-            Calendar cal = Calendar.getInstance();
-    		long ms = cal.getTimeInMillis();
-    		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);    		
-    		am.cancel(sender);
-			Intent intent = new Intent(SalatAndroid.this, AReceiver.class);
-    		sender = PendingIntent.getBroadcast(this, 999999999, intent, 0);    		
-    		am.set(AlarmManager.RTC_WAKEUP, ms+timeLeft-8, sender); 
-    		Toast.makeText(SalatAndroid.this, " Next Salat is "+nextSalat , Toast.LENGTH_LONG).show();
-    		
+    {    	         
+    	Calendar cal = Calendar.getInstance();
+    	long ms = cal.getTimeInMillis();
+    	AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);    		
+    	am.cancel(sender);
+		Intent intent = new Intent(SalatAndroid.this, AReceiver.class);
+    	sender = PendingIntent.getBroadcast(this, 999999999, intent, 0);    		
+    	am.set(AlarmManager.RTC_WAKEUP, ms+timeLeft, sender); 
+    	Toast.makeText(SalatAndroid.this, " Next Salat is "+nextSalat , Toast.LENGTH_LONG).show();    		
     }    
+    
+    private long getCurrentTimeInMS()
+    {
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf1 = new SimpleDateFormat("ss");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("mm");
+        SimpleDateFormat sdf3 = new SimpleDateFormat("HH");              
+         
+        long ms1 = Long.parseLong(sdf1.format(cal.getTime()))*1000;
+        long ms2 = Long.parseLong(sdf2.format(cal.getTime()))*60*1000;
+        long ms3 = Long.parseLong(sdf3.format(cal.getTime()))*3600*1000;
+
+
+        return ms1+ms2+ms3;    
+    }
+   
+    private long getTimeInMS(long hour, long min)
+    {
+        return hour*3600*1000+min*60*1000;
+    }
+
     
 }
