@@ -102,15 +102,43 @@ public class SalatAndroid extends Activity {
         if (action.equals("android.intent.category.START_ATHAN"))
         {
 	        if (isSalat) 
-	        {	MediaPlayer mp;
+	        {	
+	        	MediaPlayer mp;
+	        	//MediaPlayer mp = new MediaPlayer();
 	        	Toast.makeText(SalatAndroid.this, "It's Salat " + nextSalat + "time ", Toast.LENGTH_LONG).show();
 	        	if ("Fajr" == nextSalat)
 	        	{
-	        		mp = MediaPlayer.create(SalatAndroid.this,R.raw.fajr);
+	        		mp = MediaPlayer.create(SalatAndroid.this,R.raw.athan); 
+	        		//mp.reset();        		
+	        		/*try {
+						mp.setDataSource("/sdcard/athan/athanFajr.mp3");
+					} catch (IllegalArgumentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IllegalStateException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}*/
 	        	}
 	        	else
 	        	{
-	        		mp = MediaPlayer.create(SalatAndroid.this,R.raw.athan);
+	        		mp = MediaPlayer.create(SalatAndroid.this,R.raw.athan); 
+	        		//mp.reset();        		
+	        		/*try {
+						mp.setDataSource("/sdcard/athan/athan.mp3");
+					} catch (IllegalArgumentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IllegalStateException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}*/
 	        	}
 	        	try {
 					mp.prepare();
@@ -284,7 +312,7 @@ public class SalatAndroid extends Activity {
     	Calendar time_ = Calendar.getInstance();
     	time_.set(year, month, day, Integer.parseInt(times_[0]), Integer.parseInt(times_[1]),0);
     	//long diff = timeDiff(cal,time_);
-    	long diff_ = getTimeInMS(6,02) - getCurrentTimeInMS();        
+    	long diff_ = getTimeInMS(Integer.parseInt(times_[0]), Integer.parseInt(times_[1])) - getCurrentTimeInMS();        
         //Toast.makeText(SalatAndroid.this, Long.toString(diff_) + " / " + Long.toString(diff) , Toast.LENGTH_LONG).show();
     	return diff_;
     }
@@ -296,7 +324,7 @@ public class SalatAndroid extends Activity {
     	Calendar time_ = Calendar.getInstance();
     	time_.set(year, month, day, Integer.parseInt(times_[0]), Integer.parseInt(times_[1]),0);
     	//long diff = timeDiff(cal,time_);
-    	long diff_ = getTimeInMS(12,05) - getCurrentTimeInMS();        
+    	long diff_ = getTimeInMS(Integer.parseInt(times_[0]), Integer.parseInt(times_[1])) - getCurrentTimeInMS();        
         //Toast.makeText(SalatAndroid.this, Long.toString(diff_) + " / " + Long.toString(diff) , Toast.LENGTH_LONG).show();
     	return diff_;
     }
@@ -308,7 +336,7 @@ public class SalatAndroid extends Activity {
     	Calendar time_ = Calendar.getInstance();
     	time_.set(year, month, day, Integer.parseInt(times_[0]), Integer.parseInt(times_[1]),0);
     	//long diff = timeDiff(cal,time_);
-    	long diff_ = getTimeInMS(14,21) - getCurrentTimeInMS();        
+    	long diff_ = getTimeInMS(Integer.parseInt(times_[0]), Integer.parseInt(times_[1])) - getCurrentTimeInMS();        
         //Toast.makeText(SalatAndroid.this, Long.toString(diff_) + " / " + Long.toString(diff) , Toast.LENGTH_LONG).show();
     	return diff_;
     }
@@ -320,7 +348,7 @@ public class SalatAndroid extends Activity {
     	Calendar time_ = Calendar.getInstance();
     	time_.set(year, month, day, Integer.parseInt(times_[0]), Integer.parseInt(times_[1]),0);
     	//long diff = timeDiff(cal,time_);
-    	long diff_ = getTimeInMS(16,41) - getCurrentTimeInMS();      
+    	long diff_ = getTimeInMS(Integer.parseInt(times_[0]), Integer.parseInt(times_[1])) - getCurrentTimeInMS();      
     	//Toast.makeText(SalatAndroid.this, Long.toString(diff_) + " / " + Long.toString(diff) , Toast.LENGTH_LONG).show();        
     	return diff_;
     }
@@ -332,7 +360,7 @@ public class SalatAndroid extends Activity {
     	Calendar time_ = Calendar.getInstance();
     	time_.set(year, month, day, Integer.parseInt(times_[0]), Integer.parseInt(times_[1]),0);
     	//long diff = timeDiff(cal,time_);
-    	long diff_ = getTimeInMS(18,9) - getCurrentTimeInMS();        
+    	long diff_ = getTimeInMS(Integer.parseInt(times_[0]), Integer.parseInt(times_[1])) - getCurrentTimeInMS();        
         //Toast.makeText(SalatAndroid.this, Long.toString(diff_) + " / " + Long.toString(diff) , Toast.LENGTH_LONG).show();        
     	return diff_;
     }
@@ -341,7 +369,7 @@ public class SalatAndroid extends Activity {
     {
     	//Calendar cal = Calendar.getInstance();
     	Calendar time_ = Calendar.getInstance();
-    	time_.set(year, month, day, 24, 00);
+    	time_.set(year, month, day, 24, 0);
     	//long diff = timeDiff(cal,time_);
     	long diff_ = getTimeInMS(24,0) - getCurrentTimeInMS();        
         //Toast.makeText(SalatAndroid.this, Long.toString(diff_) + " / " + Long.toString(diff) , Toast.LENGTH_LONG).show();        
