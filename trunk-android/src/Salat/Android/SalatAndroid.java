@@ -5,11 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.widget.TextView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.app.AlarmManager;
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -25,9 +27,11 @@ public class SalatAndroid extends Activity {
 	int day;
 	protected Toast mToast; 
 	public String nextSalat;
-	public Boolean isSalat;
-	PendingIntent sender;
+	public Boolean isSalat;	
 	Boolean firstTime = true;
+	private NotificationManager mNotificationManager;
+	Notification notification;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +46,9 @@ public class SalatAndroid extends Activity {
         printAsrTime();
         printMaghribTime();
         printIshaTime();
-        printShouroukTime();  
+        printShouroukTime(); 
+        
+        //createNotification();
         
         long ms = getNextSalat();
     	startTimer(ms);     	
@@ -59,7 +65,7 @@ public class SalatAndroid extends Activity {
         {
 	        if (isSalat) 
 	        {		        
-	        	createNotification();
+	        	createNotification();	        	
 	        	MediaPlayer mp;
 	        	//MediaPlayer mp = new MediaPlayer();
 	        	Toast.makeText(SalatAndroid.this, "It's Salat " + nextSalat + "time ", Toast.LENGTH_LONG).show();
@@ -269,7 +275,7 @@ public class SalatAndroid extends Activity {
     	String[] times_ = times[5].split(":");
     	Calendar time_ = Calendar.getInstance();
     	time_.set(year, month, day, Integer.parseInt(times_[0]), Integer.parseInt(times_[1]),0);
-    	long diff_ = getTimeInMS(16, 39) - getCurrentTimeInMS();      
+    	long diff_ = getTimeInMS(Integer.parseInt(times_[0]), Integer.parseInt(times_[1])) - getCurrentTimeInMS();      
     	return diff_;
     }
     
@@ -295,9 +301,10 @@ public class SalatAndroid extends Activity {
     	Calendar cal = Calendar.getInstance();
     	long ms = cal.getTimeInMillis();
     	AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);    		
-    	am.cancel(sender);
+    	//am.cancel(sender);
 		Intent intent = new Intent(SalatAndroid.this, AReceiver.class);
-    	sender = PendingIntent.getBroadcast(this, 999999999, intent, 0);    		
+    	PendingIntent sender = PendingIntent.getBroadcast(this, 999999999, intent, 0);
+    	am.cancel(sender);    		
     	am.set(AlarmManager.RTC_WAKEUP, ms+timeLeft, sender); 
     	Toast.makeText(SalatAndroid.this, " Next Salat is "+nextSalat , Toast.LENGTH_LONG).show();    		
     }    
@@ -336,8 +343,29 @@ public class SalatAndroid extends Activity {
 
     	// the next two lines initialize the Notification, using the configurations above
     	Notification notification = new Notification(icon, tickerText, when);
+    	//notification.defaults |= Notification.DEFAULT_VIBRATE;
+    	//notification.defaults |= Notification.DEFAULT_LIGHTS;
+    	long[] vibrate = {0,100,200,300};
+    	notification.vibrate = vibrate;
     	notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
+    	mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE); 
+    	mNotificationManager.notify(1,notification);
+    	
     }
+    
+    private static PowerManager.WakeLock _wakeLock = null;
+
+    synchronized public static PowerManager.WakeLock getLock(Context context) {
+    	
+        if (_wakeLock == null) {
+           //Log.i("DownloadService", "Creating wakeLock");
+           PowerManager mgr=(PowerManager)context.getSystemService(Context.POWER_SERVICE);
+           _wakeLock=mgr.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,"my worker wake lock");
+           _wakeLock.setReferenceCounted(false);
+        }
+
+        return(_wakeLock);
+    } 
 
     
 }
